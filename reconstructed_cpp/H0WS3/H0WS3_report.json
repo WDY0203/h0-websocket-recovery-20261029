@@ -1,0 +1,3467 @@
+{
+ "prefix": "H0WS3",
+ "source": "D:\\tmp\\H0WS3_all_decompiled.txt",
+ "functions_total": 400,
+ "functions_emitted": 400,
+ "functions_skipped": [],
+ "duplicate_names": 164,
+ "types": 45,
+ "types_by_value": [
+  "_union_1457",
+  "allocator",
+  "epoll_event",
+  "retur",
+  "sigaction",
+  "sigset_t",
+  "sockaddr",
+  "socklen_t",
+  "stat",
+  "string",
+  "timeval",
+  "uchar",
+  "uint6",
+  "unkuint9"
+ ],
+ "globals": 189,
+ "globals_unresolved": [
+  "PTR__M_invoke_00324eb0",
+  "PTR__M_invoke_00324f38",
+  "PTR__M_invoke_00324f40",
+  "PTR__M_invoke_00324fd0",
+  "PTR__M_invoke_00324fd8",
+  "PTR__M_invoke_00324fe0",
+  "PTR__M_invoke_00324fe8",
+  "PTR__M_manager_00324f58",
+  "PTR__M_manager_00324f68",
+  "PTR__M_manager_00324f78",
+  "PTR___pthread_key_create_00324f80",
+  "PTR_stderr_00324fb0",
+  "PTR_typeinfo_00324eb8",
+  "PTR_typeinfo_00324ee0",
+  "PTR_typeinfo_00324ee8",
+  "PTR_typeinfo_00324f10",
+  "PTR_typeinfo_00324f50",
+  "PTR_typeinfo_00324fa8",
+  "PTR_typeinfo_00324fc8",
+  "PTR_vtable_00324ec8",
+  "PTR_vtable_00324ef0",
+  "PTR_vtable_00324f00",
+  "PTR_vtable_00324f08",
+  "PTR_vtable_00324f30",
+  "PTR_vtable_00324f48",
+  "PTR_vtable_00324f70",
+  "PTR_vtable_00324f90",
+  "PTR_vtable_00324f98",
+  "PTR_vtable_00324fb8",
+  "__sighandler_t",
+  "__unused",
+  "_func_int_char_ptr_ulong_char_ptr___va_list_tag_ptr",
+  "std__allocator",
+  "std__function",
+  "std__pair",
+  "vector___M_default_append",
+  "vector___M_emplace_back_aux",
+  "vector___M_range_insert"
+ ],
+ "globals_notes": {
+  "DAT_0011f3d1": "array/address (byte)",
+  "DAT_0011fe68": "array/address (byte)",
+  "DAT_0011fecc": "array/address (byte)",
+  "DAT_0011ff15": "array/address (byte)",
+  "DAT_00324718": "array/address (byte)",
+  "DAT_00325480": "array/address (byte)",
+  "PTR_00325010": "cast(g) -> code*",
+  "PTR_FUN_00324730": "array/address (byte)",
+  "PTR_LOOP_00324740": "array/address (byte)",
+  "PTR_PyArg_ParseTuple_00325160": "cast(g) -> code*",
+  "PTR_PyBytes_AsString_003251b0": "cast(g) -> code*",
+  "PTR_PyBytes_FromStringAndSize_00325330": "cast(g) -> code*",
+  "PTR_PyBytes_Size_003250a8": "cast(g) -> code*",
+  "PTR_PyFloat_AsDouble_00325290": "cast(g) -> code*",
+  "PTR_PyLong_AsLong_00325138": "cast(g) -> code*",
+  "PTR_PyLong_AsVoidPtr_00325070": "cast(g) -> code*",
+  "PTR_PyLong_FromVoidPtr_00325068": "cast(g) -> code*",
+  "PTR_PyModule_Create2_00325390": "cast(g) -> code*",
+  "PTR_PyTuple_New_003253a0": "cast(g) -> code*",
+  "PTR_PyUnicode_AsUTF8_00325438": "cast(g) -> code*",
+  "PTR_Py_BuildValue_003252b0": "cast(g) -> code*",
+  "PTR_TcpClient_00325310": "cast(g) -> code*",
+  "PTR_TcpConn_003251b8": "cast(g) -> code*",
+  "PTR_UnixClient_003252f8": "cast(g) -> code*",
+  "PTR__EventHandler_003253c0": "cast(g) -> code*",
+  "PTR__Jv_RegisterClasses_00324ed8": "cast(g) -> code*",
+  "PTR__M_destroy_00325188": "cast(g) -> code*",
+  "PTR__M_dispose_003250a0": "cast(g) -> code*",
+  "PTR__M_emplace_back_aux": "cast(g) -> code*",
+  "PTR__M_emplace_back_aux_std__unique_ptr_EventHandler_std__default_delete_EventHandler_00325368": "cast(g) -> code*",
+  "PTR__M_emplace_hint_unique_std__piecewise_construct_t_const__std__tuple_int_const__std__tuple__003251a0": "cast(g) -> code*",
+  "PTR__M_erase_00325428": "cast(g) -> code*",
+  "PTR__M_hook_00325250": "cast(g) -> code*",
+  "PTR__M_invoke_00324eb0": "unresolved (pointer placeholder)",
+  "PTR__M_invoke_00324f38": "unresolved (pointer placeholder)",
+  "PTR__M_invoke_00324f40": "unresolved (pointer placeholder)",
+  "PTR__M_invoke_00324fd0": "unresolved (pointer placeholder)",
+  "PTR__M_invoke_00324fd8": "unresolved (pointer placeholder)",
+  "PTR__M_invoke_00324fe0": "unresolved (pointer placeholder)",
+  "PTR__M_invoke_00324fe8": "unresolved (pointer placeholder)",
+  "PTR__M_leak_hard_00325430": "cast(g) -> code*",
+  "PTR__M_manager_00324ec0": "cast(g) -> code*",
+  "PTR__M_manager_00324ef8": "cast(g) -> code*",
+  "PTR__M_manager_00324f58": "unresolved (pointer placeholder)",
+  "PTR__M_manager_00324f68": "unresolved (pointer placeholder)",
+  "PTR__M_manager_00324f78": "unresolved (pointer placeholder)",
+  "PTR__M_manager_00324f88": "cast(g) -> code*",
+  "PTR__M_manager_00324fc0": "cast(g) -> code*",
+  "PTR__M_range_insert_std__move_iterator___gnu_cxx____normal_iterator_std__unique_ptr_EventHandler_std__default_delete_EventHandler__std__vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler_003253e8": "cast(g) -> code*",
+  "PTR__M_unhook_00325048": "cast(g) -> code*",
+  "PTR__Rb_tree_decrement_003250f0": "cast(g) -> code*",
+  "PTR__Rb_tree_increment_003251d8": "cast(g) -> code*",
+  "PTR__Rb_tree_increment_003253a8": "cast(g) -> code*",
+  "PTR__Rb_tree_insert_and_rebalance_003252c8": "cast(g) -> code*",
+  "PTR__Rb_tree_rebalance_for_erase_00325300": "cast(g) -> code*",
+  "PTR__S_create_003250f8": "cast(g) -> code*",
+  "PTR__S_empty_rep_storage_00324fa0": "cast(g) -> allocator*",
+  "PTR__TcpClient_003250e0": "cast(g) -> code*",
+  "PTR__TcpConn_00325248": "cast(g) -> code*",
+  "PTR__TcpServer_00325340": "cast(g) -> code*",
+  "PTR__UnixClient_00325100": "cast(g) -> code*",
+  "PTR__UnixServer_00325230": "cast(g) -> code*",
+  "PTR__Unwind_Resume_00325410": "cast(g) -> code*",
+  "PTR___cxa_begin_catch_003253c8": "cast(g) -> code*",
+  "PTR___cxa_end_catch_003253b0": "cast(g) -> code*",
+  "PTR___cxa_finalize_00324f28": "cast(g) -> code*",
+  "PTR___cxa_rethrow_003250c0": "cast(g) -> code*",
+  "PTR___errno_location_003252b8": "cast(g) -> code*",
+  "PTR___gmon_start___00324ed0": "cast(g) -> code*",
+  "PTR___pthread_key_create_00324f80": "unresolved (pointer placeholder)",
+  "PTR___throw_bad_function_call_003252e8": "cast(g) -> code*",
+  "PTR___throw_length_error_00325028": "cast(g) -> code*",
+  "PTR___to_xstring_std__string_char_00325468": "cast(g) -> code*",
+  "PTR___xstat_00325190": "cast(g) -> code*",
+  "PTR__vector_00325128": "cast(g) -> code*",
+  "PTR__vector_003252d8": "cast(g) -> code*",
+  "PTR_abort_00325060": "cast(g) -> code*",
+  "PTR_accept_00325418": "cast(g) -> code*",
+  "PTR_append_00325020": "cast(g) -> code*",
+  "PTR_append_00325450": "cast(g) -> code*",
+  "PTR_assign_00325338": "cast(g) -> code*",
+  "PTR_assign_00325358": "cast(g) -> code*",
+  "PTR_backtrace_00325040": "cast(g) -> code*",
+  "PTR_backtrace_symbols_00325170": "cast(g) -> code*",
+  "PTR_bind_003253d8": "cast(g) -> code*",
+  "PTR_bzero_00325150": "cast(g) -> code*",
+  "PTR_close_00325050": "cast(g) -> code*",
+  "PTR_connect_00325238": "cast(g) -> code*",
+  "PTR_deflateBound_00325320": "cast(g) -> code*",
+  "PTR_deflateEnd_00325198": "cast(g) -> code*",
+  "PTR_deflateInit2__00325370": "cast(g) -> code*",
+  "PTR_deflate_003250d0": "cast(g) -> code*",
+  "PTR_epoll_create1_003251e0": "cast(g) -> code*",
+  "PTR_epoll_ctl_00325200": "cast(g) -> code*",
+  "PTR_epoll_wait_00325348": "cast(g) -> code*",
+  "PTR_fcntl_00325448": "cast(g) -> code*",
+  "PTR_fprintf_003253f8": "cast(g) -> code*",
+  "PTR_free_00325178": "cast(g) -> code*",
+  "PTR_freeifaddrs_00325350": "cast(g) -> code*",
+  "PTR_fwrite_003253e0": "cast(g) -> code*",
+  "PTR_getifaddrs_00325210": "cast(g) -> code*",
+  "PTR_getsockopt_00325228": "cast(g) -> code*",
+  "PTR_gettimeofday_003250b8": "cast(g) -> code*",
+  "PTR_idle_proc_00325130": "cast(g) -> code*",
+  "PTR_inet_addr_00325460": "cast(g) -> code*",
+  "PTR_inet_ntoa_003252a0": "cast(g) -> code*",
+  "PTR_inflateEnd_00325058": "cast(g) -> code*",
+  "PTR_inflateInit2__00325148": "cast(g) -> code*",
+  "PTR_inflate_00325168": "cast(g) -> code*",
+  "PTR_insert_003251d0": "cast(g) -> code*",
+  "PTR_listen_003251a8": "cast(g) -> code*",
+  "PTR_memcpy_00325440": "cast(g) -> code*",
+  "PTR_memmem_00325378": "cast(g) -> code*",
+  "PTR_memmove_00325270": "cast(g) -> code*",
+  "PTR_memset_00325030": "cast(g) -> code*",
+  "PTR_mkdir_00325458": "cast(g) -> code*",
+  "PTR_operator_delete_00325090": "cast(g) -> code*",
+  "PTR_operator_new_00325408": "cast(g) -> code*",
+  "PTR_perror_003253f0": "cast(g) -> code*",
+  "PTR_read_003250d8": "cast(g) -> code*",
+  "PTR_recv_proc_00325280": "cast(g) -> code*",
+  "PTR_remove_00325388": "cast(g) -> code*",
+  "PTR_reserve_00325098": "cast(g) -> code*",
+  "PTR_send_proc_00325140": "cast(g) -> code*",
+  "PTR_setsockopt_00325120": "cast(g) -> code*",
+  "PTR_shutdown_00325038": "cast(g) -> code*",
+  "PTR_sigaction_00325208": "cast(g) -> code*",
+  "PTR_sigemptyset_003253b8": "cast(g) -> code*",
+  "PTR_socket_00325298": "cast(g) -> code*",
+  "PTR_stderr_00324fb0": "unresolved (pointer placeholder)",
+  "PTR_strcmp_00325308": "cast(g) -> code*",
+  "PTR_string_00325078": "cast(g) -> code*",
+  "PTR_string_00325118": "cast(g) -> code*",
+  "PTR_string_003251f8": "cast(g) -> code*",
+  "PTR_strlen_00325180": "cast(g) -> code*",
+  "PTR_strncpy_00325398": "cast(g) -> code*",
+  "PTR_strnlen_00325158": "cast(g) -> code*",
+  "PTR_strrchr_003251c8": "cast(g) -> code*",
+  "PTR_terminate_00325218": "cast(g) -> code*",
+  "PTR_typeinfo_00324eb8": "unresolved (pointer placeholder)",
+  "PTR_typeinfo_00324ee0": "unresolved (pointer placeholder)",
+  "PTR_typeinfo_00324ee8": "unresolved (pointer placeholder)",
+  "PTR_typeinfo_00324f10": "unresolved (pointer placeholder)",
+  "PTR_typeinfo_00324f50": "unresolved (pointer placeholder)",
+  "PTR_typeinfo_00324fa8": "unresolved (pointer placeholder)",
+  "PTR_typeinfo_00324fc8": "unresolved (pointer placeholder)",
+  "PTR_vsnprintf_00324f60": "cast(g) -> code*",
+  "PTR_vtable_00324760": "array/address (byte)",
+  "PTR_vtable_00324770": "array/address (byte)",
+  "PTR_vtable_00324780": "array/address (byte)",
+  "PTR_vtable_00324790": "array/address (byte)",
+  "PTR_vtable_003247a0": "array/address (byte)",
+  "PTR_vtable_003247b0": "array/address (byte)",
+  "PTR_vtable_003247c0": "array/address (byte)",
+  "PTR_vtable_003247d0": "array/address (byte)",
+  "PTR_vtable_003248e0": "array/address (byte)",
+  "PTR_vtable_003248f0": "array/address (byte)",
+  "PTR_vtable_00324900": "array/address (byte)",
+  "PTR_vtable_00324910": "array/address (byte)",
+  "PTR_vtable_00324920": "array/address (byte)",
+  "PTR_vtable_00324930": "array/address (byte)",
+  "PTR_vtable_00324940": "array/address (byte)",
+  "PTR_vtable_00324950": "array/address (byte)",
+  "PTR_vtable_00324960": "array/address (byte)",
+  "PTR_vtable_00324970": "array/address (byte)",
+  "PTR_vtable_00324980": "array/address (byte)",
+  "PTR_vtable_00324a80": "array/address (byte)",
+  "PTR_vtable_00324ec8": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324ef0": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f00": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f08": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f30": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f48": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f70": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f90": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324f98": "unresolved (pointer placeholder)",
+  "PTR_vtable_00324fb8": "unresolved (pointer placeholder)",
+  "PTR_write_00325400": "cast(g) -> code*",
+  "_DAT_0011f730": "floating literal -> double",
+  "__bss_start": "assignment -> int64_t",
+  "__sighandler_t": "unresolved (pointer placeholder)",
+  "__unused": "unresolved (pointer placeholder)",
+  "_func_int_char_ptr_ulong_char_ptr___va_list_tag_ptr": "unresolved (pointer placeholder)",
+  "std__allocator": "unresolved (pointer placeholder)",
+  "std__function": "unresolved (pointer placeholder)",
+  "std__pair": "unresolved (pointer placeholder)",
+  "vector___M_default_append": "unresolved (pointer placeholder)",
+  "vector___M_emplace_back_aux": "unresolved (pointer placeholder)",
+  "vector___M_range_insert": "unresolved (pointer placeholder)"
+ },
+ "translation_units": 2,
+ "chunk_size": 200,
+ "demangled_symbols": 0,
+ "manifest": [
+  {
+   "idx": 0,
+   "name": "rea__init",
+   "orig": "_init",
+   "file": "part_0001.cpp",
+   "line_start": 3,
+   "line_end": 20
+  },
+  {
+   "idx": 1,
+   "name": "rea_FUN_00106f00",
+   "orig": "FUN_00106f00",
+   "file": "part_0001.cpp",
+   "line_start": 21,
+   "line_end": 33
+  },
+  {
+   "idx": 2,
+   "name": "rea_WSConn__recv_pat",
+   "orig": "WSConn__recv_pat",
+   "file": "part_0001.cpp",
+   "line_start": 34,
+   "line_end": 373
+  },
+  {
+   "idx": 3,
+   "name": "rea_std__string__append",
+   "orig": "std__string__append",
+   "file": "part_0001.cpp",
+   "line_start": 374,
+   "line_end": 386
+  },
+  {
+   "idx": 4,
+   "name": "rea_std____throw_length_error",
+   "orig": "std____throw_length_error",
+   "file": "part_0001.cpp",
+   "line_start": 387,
+   "line_end": 399
+  },
+  {
+   "idx": 5,
+   "name": "rea_memset",
+   "orig": "memset",
+   "file": "part_0001.cpp",
+   "line_start": 400,
+   "line_end": 414
+  },
+  {
+   "idx": 6,
+   "name": "rea_shutdown",
+   "orig": "shutdown",
+   "file": "part_0001.cpp",
+   "line_start": 415,
+   "line_end": 429
+  },
+  {
+   "idx": 7,
+   "name": "rea_backtrace",
+   "orig": "backtrace",
+   "file": "part_0001.cpp",
+   "line_start": 430,
+   "line_end": 442
+  },
+  {
+   "idx": 8,
+   "name": "rea_std____detail___List_node_base___M_unhook",
+   "orig": "std____detail___List_node_base___M_unhook",
+   "file": "part_0001.cpp",
+   "line_start": 443,
+   "line_end": 455
+  },
+  {
+   "idx": 9,
+   "name": "rea_close",
+   "orig": "close",
+   "file": "part_0001.cpp",
+   "line_start": 456,
+   "line_end": 470
+  },
+  {
+   "idx": 10,
+   "name": "rea_inflateEnd",
+   "orig": "inflateEnd",
+   "file": "part_0001.cpp",
+   "line_start": 471,
+   "line_end": 483
+  },
+  {
+   "idx": 11,
+   "name": "rea_abort",
+   "orig": "abort",
+   "file": "part_0001.cpp",
+   "line_start": 484,
+   "line_end": 496
+  },
+  {
+   "idx": 12,
+   "name": "rea_PyLong_FromVoidPtr",
+   "orig": "PyLong_FromVoidPtr",
+   "file": "part_0001.cpp",
+   "line_start": 497,
+   "line_end": 509
+  },
+  {
+   "idx": 13,
+   "name": "rea_PyLong_AsVoidPtr",
+   "orig": "PyLong_AsVoidPtr",
+   "file": "part_0001.cpp",
+   "line_start": 510,
+   "line_end": 522
+  },
+  {
+   "idx": 14,
+   "name": "rea_std__string__string",
+   "orig": "std__string__string",
+   "file": "part_0001.cpp",
+   "line_start": 523,
+   "line_end": 535
+  },
+  {
+   "idx": 15,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int___erase",
+   "orig": "std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int___erase",
+   "file": "part_0001.cpp",
+   "line_start": 536,
+   "line_end": 629
+  },
+  {
+   "idx": 16,
+   "name": "rea_EventLoop2__dtor_EventLoop2",
+   "orig": "EventLoop2__dtor_EventLoop2",
+   "file": "part_0001.cpp",
+   "line_start": 630,
+   "line_end": 693
+  },
+  {
+   "idx": 17,
+   "name": "rea_operator__delete",
+   "orig": "operator_delete",
+   "file": "part_0001.cpp",
+   "line_start": 694,
+   "line_end": 706
+  },
+  {
+   "idx": 18,
+   "name": "rea_std__string__reserve",
+   "orig": "std__string__reserve",
+   "file": "part_0001.cpp",
+   "line_start": 707,
+   "line_end": 719
+  },
+  {
+   "idx": 19,
+   "name": "rea_std__string___Rep___M_dispose",
+   "orig": "std__string___Rep___M_dispose",
+   "file": "part_0001.cpp",
+   "line_start": 720,
+   "line_end": 732
+  },
+  {
+   "idx": 20,
+   "name": "rea_PyBytes_Size",
+   "orig": "PyBytes_Size",
+   "file": "part_0001.cpp",
+   "line_start": 733,
+   "line_end": 745
+  },
+  {
+   "idx": 21,
+   "name": "rea_WSConn__read_data_mask",
+   "orig": "WSConn__read_data_mask",
+   "file": "part_0001.cpp",
+   "line_start": 746,
+   "line_end": 811
+  },
+  {
+   "idx": 22,
+   "name": "rea_gettimeofday",
+   "orig": "gettimeofday",
+   "file": "part_0001.cpp",
+   "line_start": 812,
+   "line_end": 826
+  },
+  {
+   "idx": 23,
+   "name": "rea___cxa_rethrow",
+   "orig": "__cxa_rethrow",
+   "file": "part_0001.cpp",
+   "line_start": 827,
+   "line_end": 839
+  },
+  {
+   "idx": 24,
+   "name": "rea_WSConn__exit",
+   "orig": "WSConn__exit",
+   "file": "part_0001.cpp",
+   "line_start": 840,
+   "line_end": 1391
+  },
+  {
+   "idx": 25,
+   "name": "rea_deflate",
+   "orig": "deflate",
+   "file": "part_0001.cpp",
+   "line_start": 1392,
+   "line_end": 1404
+  },
+  {
+   "idx": 26,
+   "name": "rea_read",
+   "orig": "read",
+   "file": "part_0001.cpp",
+   "line_start": 1405,
+   "line_end": 1419
+  },
+  {
+   "idx": 27,
+   "name": "rea_TcpClient__dtor_TcpClient",
+   "orig": "TcpClient__dtor_TcpClient",
+   "file": "part_0001.cpp",
+   "line_start": 1420,
+   "line_end": 1432
+  },
+  {
+   "idx": 28,
+   "name": "rea_EventLoop2__exit",
+   "orig": "EventLoop2__exit",
+   "file": "part_0001.cpp",
+   "line_start": 1433,
+   "line_end": 1446
+  },
+  {
+   "idx": 29,
+   "name": "rea_std___Rb_tree_decrement",
+   "orig": "std___Rb_tree_decrement",
+   "file": "part_0001.cpp",
+   "line_start": 1447,
+   "line_end": 1459
+  },
+  {
+   "idx": 30,
+   "name": "rea_std__string___Rep___S_create",
+   "orig": "std__string___Rep___S_create",
+   "file": "part_0001.cpp",
+   "line_start": 1460,
+   "line_end": 1472
+  },
+  {
+   "idx": 31,
+   "name": "rea_UnixClient__dtor_UnixClient",
+   "orig": "UnixClient__dtor_UnixClient",
+   "file": "part_0001.cpp",
+   "line_start": 1473,
+   "line_end": 1485
+  },
+  {
+   "idx": 32,
+   "name": "rea_std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_unsigned_char__std__vector_unsigned_char_std__allocator_unsigned_char",
+   "orig": "std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_unsigned_char__std__vector_unsigned_char_std__allocator_unsigned_char________________",
+   "file": "part_0001.cpp",
+   "line_start": 1486,
+   "line_end": 1597
+  },
+  {
+   "idx": 33,
+   "name": "rea_print_stack",
+   "orig": "print_stack",
+   "file": "part_0001.cpp",
+   "line_start": 1598,
+   "line_end": 1637
+  },
+  {
+   "idx": 34,
+   "name": "rea_std__string__string__dup2",
+   "orig": "std__string__string",
+   "file": "part_0001.cpp",
+   "line_start": 1638,
+   "line_end": 1650
+  },
+  {
+   "idx": 35,
+   "name": "rea_setsockopt",
+   "orig": "setsockopt",
+   "file": "part_0001.cpp",
+   "line_start": 1651,
+   "line_end": 1665
+  },
+  {
+   "idx": 36,
+   "name": "rea_vector_std__pair_EventHandler__std__function_void",
+   "orig": "vector<std__pair<EventHandler*,std__function<void",
+   "file": "part_0001.cpp",
+   "line_start": 1666,
+   "line_end": 1678
+  },
+  {
+   "idx": 37,
+   "name": "rea_TcpConn__idle_proc",
+   "orig": "TcpConn__idle_proc",
+   "file": "part_0001.cpp",
+   "line_start": 1679,
+   "line_end": 1691
+  },
+  {
+   "idx": 38,
+   "name": "rea_PyLong_AsLong",
+   "orig": "PyLong_AsLong",
+   "file": "part_0001.cpp",
+   "line_start": 1692,
+   "line_end": 1704
+  },
+  {
+   "idx": 39,
+   "name": "rea_TcpConn__send_proc",
+   "orig": "TcpConn__send_proc",
+   "file": "part_0001.cpp",
+   "line_start": 1705,
+   "line_end": 1717
+  },
+  {
+   "idx": 40,
+   "name": "rea_inflateInit2",
+   "orig": "inflateInit2_",
+   "file": "part_0001.cpp",
+   "line_start": 1718,
+   "line_end": 1730
+  },
+  {
+   "idx": 41,
+   "name": "rea_bzero",
+   "orig": "bzero",
+   "file": "part_0001.cpp",
+   "line_start": 1731,
+   "line_end": 1743
+  },
+  {
+   "idx": 42,
+   "name": "rea_strnlen",
+   "orig": "strnlen",
+   "file": "part_0001.cpp",
+   "line_start": 1744,
+   "line_end": 1758
+  },
+  {
+   "idx": 43,
+   "name": "rea_PyArg_ParseTuple",
+   "orig": "PyArg_ParseTuple",
+   "file": "part_0001.cpp",
+   "line_start": 1759,
+   "line_end": 1771
+  },
+  {
+   "idx": 44,
+   "name": "rea_inflate",
+   "orig": "inflate",
+   "file": "part_0001.cpp",
+   "line_start": 1772,
+   "line_end": 1784
+  },
+  {
+   "idx": 45,
+   "name": "rea_backtrace_symbols",
+   "orig": "backtrace_symbols",
+   "file": "part_0001.cpp",
+   "line_start": 1785,
+   "line_end": 1797
+  },
+  {
+   "idx": 46,
+   "name": "rea_free",
+   "orig": "free",
+   "file": "part_0001.cpp",
+   "line_start": 1798,
+   "line_end": 1810
+  },
+  {
+   "idx": 47,
+   "name": "rea_strlen",
+   "orig": "strlen",
+   "file": "part_0001.cpp",
+   "line_start": 1811,
+   "line_end": 1825
+  },
+  {
+   "idx": 48,
+   "name": "rea_std__string___Rep___M_destroy",
+   "orig": "std__string___Rep___M_destroy",
+   "file": "part_0001.cpp",
+   "line_start": 1826,
+   "line_end": 1838
+  },
+  {
+   "idx": 49,
+   "name": "rea___xstat",
+   "orig": "__xstat",
+   "file": "part_0001.cpp",
+   "line_start": 1839,
+   "line_end": 1853
+  },
+  {
+   "idx": 50,
+   "name": "rea_deflateEnd",
+   "orig": "deflateEnd",
+   "file": "part_0001.cpp",
+   "line_start": 1854,
+   "line_end": 1866
+  },
+  {
+   "idx": 51,
+   "name": "rea_std_________Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_________M_emplace_hint_unique_std__piecewise_construct_t_const__std__tuple_int_const__std__tuple",
+   "orig": "std_________Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_________M_emplace_hint_unique_std__piecewise_construct_t_const__std__tuple_int_const__std__tuple_________________",
+   "file": "part_0001.cpp",
+   "line_start": 1867,
+   "line_end": 1881
+  },
+  {
+   "idx": 52,
+   "name": "rea_listen",
+   "orig": "listen",
+   "file": "part_0001.cpp",
+   "line_start": 1882,
+   "line_end": 1896
+  },
+  {
+   "idx": 53,
+   "name": "rea_PyBytes_AsString",
+   "orig": "PyBytes_AsString",
+   "file": "part_0001.cpp",
+   "line_start": 1897,
+   "line_end": 1909
+  },
+  {
+   "idx": 54,
+   "name": "rea_TcpConn__TcpConn",
+   "orig": "TcpConn__TcpConn",
+   "file": "part_0001.cpp",
+   "line_start": 1910,
+   "line_end": 1922
+  },
+  {
+   "idx": 55,
+   "name": "rea_WSConn__read_data",
+   "orig": "WSConn__read_data",
+   "file": "part_0001.cpp",
+   "line_start": 1923,
+   "line_end": 1988
+  },
+  {
+   "idx": 56,
+   "name": "rea_strrchr",
+   "orig": "strrchr",
+   "file": "part_0001.cpp",
+   "line_start": 1989,
+   "line_end": 2003
+  },
+  {
+   "idx": 57,
+   "name": "rea_std__string__insert",
+   "orig": "std__string__insert",
+   "file": "part_0001.cpp",
+   "line_start": 2004,
+   "line_end": 2016
+  },
+  {
+   "idx": 58,
+   "name": "rea_std___Rb_tree_increment",
+   "orig": "std___Rb_tree_increment",
+   "file": "part_0001.cpp",
+   "line_start": 2017,
+   "line_end": 2029
+  },
+  {
+   "idx": 59,
+   "name": "rea_epoll_create1",
+   "orig": "epoll_create1",
+   "file": "part_0001.cpp",
+   "line_start": 2030,
+   "line_end": 2044
+  },
+  {
+   "idx": 60,
+   "name": "rea_std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_char__std__string",
+   "orig": "std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_char__std__string________________",
+   "file": "part_0001.cpp",
+   "line_start": 2045,
+   "line_end": 2299
+  },
+  {
+   "idx": 61,
+   "name": "rea_std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_emplace_unique_WSConn___std__unique_ptr_Root_std__default_delete_Root",
+   "orig": "std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_emplace_unique_WSConn___std__unique_ptr_Root_std__default_delete_Root___________",
+   "file": "part_0001.cpp",
+   "line_start": 2300,
+   "line_end": 2381
+  },
+  {
+   "idx": 62,
+   "name": "rea_std__string__string__dup3",
+   "orig": "std__string__string",
+   "file": "part_0001.cpp",
+   "line_start": 2382,
+   "line_end": 2394
+  },
+  {
+   "idx": 63,
+   "name": "rea_epoll_ctl",
+   "orig": "epoll_ctl",
+   "file": "part_0001.cpp",
+   "line_start": 2395,
+   "line_end": 2409
+  },
+  {
+   "idx": 64,
+   "name": "rea_sigaction",
+   "orig": "sigaction",
+   "file": "part_0001.cpp",
+   "line_start": 2410,
+   "line_end": 2424
+  },
+  {
+   "idx": 65,
+   "name": "rea_getifaddrs",
+   "orig": "getifaddrs",
+   "file": "part_0001.cpp",
+   "line_start": 2425,
+   "line_end": 2437
+  },
+  {
+   "idx": 66,
+   "name": "rea_std__terminate",
+   "orig": "std__terminate",
+   "file": "part_0001.cpp",
+   "line_start": 2438,
+   "line_end": 2450
+  },
+  {
+   "idx": 67,
+   "name": "rea_vector_std__pair_EventHandler__std__function_void__dup2",
+   "orig": "vector<std__pair<EventHandler*,std__function<void",
+   "file": "part_0001.cpp",
+   "line_start": 2451,
+   "line_end": 2463
+  },
+  {
+   "idx": 68,
+   "name": "rea_getsockopt",
+   "orig": "getsockopt",
+   "file": "part_0001.cpp",
+   "line_start": 2464,
+   "line_end": 2478
+  },
+  {
+   "idx": 69,
+   "name": "rea_UnixServer__dtor_UnixServer",
+   "orig": "UnixServer__dtor_UnixServer",
+   "file": "part_0001.cpp",
+   "line_start": 2479,
+   "line_end": 2491
+  },
+  {
+   "idx": 70,
+   "name": "rea_connect",
+   "orig": "connect",
+   "file": "part_0001.cpp",
+   "line_start": 2492,
+   "line_end": 2506
+  },
+  {
+   "idx": 71,
+   "name": "rea_std__vector_unsigned_char_std__allocator_unsigned_char__emplace_back_unsigned_char",
+   "orig": "std__vector_unsigned_char_std__allocator_unsigned_char__emplace_back_unsigned_char",
+   "file": "part_0001.cpp",
+   "line_start": 2507,
+   "line_end": 2820
+  },
+  {
+   "idx": 72,
+   "name": "rea_TcpConn__dtor_TcpConn",
+   "orig": "TcpConn__dtor_TcpConn",
+   "file": "part_0001.cpp",
+   "line_start": 2821,
+   "line_end": 2833
+  },
+  {
+   "idx": 73,
+   "name": "rea_std____detail___List_node_base___M_hook",
+   "orig": "std____detail___List_node_base___M_hook",
+   "file": "part_0001.cpp",
+   "line_start": 2834,
+   "line_end": 2846
+  },
+  {
+   "idx": 74,
+   "name": "rea_Buffer__appendf",
+   "orig": "Buffer__appendf",
+   "file": "part_0001.cpp",
+   "line_start": 2847,
+   "line_end": 3027
+  },
+  {
+   "idx": 75,
+   "name": "rea_setcloexec",
+   "orig": "setcloexec",
+   "file": "part_0001.cpp",
+   "line_start": 3028,
+   "line_end": 3047
+  },
+  {
+   "idx": 76,
+   "name": "rea_EventLoop2__run",
+   "orig": "EventLoop2__run",
+   "file": "part_0001.cpp",
+   "line_start": 3048,
+   "line_end": 3362
+  },
+  {
+   "idx": 77,
+   "name": "rea_memmove",
+   "orig": "memmove",
+   "file": "part_0001.cpp",
+   "line_start": 3363,
+   "line_end": 3377
+  },
+  {
+   "idx": 78,
+   "name": "rea_setnonblock",
+   "orig": "setnonblock",
+   "file": "part_0001.cpp",
+   "line_start": 3378,
+   "line_end": 3397
+  },
+  {
+   "idx": 79,
+   "name": "rea_TcpConn__recv_proc",
+   "orig": "TcpConn__recv_proc",
+   "file": "part_0001.cpp",
+   "line_start": 3398,
+   "line_end": 3410
+  },
+  {
+   "idx": 80,
+   "name": "rea_WSConn__dtor_WSConn",
+   "orig": "WSConn__dtor_WSConn",
+   "file": "part_0001.cpp",
+   "line_start": 3411,
+   "line_end": 3458
+  },
+  {
+   "idx": 81,
+   "name": "rea_PyFloat_AsDouble",
+   "orig": "PyFloat_AsDouble",
+   "file": "part_0001.cpp",
+   "line_start": 3459,
+   "line_end": 3471
+  },
+  {
+   "idx": 82,
+   "name": "rea_socket",
+   "orig": "socket",
+   "file": "part_0001.cpp",
+   "line_start": 3472,
+   "line_end": 3486
+  },
+  {
+   "idx": 83,
+   "name": "rea_inet_ntoa",
+   "orig": "inet_ntoa",
+   "file": "part_0001.cpp",
+   "line_start": 3487,
+   "line_end": 3501
+  },
+  {
+   "idx": 84,
+   "name": "rea_print_stack_abort",
+   "orig": "print_stack_abort",
+   "file": "part_0001.cpp",
+   "line_start": 3502,
+   "line_end": 3515
+  },
+  {
+   "idx": 85,
+   "name": "rea_Py_BuildValue",
+   "orig": "Py_BuildValue",
+   "file": "part_0001.cpp",
+   "line_start": 3516,
+   "line_end": 3528
+  },
+  {
+   "idx": 86,
+   "name": "rea___errno_location",
+   "orig": "__errno_location",
+   "file": "part_0001.cpp",
+   "line_start": 3529,
+   "line_end": 3543
+  },
+  {
+   "idx": 87,
+   "name": "rea_WSConn__send",
+   "orig": "WSConn__send",
+   "file": "part_0001.cpp",
+   "line_start": 3544,
+   "line_end": 4010
+  },
+  {
+   "idx": 88,
+   "name": "rea_std___Rb_tree_insert_and_rebalance",
+   "orig": "std___Rb_tree_insert_and_rebalance________________",
+   "file": "part_0001.cpp",
+   "line_start": 4011,
+   "line_end": 4023
+  },
+  {
+   "idx": 89,
+   "name": "rea_WSConn__recv_more",
+   "orig": "WSConn__recv_more",
+   "file": "part_0001.cpp",
+   "line_start": 4024,
+   "line_end": 4326
+  },
+  {
+   "idx": 90,
+   "name": "rea_std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____vector",
+   "orig": "std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____vector",
+   "file": "part_0001.cpp",
+   "line_start": 4327,
+   "line_end": 4339
+  },
+  {
+   "idx": 91,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_get_insert_hint_unique_pos",
+   "orig": "std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_get_insert_hint_unique_pos___________",
+   "file": "part_0001.cpp",
+   "line_start": 4340,
+   "line_end": 4500
+  },
+  {
+   "idx": 92,
+   "name": "rea_std____throw_bad_function_call",
+   "orig": "std____throw_bad_function_call",
+   "file": "part_0001.cpp",
+   "line_start": 4501,
+   "line_end": 4513
+  },
+  {
+   "idx": 93,
+   "name": "rea_WSConn__recv",
+   "orig": "WSConn__recv",
+   "file": "part_0001.cpp",
+   "line_start": 4514,
+   "line_end": 4554
+  },
+  {
+   "idx": 94,
+   "name": "rea_UnixClient__UnixClient",
+   "orig": "UnixClient__UnixClient",
+   "file": "part_0001.cpp",
+   "line_start": 4555,
+   "line_end": 4567
+  },
+  {
+   "idx": 95,
+   "name": "rea_std___Rb_tree_rebalance_for_erase",
+   "orig": "std___Rb_tree_rebalance_for_erase",
+   "file": "part_0001.cpp",
+   "line_start": 4568,
+   "line_end": 4580
+  },
+  {
+   "idx": 96,
+   "name": "rea_strcmp",
+   "orig": "strcmp",
+   "file": "part_0001.cpp",
+   "line_start": 4581,
+   "line_end": 4595
+  },
+  {
+   "idx": 97,
+   "name": "rea_TcpClient__TcpClient",
+   "orig": "TcpClient__TcpClient",
+   "file": "part_0001.cpp",
+   "line_start": 4596,
+   "line_end": 4608
+  },
+  {
+   "idx": 98,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_erase",
+   "orig": "std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_erase",
+   "file": "part_0001.cpp",
+   "line_start": 4609,
+   "line_end": 4685
+  },
+  {
+   "idx": 99,
+   "name": "rea_deflateBound",
+   "orig": "deflateBound",
+   "file": "part_0001.cpp",
+   "line_start": 4686,
+   "line_end": 4698
+  },
+  {
+   "idx": 100,
+   "name": "rea_std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_erase",
+   "orig": "std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_erase",
+   "file": "part_0001.cpp",
+   "line_start": 4699,
+   "line_end": 4811
+  },
+  {
+   "idx": 101,
+   "name": "rea_PyBytes_FromStringAndSize",
+   "orig": "PyBytes_FromStringAndSize",
+   "file": "part_0001.cpp",
+   "line_start": 4812,
+   "line_end": 4824
+  },
+  {
+   "idx": 102,
+   "name": "rea_std__string__assign",
+   "orig": "std__string__assign",
+   "file": "part_0001.cpp",
+   "line_start": 4825,
+   "line_end": 4837
+  },
+  {
+   "idx": 103,
+   "name": "rea_TcpServer__dtor_TcpServer",
+   "orig": "TcpServer__dtor_TcpServer",
+   "file": "part_0001.cpp",
+   "line_start": 4838,
+   "line_end": 4850
+  },
+  {
+   "idx": 104,
+   "name": "rea_epoll_wait",
+   "orig": "epoll_wait",
+   "file": "part_0001.cpp",
+   "line_start": 4851,
+   "line_end": 4865
+  },
+  {
+   "idx": 105,
+   "name": "rea_freeifaddrs",
+   "orig": "freeifaddrs",
+   "file": "part_0001.cpp",
+   "line_start": 4866,
+   "line_end": 4878
+  },
+  {
+   "idx": 106,
+   "name": "rea_std__string__assign__dup2",
+   "orig": "std__string__assign",
+   "file": "part_0001.cpp",
+   "line_start": 4879,
+   "line_end": 4891
+  },
+  {
+   "idx": 107,
+   "name": "rea_WSConn__connect",
+   "orig": "WSConn__connect",
+   "file": "part_0001.cpp",
+   "line_start": 4892,
+   "line_end": 5296
+  },
+  {
+   "idx": 108,
+   "name": "rea_std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____M_emplace_back_aux_std__unique_ptr_EventHandler_std__default_delete_EventHandler",
+   "orig": "std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____M_emplace_back_aux_std__unique_ptr_EventHandler_std__default_delete_EventHandler___________",
+   "file": "part_0001.cpp",
+   "line_start": 5297,
+   "line_end": 5311
+  },
+  {
+   "idx": 109,
+   "name": "rea_deflateInit2",
+   "orig": "deflateInit2_",
+   "file": "part_0001.cpp",
+   "line_start": 5312,
+   "line_end": 5324
+  },
+  {
+   "idx": 110,
+   "name": "rea_memmem",
+   "orig": "memmem",
+   "file": "part_0001.cpp",
+   "line_start": 5325,
+   "line_end": 5339
+  },
+  {
+   "idx": 111,
+   "name": "rea_EventLoop2__EventLoop2",
+   "orig": "EventLoop2__EventLoop2",
+   "file": "part_0001.cpp",
+   "line_start": 5340,
+   "line_end": 5375
+  },
+  {
+   "idx": 112,
+   "name": "rea_remove",
+   "orig": "remove",
+   "file": "part_0001.cpp",
+   "line_start": 5376,
+   "line_end": 5390
+  },
+  {
+   "idx": 113,
+   "name": "rea_PyModule_Create2",
+   "orig": "PyModule_Create2",
+   "file": "part_0001.cpp",
+   "line_start": 5391,
+   "line_end": 5403
+  },
+  {
+   "idx": 114,
+   "name": "rea_strncpy",
+   "orig": "strncpy",
+   "file": "part_0001.cpp",
+   "line_start": 5404,
+   "line_end": 5418
+  },
+  {
+   "idx": 115,
+   "name": "rea_PyTuple_New",
+   "orig": "PyTuple_New",
+   "file": "part_0001.cpp",
+   "line_start": 5419,
+   "line_end": 5431
+  },
+  {
+   "idx": 116,
+   "name": "rea_std___Rb_tree_increment__dup2",
+   "orig": "std___Rb_tree_increment",
+   "file": "part_0001.cpp",
+   "line_start": 5432,
+   "line_end": 5444
+  },
+  {
+   "idx": 117,
+   "name": "rea___cxa_end_catch",
+   "orig": "__cxa_end_catch",
+   "file": "part_0001.cpp",
+   "line_start": 5445,
+   "line_end": 5457
+  },
+  {
+   "idx": 118,
+   "name": "rea_sigemptyset",
+   "orig": "sigemptyset",
+   "file": "part_0001.cpp",
+   "line_start": 5458,
+   "line_end": 5472
+  },
+  {
+   "idx": 119,
+   "name": "rea_EventHandler__dtor_EventHandler",
+   "orig": "EventHandler__dtor_EventHandler",
+   "file": "part_0001.cpp",
+   "line_start": 5473,
+   "line_end": 5485
+  },
+  {
+   "idx": 120,
+   "name": "rea___cxa_begin_catch",
+   "orig": "__cxa_begin_catch",
+   "file": "part_0001.cpp",
+   "line_start": 5486,
+   "line_end": 5498
+  },
+  {
+   "idx": 121,
+   "name": "rea_WSConn__read_head",
+   "orig": "WSConn__read_head",
+   "file": "part_0001.cpp",
+   "line_start": 5499,
+   "line_end": 5555
+  },
+  {
+   "idx": 122,
+   "name": "rea_bind",
+   "orig": "bind",
+   "file": "part_0001.cpp",
+   "line_start": 5556,
+   "line_end": 5570
+  },
+  {
+   "idx": 123,
+   "name": "rea_fwrite",
+   "orig": "fwrite",
+   "file": "part_0001.cpp",
+   "line_start": 5571,
+   "line_end": 5585
+  },
+  {
+   "idx": 124,
+   "name": "rea_std________vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler_______________M_range_insert_std__move_iterator___gnu_cxx____normal_iterator_std__unique_ptr_EventHandler_std__default_delete_EventHandler__std__vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler",
+   "orig": "std________vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler_______________M_range_insert_std__move_iterator___gnu_cxx____normal_iterator_std__unique_ptr_EventHandler_std__default_delete_EventHandler__std__vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler________________",
+   "file": "part_0001.cpp",
+   "line_start": 5586,
+   "line_end": 5600
+  },
+  {
+   "idx": 125,
+   "name": "rea_perror",
+   "orig": "perror",
+   "file": "part_0001.cpp",
+   "line_start": 5601,
+   "line_end": 5613
+  },
+  {
+   "idx": 126,
+   "name": "rea_fprintf",
+   "orig": "fprintf",
+   "file": "part_0001.cpp",
+   "line_start": 5614,
+   "line_end": 5628
+  },
+  {
+   "idx": 127,
+   "name": "rea_write",
+   "orig": "write",
+   "file": "part_0001.cpp",
+   "line_start": 5629,
+   "line_end": 5643
+  },
+  {
+   "idx": 128,
+   "name": "rea_operator__new",
+   "orig": "operator_new",
+   "file": "part_0001.cpp",
+   "line_start": 5644,
+   "line_end": 5658
+  },
+  {
+   "idx": 129,
+   "name": "rea__Unwind_Resume",
+   "orig": "_Unwind_Resume",
+   "file": "part_0001.cpp",
+   "line_start": 5659,
+   "line_end": 5671
+  },
+  {
+   "idx": 130,
+   "name": "rea_accept",
+   "orig": "accept",
+   "file": "part_0001.cpp",
+   "line_start": 5672,
+   "line_end": 5686
+  },
+  {
+   "idx": 131,
+   "name": "rea_EventLoop2__add",
+   "orig": "EventLoop2__add",
+   "file": "part_0001.cpp",
+   "line_start": 5687,
+   "line_end": 5717
+  },
+  {
+   "idx": 132,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn____M_erase",
+   "orig": "std____Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn____M_erase",
+   "file": "part_0001.cpp",
+   "line_start": 5718,
+   "line_end": 5730
+  },
+  {
+   "idx": 133,
+   "name": "rea_std__string___M_leak_hard",
+   "orig": "std__string___M_leak_hard",
+   "file": "part_0001.cpp",
+   "line_start": 5731,
+   "line_end": 5743
+  },
+  {
+   "idx": 134,
+   "name": "rea_PyUnicode_AsUTF8",
+   "orig": "PyUnicode_AsUTF8",
+   "file": "part_0001.cpp",
+   "line_start": 5744,
+   "line_end": 5756
+  },
+  {
+   "idx": 135,
+   "name": "rea_memcpy",
+   "orig": "memcpy",
+   "file": "part_0001.cpp",
+   "line_start": 5757,
+   "line_end": 5771
+  },
+  {
+   "idx": 136,
+   "name": "rea_fcntl",
+   "orig": "fcntl",
+   "file": "part_0001.cpp",
+   "line_start": 5772,
+   "line_end": 5786
+  },
+  {
+   "idx": 137,
+   "name": "rea_std__string__append__dup2",
+   "orig": "std__string__append",
+   "file": "part_0001.cpp",
+   "line_start": 5787,
+   "line_end": 5799
+  },
+  {
+   "idx": 138,
+   "name": "rea_mkdir",
+   "orig": "mkdir",
+   "file": "part_0001.cpp",
+   "line_start": 5800,
+   "line_end": 5814
+  },
+  {
+   "idx": 139,
+   "name": "rea_inet_addr",
+   "orig": "inet_addr",
+   "file": "part_0001.cpp",
+   "line_start": 5815,
+   "line_end": 5829
+  },
+  {
+   "idx": 140,
+   "name": "rea___gnu_cxx____to_xstring_std__string_char",
+   "orig": "__gnu_cxx____to_xstring_std__string_char",
+   "file": "part_0001.cpp",
+   "line_start": 5830,
+   "line_end": 5842
+  },
+  {
+   "idx": 141,
+   "name": "rea_current_time",
+   "orig": "current_time",
+   "file": "part_0001.cpp",
+   "line_start": 5843,
+   "line_end": 5857
+  },
+  {
+   "idx": 142,
+   "name": "rea___gmon_start",
+   "orig": "__gmon_start__",
+   "file": "part_0001.cpp",
+   "line_start": 5858,
+   "line_end": 5870
+  },
+  {
+   "idx": 143,
+   "name": "rea___cxa_finalize",
+   "orig": "__cxa_finalize",
+   "file": "part_0001.cpp",
+   "line_start": 5871,
+   "line_end": 5883
+  },
+  {
+   "idx": 144,
+   "name": "rea_vsnprintf",
+   "orig": "vsnprintf",
+   "file": "part_0001.cpp",
+   "line_start": 5884,
+   "line_end": 5898
+  },
+  {
+   "idx": 145,
+   "name": "rea_std___Function_base___Base_manager_WSConn__exit__lambda__3___M_manager",
+   "orig": "std___Function_base___Base_manager_WSConn__exit__lambda__3___M_manager___________",
+   "file": "part_0001.cpp",
+   "line_start": 5899,
+   "line_end": 5932
+  },
+  {
+   "idx": 146,
+   "name": "rea_entry",
+   "orig": "entry",
+   "file": "part_0001.cpp",
+   "line_start": 5933,
+   "line_end": 5953
+  },
+  {
+   "idx": 147,
+   "name": "rea_FUN_00107812",
+   "orig": "FUN_00107812",
+   "file": "part_0001.cpp",
+   "line_start": 5954,
+   "line_end": 5972
+  },
+  {
+   "idx": 148,
+   "name": "rea_FUN_00107834",
+   "orig": "FUN_00107834",
+   "file": "part_0001.cpp",
+   "line_start": 5973,
+   "line_end": 5991
+  },
+  {
+   "idx": 149,
+   "name": "rea_FUN_00107860",
+   "orig": "FUN_00107860",
+   "file": "part_0001.cpp",
+   "line_start": 5992,
+   "line_end": 6003
+  },
+  {
+   "idx": 150,
+   "name": "rea_FUN_00107890",
+   "orig": "FUN_00107890",
+   "file": "part_0001.cpp",
+   "line_start": 6004,
+   "line_end": 6015
+  },
+  {
+   "idx": 151,
+   "name": "rea__FINI_0",
+   "orig": "_FINI_0",
+   "file": "part_0001.cpp",
+   "line_start": 6016,
+   "line_end": 6034
+  },
+  {
+   "idx": 152,
+   "name": "rea__INIT_0",
+   "orig": "_INIT_0",
+   "file": "part_0001.cpp",
+   "line_start": 6035,
+   "line_end": 6052
+  },
+  {
+   "idx": 153,
+   "name": "rea_FUN_00107950",
+   "orig": "FUN_00107950",
+   "file": "part_0001.cpp",
+   "line_start": 6053,
+   "line_end": 6064
+  },
+  {
+   "idx": 154,
+   "name": "rea_FUN_00107960",
+   "orig": "FUN_00107960",
+   "file": "part_0001.cpp",
+   "line_start": 6065,
+   "line_end": 6081
+  },
+  {
+   "idx": 155,
+   "name": "rea_FUN_00107980",
+   "orig": "FUN_00107980",
+   "file": "part_0001.cpp",
+   "line_start": 6082,
+   "line_end": 6098
+  },
+  {
+   "idx": 156,
+   "name": "rea_FUN_001079a0",
+   "orig": "FUN_001079a0",
+   "file": "part_0001.cpp",
+   "line_start": 6099,
+   "line_end": 6138
+  },
+  {
+   "idx": 157,
+   "name": "rea_FUN_00107a30",
+   "orig": "FUN_00107a30",
+   "file": "part_0001.cpp",
+   "line_start": 6139,
+   "line_end": 6178
+  },
+  {
+   "idx": 158,
+   "name": "rea_FUN_00107ac0",
+   "orig": "FUN_00107ac0",
+   "file": "part_0001.cpp",
+   "line_start": 6179,
+   "line_end": 6212
+  },
+  {
+   "idx": 159,
+   "name": "rea_FUN_00107b30",
+   "orig": "FUN_00107b30",
+   "file": "part_0001.cpp",
+   "line_start": 6213,
+   "line_end": 6248
+  },
+  {
+   "idx": 160,
+   "name": "rea_FUN_00107bb0",
+   "orig": "FUN_00107bb0",
+   "file": "part_0001.cpp",
+   "line_start": 6249,
+   "line_end": 6284
+  },
+  {
+   "idx": 161,
+   "name": "rea_FUN_00107c30",
+   "orig": "FUN_00107c30",
+   "file": "part_0001.cpp",
+   "line_start": 6285,
+   "line_end": 6324
+  },
+  {
+   "idx": 162,
+   "name": "rea_FUN_00107cc0",
+   "orig": "FUN_00107cc0",
+   "file": "part_0001.cpp",
+   "line_start": 6325,
+   "line_end": 6360
+  },
+  {
+   "idx": 163,
+   "name": "rea_FUN_00107d40",
+   "orig": "FUN_00107d40",
+   "file": "part_0001.cpp",
+   "line_start": 6361,
+   "line_end": 6396
+  },
+  {
+   "idx": 164,
+   "name": "rea_FUN_00107dc0",
+   "orig": "FUN_00107dc0",
+   "file": "part_0001.cpp",
+   "line_start": 6397,
+   "line_end": 6439
+  },
+  {
+   "idx": 165,
+   "name": "rea_FUN_00107e70",
+   "orig": "FUN_00107e70",
+   "file": "part_0001.cpp",
+   "line_start": 6440,
+   "line_end": 6546
+  },
+  {
+   "idx": 166,
+   "name": "rea_FUN_00108100",
+   "orig": "FUN_00108100",
+   "file": "part_0001.cpp",
+   "line_start": 6547,
+   "line_end": 6654
+  },
+  {
+   "idx": 167,
+   "name": "rea_FUN_001083a0",
+   "orig": "FUN_001083a0",
+   "file": "part_0001.cpp",
+   "line_start": 6655,
+   "line_end": 6764
+  },
+  {
+   "idx": 168,
+   "name": "rea_FUN_00108660",
+   "orig": "FUN_00108660",
+   "file": "part_0001.cpp",
+   "line_start": 6765,
+   "line_end": 6888
+  },
+  {
+   "idx": 169,
+   "name": "rea_FUN_00108a30",
+   "orig": "FUN_00108a30",
+   "file": "part_0001.cpp",
+   "line_start": 6889,
+   "line_end": 6962
+  },
+  {
+   "idx": 170,
+   "name": "rea_FUN_00108bd0",
+   "orig": "FUN_00108bd0",
+   "file": "part_0001.cpp",
+   "line_start": 6963,
+   "line_end": 7015
+  },
+  {
+   "idx": 171,
+   "name": "rea_FUN_00108d10",
+   "orig": "FUN_00108d10",
+   "file": "part_0001.cpp",
+   "line_start": 7016,
+   "line_end": 7193
+  },
+  {
+   "idx": 172,
+   "name": "rea_PyInit_bbwebsocket3",
+   "orig": "PyInit_bbwebsocket3",
+   "file": "part_0001.cpp",
+   "line_start": 7194,
+   "line_end": 7206
+  },
+  {
+   "idx": 173,
+   "name": "rea_FUN_001091e0",
+   "orig": "FUN_001091e0",
+   "file": "part_0001.cpp",
+   "line_start": 7207,
+   "line_end": 7294
+  },
+  {
+   "idx": 174,
+   "name": "rea_FUN_00109450",
+   "orig": "FUN_00109450",
+   "file": "part_0001.cpp",
+   "line_start": 7295,
+   "line_end": 7565
+  },
+  {
+   "idx": 175,
+   "name": "rea_FUN_00109bb0",
+   "orig": "FUN_00109bb0",
+   "file": "part_0001.cpp",
+   "line_start": 7566,
+   "line_end": 7694
+  },
+  {
+   "idx": 176,
+   "name": "rea_FUN_00109f70",
+   "orig": "FUN_00109f70",
+   "file": "part_0001.cpp",
+   "line_start": 7695,
+   "line_end": 8047
+  },
+  {
+   "idx": 177,
+   "name": "rea_FUN_0010a780",
+   "orig": "FUN_0010a780",
+   "file": "part_0001.cpp",
+   "line_start": 8048,
+   "line_end": 8264
+  },
+  {
+   "idx": 178,
+   "name": "rea_Root__dtor_Root",
+   "orig": "Root__dtor_Root",
+   "file": "part_0001.cpp",
+   "line_start": 8265,
+   "line_end": 8277
+  },
+  {
+   "idx": 179,
+   "name": "rea_std___Function_handler_void",
+   "orig": "std___Function_handler<void",
+   "file": "part_0001.cpp",
+   "line_start": 8278,
+   "line_end": 8289
+  },
+  {
+   "idx": 180,
+   "name": "rea_std___Function_handler_void__dup2",
+   "orig": "std___Function_handler<void",
+   "file": "part_0001.cpp",
+   "line_start": 8290,
+   "line_end": 8301
+  },
+  {
+   "idx": 181,
+   "name": "rea_Root__dtor_Root__dup2",
+   "orig": "Root__dtor_Root",
+   "file": "part_0001.cpp",
+   "line_start": 8302,
+   "line_end": 8315
+  },
+  {
+   "idx": 182,
+   "name": "rea_std___Function_base___Base_manager_WSConn__exit__lambda__2___M_manager",
+   "orig": "std___Function_base___Base_manager_WSConn__exit__lambda__2___M_manager___________",
+   "file": "part_0001.cpp",
+   "line_start": 8316,
+   "line_end": 8349
+  },
+  {
+   "idx": 183,
+   "name": "rea_std___Function_base___Base_manager_WSConn__exit__lambda__3___M_manager__dup2",
+   "orig": "std___Function_base___Base_manager_WSConn__exit__lambda__3___M_manager___________",
+   "file": "part_0001.cpp",
+   "line_start": 8350,
+   "line_end": 8383
+  },
+  {
+   "idx": 184,
+   "name": "rea_std___Function_base____Base_manager_WSConn__exit__lambda___void_std__unique_ptr_Buffer_std__default_delete_Buffer____std__unique_ptr_Buffer_std__default_delete_Buffer___1____M_manager",
+   "orig": "std___Function_base____Base_manager_WSConn__exit__lambda___void_std__unique_ptr_Buffer_std__default_delete_Buffer____std__unique_ptr_Buffer_std__default_delete_Buffer___1____M_manager",
+   "file": "part_0001.cpp",
+   "line_start": 8384,
+   "line_end": 8419
+  },
+  {
+   "idx": 185,
+   "name": "rea_std___Function_base___Base_manager___void_std__unique_ptr_Buffer_std__default_delete_Buffer____M_manager",
+   "orig": "std___Function_base___Base_manager___void_std__unique_ptr_Buffer_std__default_delete_Buffer____M_manager",
+   "file": "part_0001.cpp",
+   "line_start": 8420,
+   "line_end": 8462
+  },
+  {
+   "idx": 186,
+   "name": "rea__Function_handler_void",
+   "orig": "_Function_handler<void",
+   "file": "part_0001.cpp",
+   "line_start": 8463,
+   "line_end": 8526
+  },
+  {
+   "idx": 187,
+   "name": "rea__Function_handler_void__dup2",
+   "orig": "_Function_handler<void",
+   "file": "part_0001.cpp",
+   "line_start": 8527,
+   "line_end": 8610
+  },
+  {
+   "idx": 188,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_erase__dup2",
+   "orig": "std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_erase",
+   "file": "part_0001.cpp",
+   "line_start": 8611,
+   "line_end": 8687
+  },
+  {
+   "idx": 189,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int___erase__dup2",
+   "orig": "std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int___erase",
+   "file": "part_0001.cpp",
+   "line_start": 8688,
+   "line_end": 8781
+  },
+  {
+   "idx": 190,
+   "name": "rea_std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_erase__dup2",
+   "orig": "std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_erase",
+   "file": "part_0001.cpp",
+   "line_start": 8782,
+   "line_end": 8894
+  },
+  {
+   "idx": 191,
+   "name": "rea_Channel_std__pair_int_std__string___Channel",
+   "orig": "Channel_std__pair_int_std__string___Channel",
+   "file": "part_0001.cpp",
+   "line_start": 8895,
+   "line_end": 8957
+  },
+  {
+   "idx": 192,
+   "name": "rea_Channel_std__pair_int_std__string___Channel__dup2",
+   "orig": "Channel_std__pair_int_std__string___Channel",
+   "file": "part_0001.cpp",
+   "line_start": 8958,
+   "line_end": 9021
+  },
+  {
+   "idx": 193,
+   "name": "rea_std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_emplace_unique_WSConn___std__unique_ptr_Root_std__default_delete_Root__dup2",
+   "orig": "std____Rb_tree_Root__std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std___Select1st_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root_std__less_Root__std__allocator_std__pair_Root_const_std__unique_ptr_Root_std__default_delete_Root____M_emplace_unique_WSConn___std__unique_ptr_Root_std__default_delete_Root___________",
+   "file": "part_0001.cpp",
+   "line_start": 9022,
+   "line_end": 9103
+  },
+  {
+   "idx": 194,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_get_insert_hint_unique_pos__dup2",
+   "orig": "std____Rb_tree_int_std__pair_int_const_int_std___Select1st_std__pair_int_const_int_std__less_int_std__allocator_std__pair_int_const_int____M_get_insert_hint_unique_pos___________",
+   "file": "part_0001.cpp",
+   "line_start": 9104,
+   "line_end": 9264
+  },
+  {
+   "idx": 195,
+   "name": "rea_WSConn__exit__dup2",
+   "orig": "WSConn__exit",
+   "file": "part_0001.cpp",
+   "line_start": 9265,
+   "line_end": 9815
+  },
+  {
+   "idx": 196,
+   "name": "rea_std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_char__std__string__dup2",
+   "orig": "std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_char__std__string________________",
+   "file": "part_0001.cpp",
+   "line_start": 9816,
+   "line_end": 10070
+  },
+  {
+   "idx": 197,
+   "name": "rea_FUN_0010d720",
+   "orig": "FUN_0010d720",
+   "file": "part_0001.cpp",
+   "line_start": 10071,
+   "line_end": 11502
+  },
+  {
+   "idx": 198,
+   "name": "rea_FUN_0010dbe0",
+   "orig": "FUN_0010dbe0",
+   "file": "part_0001.cpp",
+   "line_start": 11503,
+   "line_end": 11538
+  },
+  {
+   "idx": 199,
+   "name": "rea_FUN_0010dc50",
+   "orig": "FUN_0010dc50",
+   "file": "part_0001.cpp",
+   "line_start": 11539,
+   "line_end": 11574
+  },
+  {
+   "idx": 200,
+   "name": "rea_FUN_0010dcc0",
+   "orig": "FUN_0010dcc0",
+   "file": "part_0002.cpp",
+   "line_start": 3,
+   "line_end": 81
+  },
+  {
+   "idx": 201,
+   "name": "rea_FUN_0010dea0",
+   "orig": "FUN_0010dea0",
+   "file": "part_0002.cpp",
+   "line_start": 82,
+   "line_end": 142
+  },
+  {
+   "idx": 202,
+   "name": "rea_FUN_0010dfb0",
+   "orig": "FUN_0010dfb0",
+   "file": "part_0002.cpp",
+   "line_start": 143,
+   "line_end": 210
+  },
+  {
+   "idx": 203,
+   "name": "rea_FUN_0010e140",
+   "orig": "FUN_0010e140",
+   "file": "part_0002.cpp",
+   "line_start": 211,
+   "line_end": 277
+  },
+  {
+   "idx": 204,
+   "name": "rea_FUN_0010e2d0",
+   "orig": "FUN_0010e2d0",
+   "file": "part_0002.cpp",
+   "line_start": 278,
+   "line_end": 324
+  },
+  {
+   "idx": 205,
+   "name": "rea_FUN_0010e400",
+   "orig": "FUN_0010e400",
+   "file": "part_0002.cpp",
+   "line_start": 325,
+   "line_end": 371
+  },
+  {
+   "idx": 206,
+   "name": "rea_FUN_0010e530",
+   "orig": "FUN_0010e530",
+   "file": "part_0002.cpp",
+   "line_start": 372,
+   "line_end": 419
+  },
+  {
+   "idx": 207,
+   "name": "rea_FUN_0010e660",
+   "orig": "FUN_0010e660",
+   "file": "part_0002.cpp",
+   "line_start": 420,
+   "line_end": 477
+  },
+  {
+   "idx": 208,
+   "name": "rea_FUN_0010e800",
+   "orig": "FUN_0010e800",
+   "file": "part_0002.cpp",
+   "line_start": 478,
+   "line_end": 524
+  },
+  {
+   "idx": 209,
+   "name": "rea_FUN_0010e930",
+   "orig": "FUN_0010e930",
+   "file": "part_0002.cpp",
+   "line_start": 525,
+   "line_end": 574
+  },
+  {
+   "idx": 210,
+   "name": "rea_FUN_0010ea80",
+   "orig": "FUN_0010ea80",
+   "file": "part_0002.cpp",
+   "line_start": 575,
+   "line_end": 624
+  },
+  {
+   "idx": 211,
+   "name": "rea_FUN_0010ebd0",
+   "orig": "FUN_0010ebd0",
+   "file": "part_0002.cpp",
+   "line_start": 625,
+   "line_end": 674
+  },
+  {
+   "idx": 212,
+   "name": "rea_FUN_0010ed20",
+   "orig": "FUN_0010ed20",
+   "file": "part_0002.cpp",
+   "line_start": 675,
+   "line_end": 724
+  },
+  {
+   "idx": 213,
+   "name": "rea_WSConn__dtor_WSConn__dup2",
+   "orig": "WSConn__dtor_WSConn",
+   "file": "part_0002.cpp",
+   "line_start": 725,
+   "line_end": 772
+  },
+  {
+   "idx": 214,
+   "name": "rea_WSConn__dtor_WSConn__dup3",
+   "orig": "WSConn__dtor_WSConn",
+   "file": "part_0002.cpp",
+   "line_start": 773,
+   "line_end": 786
+  },
+  {
+   "idx": 215,
+   "name": "rea_FUN_0010ef80",
+   "orig": "FUN_0010ef80",
+   "file": "part_0002.cpp",
+   "line_start": 787,
+   "line_end": 926
+  },
+  {
+   "idx": 216,
+   "name": "rea_WSConn__recv_pat__dup2",
+   "orig": "WSConn__recv_pat",
+   "file": "part_0002.cpp",
+   "line_start": 927,
+   "line_end": 1266
+  },
+  {
+   "idx": 217,
+   "name": "rea_WSConn__accept",
+   "orig": "WSConn__accept",
+   "file": "part_0002.cpp",
+   "line_start": 1267,
+   "line_end": 1374
+  },
+  {
+   "idx": 218,
+   "name": "rea_FUN_0010fd40",
+   "orig": "FUN_0010fd40",
+   "file": "part_0002.cpp",
+   "line_start": 1375,
+   "line_end": 1442
+  },
+  {
+   "idx": 219,
+   "name": "rea_WSConn__recv_more__dup2",
+   "orig": "WSConn__recv_more",
+   "file": "part_0002.cpp",
+   "line_start": 1443,
+   "line_end": 1745
+  },
+  {
+   "idx": 220,
+   "name": "rea_WSConn__read_data_mask__dup2",
+   "orig": "WSConn__read_data_mask",
+   "file": "part_0002.cpp",
+   "line_start": 1746,
+   "line_end": 1811
+  },
+  {
+   "idx": 221,
+   "name": "rea_WSConn__read_data__dup2",
+   "orig": "WSConn__read_data",
+   "file": "part_0002.cpp",
+   "line_start": 1812,
+   "line_end": 1877
+  },
+  {
+   "idx": 222,
+   "name": "rea_FUN_00110a20",
+   "orig": "FUN_00110a20",
+   "file": "part_0002.cpp",
+   "line_start": 1878,
+   "line_end": 1940
+  },
+  {
+   "idx": 223,
+   "name": "rea_WSConn__read_head__dup2",
+   "orig": "WSConn__read_head",
+   "file": "part_0002.cpp",
+   "line_start": 1941,
+   "line_end": 1997
+  },
+  {
+   "idx": 224,
+   "name": "rea_WSConn__recv__dup2",
+   "orig": "WSConn__recv",
+   "file": "part_0002.cpp",
+   "line_start": 1998,
+   "line_end": 2038
+  },
+  {
+   "idx": 225,
+   "name": "rea_FUN_00110e50",
+   "orig": "FUN_00110e50",
+   "file": "part_0002.cpp",
+   "line_start": 2039,
+   "line_end": 2216
+  },
+  {
+   "idx": 226,
+   "name": "rea_FUN_00111200",
+   "orig": "FUN_00111200",
+   "file": "part_0002.cpp",
+   "line_start": 2217,
+   "line_end": 2372
+  },
+  {
+   "idx": 227,
+   "name": "rea_FUN_001115a0",
+   "orig": "FUN_001115a0",
+   "file": "part_0002.cpp",
+   "line_start": 2373,
+   "line_end": 2518
+  },
+  {
+   "idx": 228,
+   "name": "rea_FUN_00111b50",
+   "orig": "FUN_00111b50",
+   "file": "part_0002.cpp",
+   "line_start": 2519,
+   "line_end": 2591
+  },
+  {
+   "idx": 229,
+   "name": "rea_FUN_00111d50",
+   "orig": "FUN_00111d50",
+   "file": "part_0002.cpp",
+   "line_start": 2592,
+   "line_end": 2716
+  },
+  {
+   "idx": 230,
+   "name": "rea_FUN_00112080",
+   "orig": "FUN_00112080",
+   "file": "part_0002.cpp",
+   "line_start": 2717,
+   "line_end": 2841
+  },
+  {
+   "idx": 231,
+   "name": "rea_WSConn__connect__dup2",
+   "orig": "WSConn__connect",
+   "file": "part_0002.cpp",
+   "line_start": 2842,
+   "line_end": 3245
+  },
+  {
+   "idx": 232,
+   "name": "rea_FUN_00112c60",
+   "orig": "FUN_00112c60",
+   "file": "part_0002.cpp",
+   "line_start": 3246,
+   "line_end": 4638
+  },
+  {
+   "idx": 233,
+   "name": "rea_WSConn__send__dup2",
+   "orig": "WSConn__send",
+   "file": "part_0002.cpp",
+   "line_start": 4639,
+   "line_end": 5105
+  },
+  {
+   "idx": 234,
+   "name": "rea_std___Function_handler_void__dup3",
+   "orig": "std___Function_handler<void",
+   "file": "part_0002.cpp",
+   "line_start": 5106,
+   "line_end": 5117
+  },
+  {
+   "idx": 235,
+   "name": "rea_std___Function_handler_void__dup4",
+   "orig": "std___Function_handler<void",
+   "file": "part_0002.cpp",
+   "line_start": 5118,
+   "line_end": 5129
+  },
+  {
+   "idx": 236,
+   "name": "rea_std___Function_base___Base_manager_TcpConn__discard___M_manager",
+   "orig": "std___Function_base___Base_manager_TcpConn__discard___M_manager___________",
+   "file": "part_0002.cpp",
+   "line_start": 5130,
+   "line_end": 5165
+  },
+  {
+   "idx": 237,
+   "name": "rea_std___Function_base___Base_manager_TcpConn__exit__lambda__1___M_manager",
+   "orig": "std___Function_base___Base_manager_TcpConn__exit__lambda__1___M_manager___________",
+   "file": "part_0002.cpp",
+   "line_start": 5166,
+   "line_end": 5199
+  },
+  {
+   "idx": 238,
+   "name": "rea_std___Function_base___Base_manager_TcpConn__exit__lambda__2___M_manager",
+   "orig": "std___Function_base___Base_manager_TcpConn__exit__lambda__2___M_manager___________",
+   "file": "part_0002.cpp",
+   "line_start": 5200,
+   "line_end": 5233
+  },
+  {
+   "idx": 239,
+   "name": "rea_Buffer__appendf__dup2",
+   "orig": "Buffer__appendf",
+   "file": "part_0002.cpp",
+   "line_start": 5234,
+   "line_end": 5414
+  },
+  {
+   "idx": 240,
+   "name": "rea_std__vector_unsigned_char_std__allocator_unsigned_char__emplace_back_unsigned_char__dup2",
+   "orig": "std__vector_unsigned_char_std__allocator_unsigned_char__emplace_back_unsigned_char",
+   "file": "part_0002.cpp",
+   "line_start": 5415,
+   "line_end": 5728
+  },
+  {
+   "idx": 241,
+   "name": "rea__Function_handler_void__dup3",
+   "orig": "_Function_handler<void",
+   "file": "part_0002.cpp",
+   "line_start": 5729,
+   "line_end": 5979
+  },
+  {
+   "idx": 242,
+   "name": "rea_std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_unsigned_char__std__vector_unsigned_char_std__allocator_unsigned_char__dup2",
+   "orig": "std__vector_unsigned_char_std__allocator_unsigned_char_________M_range_insert___gnu_cxx____normal_iterator_unsigned_char__std__vector_unsigned_char_std__allocator_unsigned_char________________",
+   "file": "part_0002.cpp",
+   "line_start": 5980,
+   "line_end": 6091
+  },
+  {
+   "idx": 243,
+   "name": "rea_setnonblock__dup2",
+   "orig": "setnonblock",
+   "file": "part_0002.cpp",
+   "line_start": 6092,
+   "line_end": 6111
+  },
+  {
+   "idx": 244,
+   "name": "rea_setcloexec__dup2",
+   "orig": "setcloexec",
+   "file": "part_0002.cpp",
+   "line_start": 6112,
+   "line_end": 6131
+  },
+  {
+   "idx": 245,
+   "name": "rea_print_stack__dup2",
+   "orig": "print_stack",
+   "file": "part_0002.cpp",
+   "line_start": 6132,
+   "line_end": 6171
+  },
+  {
+   "idx": 246,
+   "name": "rea_print_stack_abort__dup2",
+   "orig": "print_stack_abort",
+   "file": "part_0002.cpp",
+   "line_start": 6172,
+   "line_end": 6185
+  },
+  {
+   "idx": 247,
+   "name": "rea_is_myaddr",
+   "orig": "is_myaddr",
+   "file": "part_0002.cpp",
+   "line_start": 6186,
+   "line_end": 6223
+  },
+  {
+   "idx": 248,
+   "name": "rea_mkdir_p",
+   "orig": "mkdir_p",
+   "file": "part_0002.cpp",
+   "line_start": 6224,
+   "line_end": 6273
+  },
+  {
+   "idx": 249,
+   "name": "rea_dirname",
+   "orig": "dirname",
+   "file": "part_0002.cpp",
+   "line_start": 6274,
+   "line_end": 6303
+  },
+  {
+   "idx": 250,
+   "name": "rea_current_time__dup2",
+   "orig": "current_time",
+   "file": "part_0002.cpp",
+   "line_start": 6304,
+   "line_end": 6318
+  },
+  {
+   "idx": 251,
+   "name": "rea_EventLoop2__dtor_EventLoop2__dup2",
+   "orig": "EventLoop2__dtor_EventLoop2",
+   "file": "part_0002.cpp",
+   "line_start": 6319,
+   "line_end": 6382
+  },
+  {
+   "idx": 252,
+   "name": "rea_EventLoop2__dtor_EventLoop2__dup3",
+   "orig": "EventLoop2__dtor_EventLoop2",
+   "file": "part_0002.cpp",
+   "line_start": 6383,
+   "line_end": 6396
+  },
+  {
+   "idx": 253,
+   "name": "rea_EventLoop2__exit__dup2",
+   "orig": "EventLoop2__exit",
+   "file": "part_0002.cpp",
+   "line_start": 6397,
+   "line_end": 6410
+  },
+  {
+   "idx": 254,
+   "name": "rea_EventLoop2__set_timeout",
+   "orig": "EventLoop2__set_timeout",
+   "file": "part_0002.cpp",
+   "line_start": 6411,
+   "line_end": 6423
+  },
+  {
+   "idx": 255,
+   "name": "rea_EventLoop2__EventLoop2__dup2",
+   "orig": "EventLoop2__EventLoop2",
+   "file": "part_0002.cpp",
+   "line_start": 6424,
+   "line_end": 6459
+  },
+  {
+   "idx": 256,
+   "name": "rea_EventLoop2__add__dup2",
+   "orig": "EventLoop2__add",
+   "file": "part_0002.cpp",
+   "line_start": 6460,
+   "line_end": 6490
+  },
+  {
+   "idx": 257,
+   "name": "rea_EventLoop2__del",
+   "orig": "EventLoop2__del",
+   "file": "part_0002.cpp",
+   "line_start": 6491,
+   "line_end": 6553
+  },
+  {
+   "idx": 258,
+   "name": "rea_EventLoop2__run__dup2",
+   "orig": "EventLoop2__run",
+   "file": "part_0002.cpp",
+   "line_start": 6554,
+   "line_end": 6868
+  },
+  {
+   "idx": 259,
+   "name": "rea_std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____vector__dup2",
+   "orig": "std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____vector",
+   "file": "part_0002.cpp",
+   "line_start": 6869,
+   "line_end": 6899
+  },
+  {
+   "idx": 260,
+   "name": "rea_vector_std__pair_EventHandler__std__function_void__dup3",
+   "orig": "vector<std__pair<EventHandler*,std__function<void",
+   "file": "part_0002.cpp",
+   "line_start": 6900,
+   "line_end": 6929
+  },
+  {
+   "idx": 261,
+   "name": "rea_std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____M_emplace_back_aux_std__unique_ptr_EventHandler_std__default_delete_EventHandler__dup2",
+   "orig": "std___vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler____M_emplace_back_aux_std__unique_ptr_EventHandler_std__default_delete_EventHandler___________",
+   "file": "part_0002.cpp",
+   "line_start": 6930,
+   "line_end": 7010
+  },
+  {
+   "idx": 262,
+   "name": "rea_vector_std__pair_EventHandler__std__function_void__dup4",
+   "orig": "vector<std__pair<EventHandler*,std__function<void",
+   "file": "part_0002.cpp",
+   "line_start": 7011,
+   "line_end": 7118
+  },
+  {
+   "idx": 263,
+   "name": "rea_std________vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler_______________M_range_insert_std__move_iterator___gnu_cxx____normal_iterator_std__unique_ptr_EventHandler_std__default_delete_EventHandler__std__vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler__dup2",
+   "orig": "std________vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler_______________M_range_insert_std__move_iterator___gnu_cxx____normal_iterator_std__unique_ptr_EventHandler_std__default_delete_EventHandler__std__vector_std__unique_ptr_EventHandler_std__default_delete_EventHandler_std__allocator_std__unique_ptr_EventHandler_std__default_delete_EventHandler________________",
+   "file": "part_0002.cpp",
+   "line_start": 7119,
+   "line_end": 7332
+  },
+  {
+   "idx": 264,
+   "name": "rea_FUN_00117e90",
+   "orig": "FUN_00117e90",
+   "file": "part_0002.cpp",
+   "line_start": 7333,
+   "line_end": 7344
+  },
+  {
+   "idx": 265,
+   "name": "rea_FUN_00117ea0",
+   "orig": "FUN_00117ea0",
+   "file": "part_0002.cpp",
+   "line_start": 7345,
+   "line_end": 7378
+  },
+  {
+   "idx": 266,
+   "name": "rea_TcpConn__idle_proc__dup2",
+   "orig": "TcpConn__idle_proc",
+   "file": "part_0002.cpp",
+   "line_start": 7379,
+   "line_end": 7397
+  },
+  {
+   "idx": 267,
+   "name": "rea_TcpClient__idle",
+   "orig": "TcpClient__idle",
+   "file": "part_0002.cpp",
+   "line_start": 7398,
+   "line_end": 7423
+  },
+  {
+   "idx": 268,
+   "name": "rea_TcpServer__idle",
+   "orig": "TcpServer__idle",
+   "file": "part_0002.cpp",
+   "line_start": 7424,
+   "line_end": 7464
+  },
+  {
+   "idx": 269,
+   "name": "rea_TcpServer__iter",
+   "orig": "TcpServer__iter",
+   "file": "part_0002.cpp",
+   "line_start": 7465,
+   "line_end": 7489
+  },
+  {
+   "idx": 270,
+   "name": "rea_TcpClient__dtor_TcpClient__dup2",
+   "orig": "TcpClient__dtor_TcpClient",
+   "file": "part_0002.cpp",
+   "line_start": 7490,
+   "line_end": 7536
+  },
+  {
+   "idx": 271,
+   "name": "rea_TcpClient__dtor_TcpClient__dup3",
+   "orig": "TcpClient__dtor_TcpClient",
+   "file": "part_0002.cpp",
+   "line_start": 7537,
+   "line_end": 7550
+  },
+  {
+   "idx": 272,
+   "name": "rea_TcpConn__TcpConn__dup2",
+   "orig": "TcpConn__TcpConn",
+   "file": "part_0002.cpp",
+   "line_start": 7551,
+   "line_end": 7588
+  },
+  {
+   "idx": 273,
+   "name": "rea_TcpClient__TcpClient__dup2",
+   "orig": "TcpClient__TcpClient",
+   "file": "part_0002.cpp",
+   "line_start": 7589,
+   "line_end": 7660
+  },
+  {
+   "idx": 274,
+   "name": "rea_TcpConn__dtor_TcpConn__dup2",
+   "orig": "TcpConn__dtor_TcpConn",
+   "file": "part_0002.cpp",
+   "line_start": 7661,
+   "line_end": 7743
+  },
+  {
+   "idx": 275,
+   "name": "rea_TcpConn__dtor_TcpConn__dup3",
+   "orig": "TcpConn__dtor_TcpConn",
+   "file": "part_0002.cpp",
+   "line_start": 7744,
+   "line_end": 7757
+  },
+  {
+   "idx": 276,
+   "name": "rea_TcpServer__dtor_TcpServer__dup2",
+   "orig": "TcpServer__dtor_TcpServer",
+   "file": "part_0002.cpp",
+   "line_start": 7758,
+   "line_end": 7797
+  },
+  {
+   "idx": 277,
+   "name": "rea_TcpServer__dtor_TcpServer__dup3",
+   "orig": "TcpServer__dtor_TcpServer",
+   "file": "part_0002.cpp",
+   "line_start": 7798,
+   "line_end": 7811
+  },
+  {
+   "idx": 278,
+   "name": "rea_TcpServer__TcpServer",
+   "orig": "TcpServer__TcpServer",
+   "file": "part_0002.cpp",
+   "line_start": 7812,
+   "line_end": 8043
+  },
+  {
+   "idx": 279,
+   "name": "rea_TcpServer__TcpServer__dup2",
+   "orig": "TcpServer__TcpServer",
+   "file": "part_0002.cpp",
+   "line_start": 8044,
+   "line_end": 8302
+  },
+  {
+   "idx": 280,
+   "name": "rea_TcpConn__recv_proc__dup2",
+   "orig": "TcpConn__recv_proc",
+   "file": "part_0002.cpp",
+   "line_start": 8303,
+   "line_end": 9034
+  },
+  {
+   "idx": 281,
+   "name": "rea_TcpClient__TcpClient__dup3",
+   "orig": "TcpClient__TcpClient",
+   "file": "part_0002.cpp",
+   "line_start": 9035,
+   "line_end": 9405
+  },
+  {
+   "idx": 282,
+   "name": "rea_TcpConn__send_proc__dup2",
+   "orig": "TcpConn__send_proc",
+   "file": "part_0002.cpp",
+   "line_start": 9406,
+   "line_end": 10059
+  },
+  {
+   "idx": 283,
+   "name": "rea_TcpServer__poll",
+   "orig": "TcpServer__poll",
+   "file": "part_0002.cpp",
+   "line_start": 10060,
+   "line_end": 10266
+  },
+  {
+   "idx": 284,
+   "name": "rea_TcpClient__poll",
+   "orig": "TcpClient__poll",
+   "file": "part_0002.cpp",
+   "line_start": 10267,
+   "line_end": 10685
+  },
+  {
+   "idx": 285,
+   "name": "rea_EventHandler__idle",
+   "orig": "EventHandler__idle",
+   "file": "part_0002.cpp",
+   "line_start": 10686,
+   "line_end": 10697
+  },
+  {
+   "idx": 286,
+   "name": "rea___gnu_cxx____to_xstring_std__string_char__dup2",
+   "orig": "__gnu_cxx____to_xstring_std__string_char",
+   "file": "part_0002.cpp",
+   "line_start": 10698,
+   "line_end": 10788
+  },
+  {
+   "idx": 287,
+   "name": "rea_EventHandler__dtor_EventHandler__dup2",
+   "orig": "EventHandler__dtor_EventHandler",
+   "file": "part_0002.cpp",
+   "line_start": 10789,
+   "line_end": 10822
+  },
+  {
+   "idx": 288,
+   "name": "rea_EventHandler__dtor_EventHandler__dup3",
+   "orig": "EventHandler__dtor_EventHandler",
+   "file": "part_0002.cpp",
+   "line_start": 10823,
+   "line_end": 10857
+  },
+  {
+   "idx": 289,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn____M_emplace_hint_unique_std__piecewise_construct_t_const__std__tuple_int_const__std__tuple",
+   "orig": "std____Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn____M_emplace_hint_unique_std__piecewise_construct_t_const__std__tuple_int_const__std__tuple____________",
+   "file": "part_0002.cpp",
+   "line_start": 10858,
+   "line_end": 11018
+  },
+  {
+   "idx": 290,
+   "name": "rea_std____Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn____M_erase__dup2",
+   "orig": "std____Rb_tree_int_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std___Select1st_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn_std__less_int_std__allocator_std__pair_int_const_std__unique_ptr_TcpConn_std__default_delete_TcpConn____M_erase",
+   "file": "part_0002.cpp",
+   "line_start": 11019,
+   "line_end": 11131
+  },
+  {
+   "idx": 291,
+   "name": "rea_UnixClient__idle",
+   "orig": "UnixClient__idle",
+   "file": "part_0002.cpp",
+   "line_start": 11132,
+   "line_end": 11157
+  },
+  {
+   "idx": 292,
+   "name": "rea_UnixServer__idle",
+   "orig": "UnixServer__idle",
+   "file": "part_0002.cpp",
+   "line_start": 11158,
+   "line_end": 11198
+  },
+  {
+   "idx": 293,
+   "name": "rea_UnixServer__iter",
+   "orig": "UnixServer__iter",
+   "file": "part_0002.cpp",
+   "line_start": 11199,
+   "line_end": 11223
+  },
+  {
+   "idx": 294,
+   "name": "rea_UnixClient__UnixClient__dup2",
+   "orig": "UnixClient__UnixClient",
+   "file": "part_0002.cpp",
+   "line_start": 11224,
+   "line_end": 11312
+  },
+  {
+   "idx": 295,
+   "name": "rea_UnixClient__UnixClient__dup3",
+   "orig": "UnixClient__UnixClient",
+   "file": "part_0002.cpp",
+   "line_start": 11313,
+   "line_end": 11384
+  },
+  {
+   "idx": 296,
+   "name": "rea_UnixClient__dtor_UnixClient__dup2",
+   "orig": "UnixClient__dtor_UnixClient",
+   "file": "part_0002.cpp",
+   "line_start": 11385,
+   "line_end": 11431
+  },
+  {
+   "idx": 297,
+   "name": "rea_UnixClient__dtor_UnixClient__dup3",
+   "orig": "UnixClient__dtor_UnixClient",
+   "file": "part_0002.cpp",
+   "line_start": 11432,
+   "line_end": 11445
+  },
+  {
+   "idx": 298,
+   "name": "rea_UnixServer__poll",
+   "orig": "UnixServer__poll",
+   "file": "part_0002.cpp",
+   "line_start": 11446,
+   "line_end": 11627
+  },
+  {
+   "idx": 299,
+   "name": "rea_UnixServer__dtor_UnixServer__dup2",
+   "orig": "UnixServer__dtor_UnixServer",
+   "file": "part_0002.cpp",
+   "line_start": 11628,
+   "line_end": 11688
+  },
+  {
+   "idx": 300,
+   "name": "rea_UnixServer__dtor_UnixServer__dup3",
+   "orig": "UnixServer__dtor_UnixServer",
+   "file": "part_0002.cpp",
+   "line_start": 11689,
+   "line_end": 11702
+  },
+  {
+   "idx": 301,
+   "name": "rea_UnixServer__UnixServer",
+   "orig": "UnixServer__UnixServer",
+   "file": "part_0002.cpp",
+   "line_start": 11703,
+   "line_end": 11956
+  },
+  {
+   "idx": 302,
+   "name": "rea_UnixServer__UnixServer__dup2",
+   "orig": "UnixServer__UnixServer",
+   "file": "part_0002.cpp",
+   "line_start": 11957,
+   "line_end": 12190
+  },
+  {
+   "idx": 303,
+   "name": "rea_UnixClient__poll",
+   "orig": "UnixClient__poll",
+   "file": "part_0002.cpp",
+   "line_start": 12191,
+   "line_end": 12609
+  },
+  {
+   "idx": 304,
+   "name": "rea__fini",
+   "orig": "_fini",
+   "file": "part_0002.cpp",
+   "line_start": 12610,
+   "line_end": 12621
+  },
+  {
+   "idx": 305,
+   "name": "rea_std__string__append__dup3",
+   "orig": "std__string__append",
+   "file": "part_0002.cpp",
+   "line_start": 12622,
+   "line_end": 12634
+  },
+  {
+   "idx": 306,
+   "name": "rea_std____throw_length_error__dup2",
+   "orig": "std____throw_length_error",
+   "file": "part_0002.cpp",
+   "line_start": 12635,
+   "line_end": 12647
+  },
+  {
+   "idx": 307,
+   "name": "rea_memset__dup2",
+   "orig": "memset",
+   "file": "part_0002.cpp",
+   "line_start": 12648,
+   "line_end": 12660
+  },
+  {
+   "idx": 308,
+   "name": "rea_shutdown__dup2",
+   "orig": "shutdown",
+   "file": "part_0002.cpp",
+   "line_start": 12661,
+   "line_end": 12673
+  },
+  {
+   "idx": 309,
+   "name": "rea_backtrace__dup2",
+   "orig": "backtrace",
+   "file": "part_0002.cpp",
+   "line_start": 12674,
+   "line_end": 12686
+  },
+  {
+   "idx": 310,
+   "name": "rea_std____detail___List_node_base___M_unhook__dup2",
+   "orig": "std____detail___List_node_base___M_unhook",
+   "file": "part_0002.cpp",
+   "line_start": 12687,
+   "line_end": 12699
+  },
+  {
+   "idx": 311,
+   "name": "rea_close__dup2",
+   "orig": "close",
+   "file": "part_0002.cpp",
+   "line_start": 12700,
+   "line_end": 12712
+  },
+  {
+   "idx": 312,
+   "name": "rea_inflateEnd__dup2",
+   "orig": "inflateEnd",
+   "file": "part_0002.cpp",
+   "line_start": 12713,
+   "line_end": 12725
+  },
+  {
+   "idx": 313,
+   "name": "rea_abort__dup2",
+   "orig": "abort",
+   "file": "part_0002.cpp",
+   "line_start": 12726,
+   "line_end": 12738
+  },
+  {
+   "idx": 314,
+   "name": "rea_PyLong_FromVoidPtr__dup2",
+   "orig": "PyLong_FromVoidPtr",
+   "file": "part_0002.cpp",
+   "line_start": 12739,
+   "line_end": 12751
+  },
+  {
+   "idx": 315,
+   "name": "rea_PyLong_AsVoidPtr__dup2",
+   "orig": "PyLong_AsVoidPtr",
+   "file": "part_0002.cpp",
+   "line_start": 12752,
+   "line_end": 12764
+  },
+  {
+   "idx": 316,
+   "name": "rea_std__string__string__dup4",
+   "orig": "std__string__string",
+   "file": "part_0002.cpp",
+   "line_start": 12765,
+   "line_end": 12777
+  },
+  {
+   "idx": 317,
+   "name": "rea___gmon_start__dup2",
+   "orig": "__gmon_start__",
+   "file": "part_0002.cpp",
+   "line_start": 12778,
+   "line_end": 12790
+  },
+  {
+   "idx": 318,
+   "name": "rea__Jv_RegisterClasses",
+   "orig": "_Jv_RegisterClasses",
+   "file": "part_0002.cpp",
+   "line_start": 12791,
+   "line_end": 12803
+  },
+  {
+   "idx": 319,
+   "name": "rea_operator__delete__dup2",
+   "orig": "operator_delete",
+   "file": "part_0002.cpp",
+   "line_start": 12804,
+   "line_end": 12816
+  },
+  {
+   "idx": 320,
+   "name": "rea_std__string__reserve__dup2",
+   "orig": "std__string__reserve",
+   "file": "part_0002.cpp",
+   "line_start": 12817,
+   "line_end": 12829
+  },
+  {
+   "idx": 321,
+   "name": "rea_std__string___Rep___M_dispose__dup2",
+   "orig": "std__string___Rep___M_dispose",
+   "file": "part_0002.cpp",
+   "line_start": 12830,
+   "line_end": 12842
+  },
+  {
+   "idx": 322,
+   "name": "rea_PyBytes_Size__dup2",
+   "orig": "PyBytes_Size",
+   "file": "part_0002.cpp",
+   "line_start": 12843,
+   "line_end": 12855
+  },
+  {
+   "idx": 323,
+   "name": "rea_gettimeofday__dup2",
+   "orig": "gettimeofday",
+   "file": "part_0002.cpp",
+   "line_start": 12856,
+   "line_end": 12868
+  },
+  {
+   "idx": 324,
+   "name": "rea___cxa_rethrow__dup2",
+   "orig": "__cxa_rethrow",
+   "file": "part_0002.cpp",
+   "line_start": 12869,
+   "line_end": 12881
+  },
+  {
+   "idx": 325,
+   "name": "rea_deflate__dup2",
+   "orig": "deflate",
+   "file": "part_0002.cpp",
+   "line_start": 12882,
+   "line_end": 12894
+  },
+  {
+   "idx": 326,
+   "name": "rea_read__dup2",
+   "orig": "read",
+   "file": "part_0002.cpp",
+   "line_start": 12895,
+   "line_end": 12907
+  },
+  {
+   "idx": 327,
+   "name": "rea_std___Rb_tree_decrement__dup2",
+   "orig": "std___Rb_tree_decrement",
+   "file": "part_0002.cpp",
+   "line_start": 12908,
+   "line_end": 12920
+  },
+  {
+   "idx": 328,
+   "name": "rea_std__string___Rep___S_create__dup2",
+   "orig": "std__string___Rep___S_create",
+   "file": "part_0002.cpp",
+   "line_start": 12921,
+   "line_end": 12933
+  },
+  {
+   "idx": 329,
+   "name": "rea_std__string__string__dup5",
+   "orig": "std__string__string",
+   "file": "part_0002.cpp",
+   "line_start": 12934,
+   "line_end": 12946
+  },
+  {
+   "idx": 330,
+   "name": "rea_setsockopt__dup2",
+   "orig": "setsockopt",
+   "file": "part_0002.cpp",
+   "line_start": 12947,
+   "line_end": 12959
+  },
+  {
+   "idx": 331,
+   "name": "rea_PyLong_AsLong__dup2",
+   "orig": "PyLong_AsLong",
+   "file": "part_0002.cpp",
+   "line_start": 12960,
+   "line_end": 12972
+  },
+  {
+   "idx": 332,
+   "name": "rea_inflateInit2__dup2",
+   "orig": "inflateInit2_",
+   "file": "part_0002.cpp",
+   "line_start": 12973,
+   "line_end": 12985
+  },
+  {
+   "idx": 333,
+   "name": "rea__ITM_deregisterTMCloneTable",
+   "orig": "_ITM_deregisterTMCloneTable",
+   "file": "part_0002.cpp",
+   "line_start": 12986,
+   "line_end": 12998
+  },
+  {
+   "idx": 334,
+   "name": "rea_bzero__dup2",
+   "orig": "bzero",
+   "file": "part_0002.cpp",
+   "line_start": 12999,
+   "line_end": 13011
+  },
+  {
+   "idx": 335,
+   "name": "rea_strnlen__dup2",
+   "orig": "strnlen",
+   "file": "part_0002.cpp",
+   "line_start": 13012,
+   "line_end": 13024
+  },
+  {
+   "idx": 336,
+   "name": "rea_PyArg_ParseTuple__dup2",
+   "orig": "PyArg_ParseTuple",
+   "file": "part_0002.cpp",
+   "line_start": 13025,
+   "line_end": 13037
+  },
+  {
+   "idx": 337,
+   "name": "rea_inflate__dup2",
+   "orig": "inflate",
+   "file": "part_0002.cpp",
+   "line_start": 13038,
+   "line_end": 13050
+  },
+  {
+   "idx": 338,
+   "name": "rea_backtrace_symbols__dup2",
+   "orig": "backtrace_symbols",
+   "file": "part_0002.cpp",
+   "line_start": 13051,
+   "line_end": 13063
+  },
+  {
+   "idx": 339,
+   "name": "rea_free__dup2",
+   "orig": "free",
+   "file": "part_0002.cpp",
+   "line_start": 13064,
+   "line_end": 13076
+  },
+  {
+   "idx": 340,
+   "name": "rea_strlen__dup2",
+   "orig": "strlen",
+   "file": "part_0002.cpp",
+   "line_start": 13077,
+   "line_end": 13089
+  },
+  {
+   "idx": 341,
+   "name": "rea__ITM_registerTMCloneTable",
+   "orig": "_ITM_registerTMCloneTable",
+   "file": "part_0002.cpp",
+   "line_start": 13090,
+   "line_end": 13102
+  },
+  {
+   "idx": 342,
+   "name": "rea_std__string___Rep___M_destroy__dup2",
+   "orig": "std__string___Rep___M_destroy",
+   "file": "part_0002.cpp",
+   "line_start": 13103,
+   "line_end": 13115
+  },
+  {
+   "idx": 343,
+   "name": "rea___xstat__dup2",
+   "orig": "__xstat",
+   "file": "part_0002.cpp",
+   "line_start": 13116,
+   "line_end": 13128
+  },
+  {
+   "idx": 344,
+   "name": "rea_deflateEnd__dup2",
+   "orig": "deflateEnd",
+   "file": "part_0002.cpp",
+   "line_start": 13129,
+   "line_end": 13141
+  },
+  {
+   "idx": 345,
+   "name": "rea_listen__dup2",
+   "orig": "listen",
+   "file": "part_0002.cpp",
+   "line_start": 13142,
+   "line_end": 13154
+  },
+  {
+   "idx": 346,
+   "name": "rea___cxa_finalize__dup2",
+   "orig": "__cxa_finalize",
+   "file": "part_0002.cpp",
+   "line_start": 13155,
+   "line_end": 13167
+  },
+  {
+   "idx": 347,
+   "name": "rea_PyBytes_AsString__dup2",
+   "orig": "PyBytes_AsString",
+   "file": "part_0002.cpp",
+   "line_start": 13168,
+   "line_end": 13180
+  },
+  {
+   "idx": 348,
+   "name": "rea_strrchr__dup2",
+   "orig": "strrchr",
+   "file": "part_0002.cpp",
+   "line_start": 13181,
+   "line_end": 13193
+  },
+  {
+   "idx": 349,
+   "name": "rea_std__string__insert__dup2",
+   "orig": "std__string__insert",
+   "file": "part_0002.cpp",
+   "line_start": 13194,
+   "line_end": 13206
+  },
+  {
+   "idx": 350,
+   "name": "rea_std___Rb_tree_increment__dup3",
+   "orig": "std___Rb_tree_increment",
+   "file": "part_0002.cpp",
+   "line_start": 13207,
+   "line_end": 13219
+  },
+  {
+   "idx": 351,
+   "name": "rea_epoll_create1__dup2",
+   "orig": "epoll_create1",
+   "file": "part_0002.cpp",
+   "line_start": 13220,
+   "line_end": 13232
+  },
+  {
+   "idx": 352,
+   "name": "rea_std__string__string__dup6",
+   "orig": "std__string__string",
+   "file": "part_0002.cpp",
+   "line_start": 13233,
+   "line_end": 13245
+  },
+  {
+   "idx": 353,
+   "name": "rea_epoll_ctl__dup2",
+   "orig": "epoll_ctl",
+   "file": "part_0002.cpp",
+   "line_start": 13246,
+   "line_end": 13258
+  },
+  {
+   "idx": 354,
+   "name": "rea_sigaction__dup2",
+   "orig": "sigaction",
+   "file": "part_0002.cpp",
+   "line_start": 13259,
+   "line_end": 13271
+  },
+  {
+   "idx": 355,
+   "name": "rea_getifaddrs__dup2",
+   "orig": "getifaddrs",
+   "file": "part_0002.cpp",
+   "line_start": 13272,
+   "line_end": 13284
+  },
+  {
+   "idx": 356,
+   "name": "rea_std__terminate__dup2",
+   "orig": "std__terminate",
+   "file": "part_0002.cpp",
+   "line_start": 13285,
+   "line_end": 13297
+  },
+  {
+   "idx": 357,
+   "name": "rea_getsockopt__dup2",
+   "orig": "getsockopt",
+   "file": "part_0002.cpp",
+   "line_start": 13298,
+   "line_end": 13310
+  },
+  {
+   "idx": 358,
+   "name": "rea_connect__dup2",
+   "orig": "connect",
+   "file": "part_0002.cpp",
+   "line_start": 13311,
+   "line_end": 13323
+  },
+  {
+   "idx": 359,
+   "name": "rea_std____detail___List_node_base___M_hook__dup2",
+   "orig": "std____detail___List_node_base___M_hook",
+   "file": "part_0002.cpp",
+   "line_start": 13324,
+   "line_end": 13336
+  },
+  {
+   "idx": 360,
+   "name": "rea___cxa_pure_virtual",
+   "orig": "__cxa_pure_virtual",
+   "file": "part_0002.cpp",
+   "line_start": 13337,
+   "line_end": 13349
+  },
+  {
+   "idx": 361,
+   "name": "rea_memmove__dup2",
+   "orig": "memmove",
+   "file": "part_0002.cpp",
+   "line_start": 13350,
+   "line_end": 13362
+  },
+  {
+   "idx": 362,
+   "name": "rea_PyFloat_AsDouble__dup2",
+   "orig": "PyFloat_AsDouble",
+   "file": "part_0002.cpp",
+   "line_start": 13363,
+   "line_end": 13375
+  },
+  {
+   "idx": 363,
+   "name": "rea_socket__dup2",
+   "orig": "socket",
+   "file": "part_0002.cpp",
+   "line_start": 13376,
+   "line_end": 13388
+  },
+  {
+   "idx": 364,
+   "name": "rea_vsnprintf__dup2",
+   "orig": "vsnprintf",
+   "file": "part_0002.cpp",
+   "line_start": 13389,
+   "line_end": 13401
+  },
+  {
+   "idx": 365,
+   "name": "rea_inet_ntoa__dup2",
+   "orig": "inet_ntoa",
+   "file": "part_0002.cpp",
+   "line_start": 13402,
+   "line_end": 13414
+  },
+  {
+   "idx": 366,
+   "name": "rea_Py_BuildValue__dup2",
+   "orig": "Py_BuildValue",
+   "file": "part_0002.cpp",
+   "line_start": 13415,
+   "line_end": 13427
+  },
+  {
+   "idx": 367,
+   "name": "rea___errno_location__dup2",
+   "orig": "__errno_location",
+   "file": "part_0002.cpp",
+   "line_start": 13428,
+   "line_end": 13440
+  },
+  {
+   "idx": 368,
+   "name": "rea_std___Rb_tree_insert_and_rebalance__dup2",
+   "orig": "std___Rb_tree_insert_and_rebalance________________",
+   "file": "part_0002.cpp",
+   "line_start": 13441,
+   "line_end": 13453
+  },
+  {
+   "idx": 369,
+   "name": "rea_std____throw_bad_function_call__dup2",
+   "orig": "std____throw_bad_function_call",
+   "file": "part_0002.cpp",
+   "line_start": 13454,
+   "line_end": 13466
+  },
+  {
+   "idx": 370,
+   "name": "rea_std___Rb_tree_rebalance_for_erase__dup2",
+   "orig": "std___Rb_tree_rebalance_for_erase",
+   "file": "part_0002.cpp",
+   "line_start": 13467,
+   "line_end": 13479
+  },
+  {
+   "idx": 371,
+   "name": "rea_strcmp__dup2",
+   "orig": "strcmp",
+   "file": "part_0002.cpp",
+   "line_start": 13480,
+   "line_end": 13492
+  },
+  {
+   "idx": 372,
+   "name": "rea_deflateBound__dup2",
+   "orig": "deflateBound",
+   "file": "part_0002.cpp",
+   "line_start": 13493,
+   "line_end": 13505
+  },
+  {
+   "idx": 373,
+   "name": "rea_PyBytes_FromStringAndSize__dup2",
+   "orig": "PyBytes_FromStringAndSize",
+   "file": "part_0002.cpp",
+   "line_start": 13506,
+   "line_end": 13518
+  },
+  {
+   "idx": 374,
+   "name": "rea_std__string__assign__dup3",
+   "orig": "std__string__assign",
+   "file": "part_0002.cpp",
+   "line_start": 13519,
+   "line_end": 13531
+  },
+  {
+   "idx": 375,
+   "name": "rea_epoll_wait__dup2",
+   "orig": "epoll_wait",
+   "file": "part_0002.cpp",
+   "line_start": 13532,
+   "line_end": 13544
+  },
+  {
+   "idx": 376,
+   "name": "rea_freeifaddrs__dup2",
+   "orig": "freeifaddrs",
+   "file": "part_0002.cpp",
+   "line_start": 13545,
+   "line_end": 13557
+  },
+  {
+   "idx": 377,
+   "name": "rea_std__string__assign__dup4",
+   "orig": "std__string__assign",
+   "file": "part_0002.cpp",
+   "line_start": 13558,
+   "line_end": 13570
+  },
+  {
+   "idx": 378,
+   "name": "rea_deflateInit2__dup2",
+   "orig": "deflateInit2_",
+   "file": "part_0002.cpp",
+   "line_start": 13571,
+   "line_end": 13583
+  },
+  {
+   "idx": 379,
+   "name": "rea_memmem__dup2",
+   "orig": "memmem",
+   "file": "part_0002.cpp",
+   "line_start": 13584,
+   "line_end": 13596
+  },
+  {
+   "idx": 380,
+   "name": "rea_remove__dup2",
+   "orig": "remove",
+   "file": "part_0002.cpp",
+   "line_start": 13597,
+   "line_end": 13609
+  },
+  {
+   "idx": 381,
+   "name": "rea_PyModule_Create2__dup2",
+   "orig": "PyModule_Create2",
+   "file": "part_0002.cpp",
+   "line_start": 13610,
+   "line_end": 13622
+  },
+  {
+   "idx": 382,
+   "name": "rea_strncpy__dup2",
+   "orig": "strncpy",
+   "file": "part_0002.cpp",
+   "line_start": 13623,
+   "line_end": 13635
+  },
+  {
+   "idx": 383,
+   "name": "rea_PyTuple_New__dup2",
+   "orig": "PyTuple_New",
+   "file": "part_0002.cpp",
+   "line_start": 13636,
+   "line_end": 13648
+  },
+  {
+   "idx": 384,
+   "name": "rea_std___Rb_tree_increment__dup4",
+   "orig": "std___Rb_tree_increment",
+   "file": "part_0002.cpp",
+   "line_start": 13649,
+   "line_end": 13661
+  },
+  {
+   "idx": 385,
+   "name": "rea___cxa_end_catch__dup2",
+   "orig": "__cxa_end_catch",
+   "file": "part_0002.cpp",
+   "line_start": 13662,
+   "line_end": 13674
+  },
+  {
+   "idx": 386,
+   "name": "rea_sigemptyset__dup2",
+   "orig": "sigemptyset",
+   "file": "part_0002.cpp",
+   "line_start": 13675,
+   "line_end": 13687
+  },
+  {
+   "idx": 387,
+   "name": "rea___cxa_begin_catch__dup2",
+   "orig": "__cxa_begin_catch",
+   "file": "part_0002.cpp",
+   "line_start": 13688,
+   "line_end": 13700
+  },
+  {
+   "idx": 388,
+   "name": "rea_bind__dup2",
+   "orig": "bind",
+   "file": "part_0002.cpp",
+   "line_start": 13701,
+   "line_end": 13713
+  },
+  {
+   "idx": 389,
+   "name": "rea_fwrite__dup2",
+   "orig": "fwrite",
+   "file": "part_0002.cpp",
+   "line_start": 13714,
+   "line_end": 13726
+  },
+  {
+   "idx": 390,
+   "name": "rea_perror__dup2",
+   "orig": "perror",
+   "file": "part_0002.cpp",
+   "line_start": 13727,
+   "line_end": 13739
+  },
+  {
+   "idx": 391,
+   "name": "rea___gxx_personality_v0",
+   "orig": "__gxx_personality_v0",
+   "file": "part_0002.cpp",
+   "line_start": 13740,
+   "line_end": 13752
+  },
+  {
+   "idx": 392,
+   "name": "rea_fprintf__dup2",
+   "orig": "fprintf",
+   "file": "part_0002.cpp",
+   "line_start": 13753,
+   "line_end": 13765
+  },
+  {
+   "idx": 393,
+   "name": "rea_write__dup2",
+   "orig": "write",
+   "file": "part_0002.cpp",
+   "line_start": 13766,
+   "line_end": 13778
+  },
+  {
+   "idx": 394,
+   "name": "rea_operator__new__dup2",
+   "orig": "operator_new",
+   "file": "part_0002.cpp",
+   "line_start": 13779,
+   "line_end": 13791
+  },
+  {
+   "idx": 395,
+   "name": "rea__Unwind_Resume__dup2",
+   "orig": "_Unwind_Resume",
+   "file": "part_0002.cpp",
+   "line_start": 13792,
+   "line_end": 13804
+  },
+  {
+   "idx": 396,
+   "name": "rea_accept__dup2",
+   "orig": "accept",
+   "file": "part_0002.cpp",
+   "line_start": 13805,
+   "line_end": 13817
+  },
+  {
+   "idx": 397,
+   "name": "rea_std__string___M_leak_hard__dup2",
+   "orig": "std__string___M_leak_hard",
+   "file": "part_0002.cpp",
+   "line_start": 13818,
+   "line_end": 13830
+  },
+  {
+   "idx": 398,
+   "name": "rea_PyUnicode_AsUTF8__dup2",
+   "orig": "PyUnicode_AsUTF8",
+   "file": "part_0002.cpp",
+   "line_start": 13831,
+   "line_end": 13843
+  },
+  {
+   "idx": 399,
+   "name": "rea_memcpy__dup2",
+   "orig": "memcpy",
+   "file": "part_0002.cpp",
+   "line_start": 13844,
+   "line_end": 13856
+  }
+ ],
+ "files": [
+  "D:\\tmp\\cppgen\\H0WS3\\H0WS3_shim.hpp",
+  "D:\\tmp\\cppgen\\H0WS3\\H0WS3_compilable.cpp",
+  "D:\\tmp\\cppgen\\H0WS3\\H0WS3_tu"
+ ]
+}

@@ -1,0 +1,589 @@
+{
+  "target": {
+    "file": "D:\\tmp\\H0WS2.so",
+    "name": "bbwebsocket",
+    "version_string": "1.2.7",
+    "format": "ELF x86-64, .text 0x7750..0x1f256, .rodata 0x1f280..0x1fe16 (0xb96)",
+    "decompiled_listing": "D:\\tmp\\H0WS2_all_decompiled.txt",
+    "address_convention": "image_addr = listing_addr - 0x100000; every addr below is an image addr",
+    "line_convention": "Lnnnnn = global line number in the decompiled listing"
+  },
+  "totals": { "claims": 42, "confirmed": 42, "unknown": 1, "test_assertions": 188 },
+  "claims": [
+    {
+      "id": "H01",
+      "area": "handshake",
+      "statement": "WSConn::accept registers a pattern wait for the 4 bytes '\\r\\n\\r\\n' and the callback argument is the INDEX of that pattern inside the receive buffer (ptr-buf), not a length.",
+      "evidence": [
+        { "addr": "0xf940", "what": "WSConn::accept", "detail": "L13180 std::string(\"\\r\\n\\r\\n\"); L13181 recv_pat(this,&s,&lambda)" },
+        { "addr": "0xfa66", "insn": "lea rsi,[rip+0xfc5f] -> 0x1f6cc  (the \"\\r\\n\\r\\n\" literal)" },
+        { "addr": "0xf180", "what": "WSConn::recv_pat", "detail": "L12806 memmem(hay,len,needle,nlen); L12810 invoke(param_3, (long)pvVar12 - (long)__haystack)" }
+      ],
+      "rodata": { "addr": "0x1f6cc", "len": 4, "bytes": "\\r\\n\\r\\n", "note": "merged into the tail of the 19-byte 'HTTP/1.0 200 OK\\r\\n\\r\\n' literal at 0x1f6bd" },
+      "status": "confirmed",
+      "test": "test_server_handshake/header_len"
+    },
+    {
+      "id": "H02",
+      "area": "handshake",
+      "statement": "After a successful upgrade the server drops exactly idx+4 bytes from the front of the receive buffer, so bytes pipelined behind the header are preserved.",
+      "evidence": [
+        { "addr": "0x139a4", "insn": "lea ebx,[r13+0x4]  (r13 = idx of CRLFCRLF)" },
+        { "addr": "0x139ae", "insn": "cmp rbx,rcx / memmove buf<-buf+idx+4" },
+        { "line": "L16287-L16294" }
+      ],
+      "status": "confirmed",
+      "test": "test_server_handshake/sticky packet"
+    },
+    {
+      "id": "H03",
+      "area": "handshake",
+      "statement": "The server finds the key with memmem over the WHOLE buffer for the 19-byte literal 'Sec-WebSocket-Key: ' (trailing space included); it is not line-anchored and is case-sensitive.",
+      "evidence": [
+        { "addr": "0x12b62", "insn": "lea rdx,[rip+0xcb3a] -> .rodata 0x1f6a3" },
+        { "addr": "0x12b69", "insn": "mov ecx,0x13  (19)" },
+        { "addr": "0x12b9a", "insn": "call memmem@plt" },
+        { "line": "L15226" }
+      ],
+      "rodata": { "addr": "0x1f6a3", "len": 19, "bytes": "Sec-WebSocket-Key: " },
+      "status": "confirmed",
+      "test": "test_server_handshake/key header not on first line"
+    },
+    {
+      "id": "H04",
+      "area": "handshake",
+      "statement": "The key value is copied verbatim (no trim, no base64 validation) from p+19 until CR or LF, bounded by the buffer end and by a hard cap of 127 bytes.",
+      "evidence": [
+        { "addr": "0x12bb9", "insn": "mov BYTE PTR [rsp+rdx+0x120],cl  (copy loop)" },
+        { "addr": "0x12bd6", "insn": "cmp cl,0xd  (stop on CR)" },
+        { "addr": "0x12bb0", "insn": "cmp cl,0xa  (stop on LF)" },
+        { "addr": "0x12bc7", "insn": "cmp rdx,0x7f  (127-byte cap)" },
+        { "addr": "0x12ba6", "insn": "lea esi,[rbx-0x13]  (buffer-end bound)" },
+        { "line": "L15229-L15238" }
+      ],
+      "status": "confirmed",
+      "test": "test_server_handshake/long key truncated to 127"
+    },
+    {
+      "id": "H05",
+      "area": "handshake",
+      "statement": "accept = base64(SHA1(key_bytes || GUID)) where GUID is the 36-byte ASCII '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'; the message length fed to SHA-1 is strlen(key)+0x24.",
+      "evidence": [
+        { "addr": "0x1346c", "insn": "movabs rdi,0x3541464145383532 ('258EAFA5')" },
+        { "addr": "0x13508", "insn": "lea rax,[r12+rdx]  (r12=key buffer, rdx=strlen(key))" },
+        { "addr": "0x13512", "insn": "mov QWORD PTR [rax],rdi  (GUID appended right after key)" },
+        { "addr": "0x1350c", "insn": "add rdx,0x24  (len += 36)" },
+        { "line": "L15269-L15274" }
+      ],
+      "rodata": { "note": "GUID is NOT in .rodata; it is built from 5 movabs immediates" },
+      "status": "confirmed",
+      "test": "test_accept/RFC6455 vector"
+    },
+    {
+      "id": "H06",
+      "area": "handshake",
+      "statement": "SHA-1 is standard FIPS 180-1: IV 67452301/EFCDAB89/98BADCFE/10325476/C3D2E1F0, 80 rounds with constants 5A827999/6ED9EBA1/8F1BBCDC/CA62C1D6, big-endian message words, 0x80 padding, 8-byte big-endian bit length; digest is 20 bytes.",
+      "evidence": [
+        { "addr": "0xd620", "what": "FUN_0010d620 = SHA-1 block transform (1430 pseudocode lines)" },
+        { "addr": "0x134a6", "insn": "mov DWORD PTR [rsp+0xb0],0x67452301  (IV, L15255-L15265)" },
+        { "addr": "0xd9ac", "insn": "lea ecx,[rsi+rcx+0x5a827999]" },
+        { "addr": "0xd9f1", "insn": "lea ecx,[r14+rcx+0x6ed9eba1]" },
+        { "line": "L11751", "detail": "+0xca62c1d6 in the last 20 rounds" },
+        { "line": "L11759-L11763", "detail": "state add-back h[i] += a..e" },
+        { "addr": "0xd63c", "insn": "movdqu xmm4,[rdi+0x1c]  (block at +0x1c; h[5] at +0, bitlen at +0x14, fill at +0x5c)" },
+        { "line": "L15281-L15307", "detail": "0x80 pad, zero pad to 56 mod 64, 8-byte big-endian bit length" }
+      ],
+      "status": "confirmed",
+      "test": "test_sha1/FIPS vectors"
+    },
+    {
+      "id": "H07",
+      "area": "handshake",
+      "statement": "Base64 uses alphabet 'A-Za-z0-9+/=' (index 64 = '='), emits 4 chars per 3 bytes and '==' for a 1-byte tail; base64 of the 20-byte digest is 28 chars.",
+      "evidence": [
+        { "addr": "0x1fc40", "what": ".rodata base64 alphabet, 65 bytes" },
+        { "addr": "0x123a3", "insn": "mov BYTE PTR [rsp+0xb0],cl ; movzx ecx,[rsi+rcx] (table lookup, 4 per group)" },
+        { "addr": "0x123d9", "insn": "mov BYTE PTR [r8+0x2],0x3d ; eax=0x40 -> T[64] (padding)" },
+        { "line": "L15367-L15417", "detail": "digest base64 loop, 20 bytes -> 28 chars" }
+      ],
+      "rodata": { "addr": "0x1fc40", "len": 65, "bytes": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=" },
+      "status": "confirmed",
+      "test": "test_base64"
+    },
+    {
+      "id": "H08",
+      "area": "handshake",
+      "statement": "If the key header is present with a non-empty value the server ALWAYS replies 101; it never validates Upgrade, Connection, Sec-WebSocket-Version or the request line (none of those strings exist in .rodata).",
+      "evidence": [
+        { "line": "L15413", "detail": "end of base64 loop: 'if (0x13 < iVar31) goto LAB_001138c0' jumps straight to the 101 builder, skipping the GET check" },
+        { "addr": "0x138c0", "what": "101 response builder" },
+        { "addr": "0x13a1d", "insn": "call Buffer::appendf@plt  (101 template)" },
+        { "line": "L16243-L16327", "detail": "only permessage-deflate and accept string are consulted" }
+      ],
+      "status": "confirmed",
+      "test": "test_server_handshake/POST with key still upgrades"
+    },
+    {
+      "id": "H09",
+      "area": "handshake",
+      "statement": "The 101 response is the .rodata 0x1f7a8 template; its first %s is the 46-byte extensions line (.rodata 0x1f778) when permessage-deflate was negotiated, otherwise the empty string at .rodata 0x1f6d0; the second %s is the accept value.",
+      "evidence": [
+        { "addr": "0x139f6", "insn": "lea rdx,[rip+0xbd7b] -> 0x1f778" },
+        { "addr": "0x13a02", "insn": "lea rsi,[rip+0xbd9f] -> 0x1f7a8" },
+        { "addr": "0x13a0c", "insn": "cmp BYTE PTR [rax+0x58],0x0" },
+        { "addr": "0x13a10", "insn": "lea rax,[rip+...] -> 0x1f6d0 ; cmove rdx,rax" },
+        { "line": "L16321-L16327" }
+      ],
+      "rodata": [
+        { "addr": "0x1f7a8", "len": 105, "bytes": "HTTP/1.1 101 Switching Protocols\\r\\nUpgrade: websocket\\r\\nConnection: Upgrade\\r\\n%sSec-WebSocket-Accept: %s\\r\\n\\r\\n" },
+        { "addr": "0x1f778", "len": 46, "bytes": "Sec-WebSocket-Extensions: permessage-deflate\\r\\n" }
+      ],
+      "status": "confirmed",
+      "test": "test_server_handshake/exact 101"
+    },
+    {
+      "id": "H10",
+      "area": "handshake",
+      "statement": "permessage-deflate is 'negotiated' if the 18-byte token appears ANYWHERE in the receive buffer (including pipelined frame bytes); it sets this+0x58=1 and initialises inflateInit2_(z, -15, \"1.2.7\", 0x70) / deflateInit2_(z, -1, 8, -15, 8, 0, \"1.2.7\", 0x70).",
+      "evidence": [
+        { "addr": "0x138d6", "insn": "lea rdx,[rip+0xbd5b] -> 0x1f638 ('permessage-deflate')" },
+        { "addr": "0x138dd", "insn": "mov ecx,0x12  (18)" },
+        { "addr": "0x138f3", "insn": "call memmem@plt" },
+        { "addr": "0x13904", "insn": "mov BYTE PTR [rbx+0x58],0x1" },
+        { "addr": "0x13908", "insn": "mov edi,0x70 ; operator new(0x70) for the inflate z_stream at this+0x60" },
+        { "line": "L16249-L16283", "detail": "inflateInit2_(...,0xfffffff1,\"1.2.7\",0x70); deflateInit2_(...,0xffffffff,8,0xfffffff1,8,0,\"1.2.7\",0x70)" }
+      ],
+      "rodata": { "addr": "0x1f638", "len": 18, "bytes": "permessage-deflate", "note": "preceded by 4 dead bytes 0x80 0x84 0x2e 0x41 at 0x1f634" },
+      "status": "confirmed",
+      "test": "test_server_handshake/negotiation"
+    },
+    {
+      "id": "H11",
+      "area": "handshake",
+      "statement": "Without a non-empty key the request-line branch runs: it requires n>5, buf[0..4]=='GET /' and buf[5]!='/'; then it replies the 19-byte 'HTTP/1.0 200 OK\\r\\n\\r\\n' and hands the path (buf[5..] up to ' '/CR/LF, cleared to empty if two consecutive '.' are seen) to the second callback.",
+      "evidence": [
+        { "addr": "0x12d68", "insn": "lea rdi,[rip+0xc948] -> 0x1f6b7 'GET /'" },
+        { "addr": "0x12d77", "insn": "repz cmps BYTE PTR [rsi],BYTE PTR [rdi] (5 bytes)" },
+        { "addr": "0x12d7f", "insn": "cmp BYTE PTR [r8+0x5],0x2f" },
+        { "addr": "0x12e8d", "insn": "lea rsi,[rip+0xc829] -> 0x1f6bd" },
+        { "addr": "0x12eb3", "insn": "call Buffer::appendf@plt" },
+        { "line": "L15426-L15490", "detail": "path extraction; L15462 std::string::assign(path, 0x1f6d0=empty) on '..'" }
+      ],
+      "rodata": { "addr": "0x1f6bd", "len": 19, "bytes": "HTTP/1.0 200 OK\\r\\n\\r\\n" },
+      "status": "confirmed",
+      "test": "test_server_handshake/200 OK and .. clearing"
+    },
+    {
+      "id": "H12",
+      "area": "handshake",
+      "statement": "For any other request (not 'GET /<non-slash>', no key) the server emits ZERO bytes and replaces the receive handler with TcpConn::discard, i.e. all further input is swallowed.",
+      "evidence": [
+        { "addr": "0x12d79", "insn": "jne 0x12c15 (GET mismatch)" },
+        { "addr": "0x12d84", "insn": "je 0x12c15 (buf[5]=='/')" },
+        { "addr": "0x12c7c", "insn": "mov rdx,[rip+...] -> _ZNSt14_Function_base13_Base_managerIN7TcpConn7discardEE..._M_manager" },
+        { "addr": "0x12cb9", "insn": "mov rdx,[rip+...] -> ..._ZN7TcpConn7discardE..._M_invoke" },
+        { "addr": "0x12c8a", "insn": "mov [rbx+0x90],rsi ; [rbx+0xa0]=manager ; [rbx+0xa8]=invoke" }
+      ],
+      "status": "confirmed",
+      "test": "test_server_handshake/NoResponse"
+    },
+    {
+      "id": "C01",
+      "area": "client",
+      "statement": "The client Sec-WebSocket-Key is a constant: base64(16 zero bytes) = 'AAAAAAAAAAAAAAAAAAAAAA=='. The 16-byte buffer is zeroed and there is no rand/time call in the key generation.",
+      "evidence": [
+        { "addr": "0x122d8", "insn": "mov QWORD PTR [rsp+0x20],0x0" },
+        { "addr": "0x122e1", "insn": "mov QWORD PTR [rsp+0x28],0x0" },
+        { "addr": "0x1234c", "insn": "movzx eax,BYTE PTR [rsp+rax*1+0x20]  (base64 input)" },
+        { "addr": "0x123fa", "insn": "the ONLY call between 0x122b0 and 0x12351 is operator new" },
+        { "line": "L14777-L14845" }
+      ],
+      "status": "confirmed",
+      "test": "test_accept/client_key"
+    },
+    {
+      "id": "C02",
+      "area": "client",
+      "statement": "The client request is the fixed 155-byte template at .rodata 0x1f6d8 with the key substituted for %s; it always offers permessage-deflate and Version 13.",
+      "evidence": [
+        { "addr": "0x1f6d8", "what": ".rodata request template" },
+        { "line": "L14872-L14874", "detail": "Buffer::appendf(buf, template, base64key)" }
+      ],
+      "rodata": { "addr": "0x1f6d8", "len": 155 },
+      "status": "confirmed",
+      "test": "test_client_request"
+    },
+    {
+      "id": "C03",
+      "area": "client",
+      "statement": "connect() installs FUN_0010fc40 as the TcpConn data handler; that handler waits for the 4 bytes CRLFCRLF with recv_pat, and its pattern callback FUN_0010dbc0 (1) memmem's the whole buffer for 'permessage-deflate' (18 bytes) to enable this+0x58 and init inflate/deflate, (2) drops idx+4 bytes from the receive buffer, then (3) invokes the captured std::function (the user's on-connect callback).",
+      "evidence": [
+        { "addr": "0x125cf", "insn": "lea rdi,[rip-0x2996] -> 0xfc40  (L14923)" },
+        { "addr": "0x125e3", "insn": "mov QWORD PTR [rbx+0x80],rdi  (install as the data callback)" },
+        { "addr": "0xfcf2", "insn": "lea rsi,[0x1f6cc] ('\\r\\n\\r\\n') ; 0xfd26 call WSConn::recv_pat@plt" },
+        { "addr": "0xdbf4", "insn": "call memmem@plt (needle 0x1f638 'permessage-deflate', len 0x12)" },
+        { "addr": "0xdbc2", "insn": "lea rdx,[rip+0x11a6f] -> 0x1f638" },
+        { "line": "L11858-L11911", "detail": "memmem, set +0x58, drop param_2+4 bytes, invoke param_1[4]" }
+      ],
+      "status": "confirmed",
+      "test": "test_client_response"
+    },
+    {
+      "id": "C04",
+      "area": "client",
+      "statement": "The client never validates the server handshake: neither FUN_0010fc40 nor FUN_0010dbc0 compares the status line, Upgrade, Connection or Sec-WebSocket-Accept. Any response that ends with CRLFCRLF is treated as a successful handshake (its header is dropped and on-connect fires), including 'HTTP/1.1 400 Bad Request' or a wrong Accept value.",
+      "evidence": [
+        { "addr": "0xfc40", "what": "FUN_0010fc40 (response waiter), 0xfc40..0xfe70" },
+        { "addr": "0xdbc0", "what": "FUN_0010dbc0 (pattern callback), full body L11842-L11912: the only string operation is the memmem at 0xdbf4" },
+        { "line": "L13263-L13306", "detail": "no comparison of the response text anywhere" }
+      ],
+      "status": "confirmed",
+      "test": "test_client_response/400 accepted, wrong Accept accepted"
+    },
+    {
+      "id": "F01",
+      "area": "frame",
+      "statement": "byte0: bit7=FIN, bit6=RSV1, bit5=RSV2 (ignored), bit4=RSV3 (ignored), bits3..0=opcode (masked with 0x0f).",
+      "evidence": [
+        { "addr": "0x114cd", "insn": "shr r13b,0x7   -> FIN" },
+        { "addr": "0x114d1", "insn": "shr r15b,0x7   -> MASK" },
+        { "addr": "0x114d5", "insn": "and r12d,0xf   -> opcode" },
+        { "addr": "0x114d9", "insn": "test al,0x40   -> RSV1" },
+        { "line": "L14290-L14300" }
+      ],
+      "status": "confirmed",
+      "test": "test_frame_header/bit layout"
+    },
+    {
+      "id": "F02",
+      "area": "frame",
+      "statement": "byte1: bit7=MASK, bits6..0=payload-len7 (masked with 0x7f). The MASK bit does not contribute to the length.",
+      "evidence": [
+        { "addr": "0x114e6", "insn": "and ebp,0x7f" },
+        { "line": "L14300" }
+      ],
+      "status": "confirmed",
+      "test": "test_frame_header/MASK"
+    },
+    {
+      "id": "F03",
+      "area": "frame",
+      "statement": "payload-len7 <= 125: payload length = len7, header is 2 bytes, and the parser requires exactly 2 buffered bytes before stripping the header.",
+      "evidence": [
+        { "addr": "0x114fd", "insn": "lea rcx,[r8+0x2] ; memmove strip 2" },
+        { "addr": "0x114a0", "insn": "recv_more(this,2,cb)" },
+        { "line": "L13872", "detail": "read_head -> recv_more(this,2,...)" },
+        { "line": "L14365-L14371", "detail": "memmove removes 2 bytes, end -= 2" }
+      ],
+      "status": "confirmed",
+      "test": "test_frame_header/2-byte header"
+    },
+    {
+      "id": "F04",
+      "area": "frame",
+      "statement": "payload-len7 == 0x7e: the next 2 bytes are read BIG-ENDIAN as the payload length, header is 4 bytes, and the parser waits for 4 buffered bytes in total.",
+      "evidence": [
+        { "addr": "0x1093c", "insn": "movzx ecx,BYTE PTR [r8+0x2]" },
+        { "addr": "0x10941", "insn": "movzx eax,BYTE PTR [r8+0x3]" },
+        { "addr": "0x1094a", "insn": "shl ecx,0x8 ; or ecx,eax" },
+        { "addr": "0x14324", "line": "L14324", "what": "recv_more(this,4,...)" },
+        { "line": "L13785", "detail": "uVar3 = CONCAT11(dest[2],dest[3])" }
+      ],
+      "status": "confirmed",
+      "test": "test_frame_header/0x7E big-endian"
+    },
+    {
+      "id": "F05",
+      "area": "frame",
+      "statement": "payload-len7 == 0x7f: bytes b2..b5 must all be zero (otherwise WSConn::exit() is called and the connection is torn down), and the length is b6..b9 big-endian reinterpreted as a SIGNED 32-bit value; header is 10 bytes, parser waits for 10 buffered bytes.",
+      "evidence": [
+        { "addr": "0x11a68", "insn": "cmp BYTE PTR [r8+0x2],0x0 ; jne 0x11a76" },
+        { "addr": "0x11a6f", "insn": "cmp BYTE PTR [r8+0x3],0x0" },
+        { "addr": "0x11a90", "insn": "cmp BYTE PTR [r8+0x4],0x0" },
+        { "addr": "0x11a97", "insn": "cmp BYTE PTR [r8+0x5],0x0" },
+        { "addr": "0x11a76", "insn": "call _ZN6WSConn4exitEv@plt" },
+        { "addr": "0x11a9e", "insn": "movzx r12d,[r8+0x6] ... (BE32 assembly)" },
+        { "line": "L14425-L14431", "detail": "lVar6 = (long)(int)(b6<<24|b7<<16|b8<<8|b9)" },
+        { "line": "L14355", "detail": "recv_more(this,10,...)" }
+      ],
+      "status": "confirmed",
+      "test": "test_frame_header/0x7F, test_buffer/Abort, test_buffer/negative length"
+    },
+    {
+      "id": "F06",
+      "area": "frame",
+      "statement": "The frame header is consumed (memmove'd out of the receive buffer) as soon as it is complete, before any payload byte arrives.",
+      "evidence": [
+        { "addr": "0x11515", "insn": "add r8,rax ; mov QWORD PTR [r14+0x8],r8 (new end after stripping 2)" },
+        { "line": "L13787-L13792", "detail": "4-byte header path memmove" },
+        { "line": "L14432-L14437", "detail": "10-byte header path memmove" }
+      ],
+      "status": "confirmed",
+      "test": "test_buffer/header consumed before payload"
+    },
+    {
+      "id": "F07",
+      "area": "frame",
+      "statement": "There is no minimal-length-encoding check: a 126 (0x7e) extended length carrying 0x007e is accepted and yields 126; likewise 0x7f may carry a value < 65536.",
+      "evidence": [
+        { "addr": "0x1093c", "insn": "no comparison of the decoded value against 126/0xffff" },
+        { "line": "L13785-L13802", "detail": "value goes straight into read_data" }
+      ],
+      "status": "confirmed",
+      "test": "test_frame_header/126 as extended"
+    },
+    {
+      "id": "F08",
+      "area": "frame",
+      "statement": "The MASK bit is not validated against the connection role: masked and unmasked frames are both accepted by the same code path.",
+      "evidence": [
+        { "addr": "0x114d1", "insn": "MASK bit extracted into r15b" },
+        { "line": "L14374-L14396", "detail": "if (bVar2 < 0) read_data_mask else read_data" }
+      ],
+      "status": "confirmed",
+      "test": "test_mask / test_frame_header"
+    },
+    {
+      "id": "M01",
+      "area": "mask",
+      "statement": "For a masked frame the 4-byte mask key sits immediately after the (already stripped) header, i.e. at offset 0 of the remaining buffer; it is read once as a 32-bit value.",
+      "evidence": [
+        { "addr": "0x10d50", "insn": "L13958 local_68[0] = *__dest (4 bytes at buffer start)" },
+        { "line": "L13956-L13960" }
+      ],
+      "status": "confirmed",
+      "test": "test_mask"
+    },
+    {
+      "id": "M02",
+      "area": "mask",
+      "statement": "Unmasking is byte-wise (not a word-wise XOR): msg[old+i] = buf[4+i] ^ mask[i & 3], with i restarting at 0 for every frame, where old is the message-buffer size before this frame.",
+      "evidence": [
+        { "addr": "0x10d50", "insn": "L14024-L14026 *(byte*)(uVar10 + vec_base + uVar3) = *(byte*)(dest+uVar3+4) ^ *(byte*)(mask + (uVar3 & 3))" },
+        { "addr": "0x10d50", "insn": "L14028 uVar3 = uVar3 + 1 (per-byte loop)" },
+        { "line": "L13960", "detail": "uVar10 = current message size" }
+      ],
+      "status": "confirmed",
+      "test": "test_mask/9-byte cycle, per-frame reset"
+    },
+    {
+      "id": "M03",
+      "area": "mask",
+      "statement": "Timing: the message buffer is first zero-extended by payload_len, then XOR-filled from the receive buffer; afterwards payload_len+4 bytes are removed. The masked path waits for payload_len+4 buffered bytes, the unmasked path only payload_len.",
+      "evidence": [
+        { "addr": "0x105a0", "insn": "L13681 recv_more(this, param_3 + 4, ...)  (read_data_mask)" },
+        { "addr": "0x10760", "insn": "L13751 recv_more(this, param_3, ...)      (read_data)" },
+        { "line": "L13989/L14002", "detail": "memset zero-fill then plVar1[1] += len" },
+        { "line": "L14037-L14046", "detail": "__src = __dest + len + 4 ; memmove ; end -= len+4" }
+      ],
+      "status": "confirmed",
+      "test": "test_mask, test_buffer"
+    },
+    {
+      "id": "K01",
+      "area": "control",
+      "statement": "opcode 8 with FIN=1 invokes the user callback with an EMPTY unique_ptr; the close code and reason are never parsed (the payload is still appended to the message buffer and then discarded).",
+      "evidence": [
+        { "addr": "0x10e51", "insn": "cmp eax,0x8 ; jne (return)" },
+        { "addr": "0x10e6a", "insn": "mov QWORD PTR [rsp+0x20],0x0 (null buffer) ; call rax" },
+        { "line": "L14079-L14087" }
+      ],
+      "status": "confirmed",
+      "test": "test_control/close"
+    },
+    {
+      "id": "K02",
+      "area": "control",
+      "statement": "opcode 9 (ping) and 0xA (pong) are consumed silently: no pong is generated, no event is delivered, and the connection state is unchanged.",
+      "evidence": [
+        { "addr": "0x10e48", "insn": "cmp eax,0x1 ; je deliver" },
+        { "addr": "0x10e51", "insn": "cmp eax,0x8 ; jne 0x10e98 (return)" },
+        { "line": "L14068-L14096", "detail": "only opcode 1 and 8 are dispatched" }
+      ],
+      "status": "confirmed",
+      "test": "test_control/ping,pong"
+    },
+    {
+      "id": "K03",
+      "area": "control",
+      "statement": "The library never emits Close/Ping/Pong frames: the only frame builder is WSConn::send and its first byte is 0x81 or 0xC1; WSConn::exit clears the pending send buffer and schedules teardown without sending anything.",
+      "evidence": [
+        { "addr": "0x14d00", "what": "WSConn::send, size 2624 (0x14d00..0x15740)" },
+        { "addr": "0x15249", "insn": "mov BYTE PTR [rsp+0x20],0x81", "line": "L16621" },
+        { "addr": "0x14e30", "insn": "mov BYTE PTR [rsp+0x20],0xc1 (RSV1)", "line": "L16748" },
+        { "addr": "0xc110", "what": "WSConn::exit" },
+        { "line": "L9806-L9814", "detail": "*(send+buf) = 0 and flags, no frame emission" }
+      ],
+      "status": "confirmed",
+      "test": "test_send, test_control/outbox empty"
+    },
+    {
+      "id": "K04",
+      "area": "control",
+      "statement": "Control-frame constraints are not validated: a ping/pong/close frame with FIN=0 is treated as the first fragment of a message, and control payloads longer than 125 bytes are accepted.",
+      "evidence": [
+        { "addr": "0x10e1b", "insn": "cmp BYTE PTR [rbx+0x10],0x0  (FIN check happens first, opcode-agnostic)" },
+        { "line": "L14047", "detail": "if (FIN==0) read_head() before any opcode inspection" }
+      ],
+      "status": "confirmed",
+      "test": "test_control/FIN=0 ping"
+    },
+    {
+      "id": "G01",
+      "area": "fragmentation",
+      "statement": "FIN=0 causes the parser to re-enter read_head immediately, appending the frame payload to the message buffer at this+0x48 in arrival order.",
+      "evidence": [
+        { "addr": "0x10e1f", "insn": "je 0x10eb0 (re-enter WSConn::read_head)" },
+        { "line": "L14054", "detail": "WSConn::read_head(this, cb)" },
+        { "line": "L14209", "detail": "same in the unmasked path" }
+      ],
+      "status": "confirmed",
+      "test": "test_fragmentation"
+    },
+    {
+      "id": "G02",
+      "area": "fragmentation",
+      "statement": "On FIN=1 the dispatch uses the opcode of THAT (last) frame, read from the read_data lambda slot +0x14: only 1 (deliver message) and 8 (deliver null) produce an event; 0x0/0x2/others cause the accumulated bytes to be dropped without a callback.",
+      "evidence": [
+        { "addr": "0x10e45", "insn": "mov eax,DWORD PTR [rbx+0x14]" },
+        { "addr": "0x10e48", "insn": "cmp eax,0x1 ; je 0x10ff0" },
+        { "addr": "0x10e51", "insn": "cmp eax,0x8 ; jne return" },
+        { "line": "L14068-L14081", "detail": "*(int*)((long)param_1+0x14) == 1 / == 8" }
+      ],
+      "status": "confirmed",
+      "test": "test_fragmentation/binary dropped"
+    },
+    {
+      "id": "G03",
+      "area": "fragmentation",
+      "statement": "Consequence: the standard text fragmentation sequence 0x01 (FIN=0) + 0x80 (FIN=1, opcode=0) is NEVER delivered, because the final frame's opcode is 0. Only a non-conformant sequence whose final frame carries opcode 1 delivers the concatenation.",
+      "evidence": [
+        { "addr": "0x10e45", "insn": "opcode taken from the frame that has FIN=1" },
+        { "line": "L14068", "detail": "cmp against 1 fails for a continuation frame" }
+      ],
+      "status": "confirmed",
+      "test": "test_fragmentation/0x01+0x80 dropped, 0x01+0x00+0x81 delivered"
+    },
+    {
+      "id": "B01",
+      "area": "buffer",
+      "statement": "recv_more(n) invokes its callback synchronously when the receive buffer already holds >= n bytes, otherwise it stores the continuation in the event loop and re-runs it when more data arrives.",
+      "evidence": [
+        { "addr": "0xfe87", "insn": "mov rdx,[rdi+0x40] ; rax = end-begin" },
+        { "addr": "0xfe92", "insn": "cmp rsi,rax ; jbe 0x10228" },
+        { "addr": "0x10236", "insn": "call QWORD PTR [rbx+0x18]  (std::function invoke)" },
+        { "line": "L13358-L13365" }
+      ],
+      "status": "confirmed",
+      "test": "test_buffer/byte-by-byte"
+    },
+    {
+      "id": "B02",
+      "area": "buffer",
+      "statement": "Incoming data is appended to the vector at this+0x40 and then the pattern wait is re-armed; an empty Buffer (peer closed) triggers WSConn::exit().",
+      "evidence": [
+        { "addr": "0x11f80", "what": "FUN_00111f80 (data-arrival handler)" },
+        { "line": "L14628-L14631", "detail": "if (!buffer) WSConn::exit(this)" },
+        { "line": "L14633-L14687", "detail": "insert chunk into this+0x40" },
+        { "line": "L14695", "detail": "recv_pat(this, pattern, cb) re-run" }
+      ],
+      "status": "confirmed",
+      "test": "test_buffer"
+    },
+    {
+      "id": "B03",
+      "area": "buffer",
+      "statement": "There is no explicit parser state machine: every data arrival re-parses from the head of the receive buffer, so a partial frame leaves the buffer untouched until all required bytes are present.",
+      "evidence": [
+        { "addr": "0x114a0", "what": "frame parser always starts at buf[0]" },
+        { "addr": "0xfe70", "what": "recv_more is the only 'state'" },
+        { "line": "L13358" }
+      ],
+      "status": "confirmed",
+      "test": "test_buffer/half packet"
+    },
+    {
+      "id": "B04",
+      "area": "buffer",
+      "statement": "Consumption compacts the buffer with memmove and keeps the remaining bytes, so multiple pipelined frames and frames split across TCP reads both work; nothing is dropped except the bytes actually consumed.",
+      "evidence": [
+        { "addr": "0x11515", "insn": "strip 2" },
+        { "addr": "0x10d50", "insn": "L14037-L14046 strip len+4" },
+        { "addr": "0x11100", "insn": "L14193-L14200 strip len" }
+      ],
+      "status": "confirmed",
+      "test": "test_buffer/two frames in one buffer"
+    },
+    {
+      "id": "D01",
+      "area": "deflate",
+      "statement": "Inbound permessage-deflate appends 00 00 FF FF to the message, calls inflate with Z_NO_FLUSH into a 0x4000-byte chunk buffer, and treats Z_MEM_ERROR/Z_DATA_ERROR/Z_STREAM_ERROR/Z_NEED_DICT (codes -4,-3,-2,2) as failure, in which case nothing is delivered.",
+      "evidence": [
+        { "addr": "0xee80", "what": "FUN_0010ee80" },
+        { "line": "L12643-L12653", "detail": "emplace_back 0x00,0x00,0xff,0xff" },
+        { "line": "L12662", "detail": "inflate(param_3, 0)" },
+        { "line": "L12663", "detail": "(iVar3+4U < 7) && ((1<<((iVar3+4)&0x3f)) & 0x47)" },
+        { "line": "L12668", "detail": "return 0 on failure" }
+      ],
+      "status": "confirmed",
+      "test": "test_deflate_boundary"
+    },
+    {
+      "id": "D02",
+      "area": "deflate",
+      "statement": "Outbound permessage-deflate uses deflate(z, Z_FINISH=2), then shortens the payload by exactly 4 bytes (the 00 00 FF FF tail) and sets RSV1 in the frame's first byte (0xC1).",
+      "evidence": [
+        { "addr": "0x14ddd", "insn": "mov esi,0x2  (Z_FINISH)" },
+        { "addr": "0x14de9", "insn": "call deflate@plt" },
+        { "line": "L16686", "detail": "uVar12 = -(ulong)avail_out - 4" },
+        { "line": "L16748", "detail": "local_58 = 0xc1" }
+      ],
+      "status": "confirmed",
+      "test": "test_deflate_boundary, test_send/0xC1"
+    },
+    {
+      "id": "D03",
+      "area": "deflate",
+      "statement": "RSV1 is sticky per connection (this+0x59): set by any frame header carrying 0x40, cleared only by WSConn::recv, and compression is attempted only when this+0x58 (negotiated) is also set.",
+      "evidence": [
+        { "addr": "0x114dd", "insn": "mov BYTE PTR [rdx+0x59],0x1" },
+        { "addr": "0x10e2a", "insn": "cmp BYTE PTR [rdi+0x58],0x0 ; je skip" },
+        { "addr": "0x10e34", "insn": "movzx esi,BYTE PTR [rdi+0x59]" },
+        { "line": "L13910", "detail": "WSConn::recv: this[0x59] = 0" }
+      ],
+      "status": "confirmed",
+      "test": "test_deflate_boundary/sticky"
+    },
+    {
+      "id": "S01",
+      "area": "send",
+      "statement": "WSConn::send builds a single unfragmented text frame: byte0=0x81 (or 0xC1 when compressed), byte1 has MASK=0 and the 7-bit length; length > 125 uses 0x7E + 2 big-endian bytes and length >= 0xFFFF uses 0x7F + four 0x00 bytes + 4 big-endian bytes (strict < 0xffff compare, so 65535 takes the 64-bit branch).",
+      "evidence": [
+        { "addr": "0x15249", "insn": "mov BYTE PTR [rsp+0x20],0x81 (FIN=1,opcode=1,RSV1=0)", "line": "L16621" },
+        { "addr": "0x14e30", "insn": "mov BYTE PTR [rsp+0x20],0xc1 (RSV1=1)", "line": "L16748" },
+        { "addr": "0x15262", "insn": "cmp r15,0x7d ; jbe 0x14e80  (len<=125 -> only 7-bit byte)", "line": "L16761" },
+        { "addr": "0x1526c", "insn": "cmp r15,0xfffe ; ja 0x152a8  (len>=65535 -> 64-bit branch)", "line": "L16763" },
+        { "addr": "0x15275", "insn": "mov BYTE PTR [rsp+0x20],0x7e ; 0x15286/0x1528c/0x15290 len>>8", "line": "L16764-L16796" },
+        { "addr": "0x152af", "insn": "mov BYTE PTR [rsp+0x20],0x7f ; 0x152c0..0x152f8 four 0x00 ; 0x15307 len>>24 ; 0x15314 len>>16", "line": "L16767-L16791" },
+        { "addr": "0x14e80", "insn": "mov BYTE PTR [rsp+0x20],r15b (low byte, MASK bit stays 0) ; 0x14ea8 _M_range_insert(payload)", "line": "L16801-L16808" }
+      ],
+      "status": "confirmed",
+      "test": "test_send"
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "U1",
+      "area": "close",
+      "statement": "The final teardown of WSConn::exit (0xc110) is not traced: the tail only installs a lambda into the event loop (PTR__M_invoke_00324fd0, L10042-L10061). Whether/when TcpConn issues shutdown()/close() on the socket is not established, so the TCP-level FIN timing behind a received Close is unknown.",
+      "blocked_on": "TcpConn::exit / EventLoop2::del paths (0x16b80, 0x1a290) were not decompiled in detail"
+    }
+  ],
+  "notes": [
+    "The 'permessage-deflate' needle lives at 0x1f638 (18 bytes); the 4 bytes at 0x1f634 (0x80 0x84 0x2e 0x41) are dead padding in front of it and are never referenced.",
+    "The '\\r\\n\\r\\n' literal used by both handshake waiters is at 0x1f6cc - it is the tail of the 19-byte 'HTTP/1.0 200 OK\\r\\n\\r\\n' string at 0x1f6bd (linker suffix merge).",
+    "A second, standalone copy of the deflate-negotiation + header-drop logic exists at FUN_0010dbc0 (0xdbc0); 0x12b60 contains the inlined copy (0x138d6..0x139a4). The client path uses the standalone one.",
+    "All memmem call sites in .text: 0xf1b2 (recv_pat, needle from caller), 0x12b9a (Sec-WebSocket-Key:), 0x138f3 (permessage-deflate, server), 0xdbf4 (permessage-deflate, client). No other header is ever searched.",
+    "Decompiler block addresses are listing addresses; subtract 0x100000 to obtain image addresses."
+  ]
+}
