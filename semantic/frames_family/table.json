@@ -1,0 +1,909 @@
+{
+  "meta": {
+    "suite": "H0WS frames family (L2 semantic reconstruction)",
+    "target": "bbwebsocket 1.2.7 -- WebSocket frame layer + HTTP handshake",
+    "builds": {
+      "py2": "D:\\tmp\\H0WS2_all_decompiled.txt (400 functions, 25932 lines)",
+      "py3": "D:\\tmp\\H0WS3_all_decompiled.txt (400 functions, 25923 lines)"
+    },
+    "authority": "static re-derivation; the original binaries are never executed",
+    "command": "g++ -std=gnu++17 -O2 -o t test.cpp impl.cpp && ./t",
+    "members": 15,
+    "functions": 16,
+    "assertions": 93,
+    "exceptions": 6,
+    "inferred_claims": 4,
+    "total_claims": 45,
+    "inferred_ratio": "4/45 = 8.9%"
+  },
+  "members": [
+    {
+      "id": "M01",
+      "fun": "recv_pat",
+      "py2": "0x10f180",
+      "py3": "0x10f280",
+      "assertions": 5
+    },
+    {
+      "id": "M02",
+      "fun": "recv_more",
+      "py2": "0x10fe70",
+      "py3": "0x10ff70",
+      "assertions": 6
+    },
+    {
+      "id": "M03",
+      "fun": "read_head",
+      "py2": "0x110ad0",
+      "py3": "0x110bd0",
+      "assertions": 3
+    },
+    {
+      "id": "M04",
+      "fun": "hdr_parse",
+      "py2": "0x1114a0",
+      "py3": "0x1115a0",
+      "assertions": 10
+    },
+    {
+      "id": "M05",
+      "fun": "len16",
+      "py2": "0x110920",
+      "py3": "0x110a20",
+      "assertions": 6
+    },
+    {
+      "id": "M06",
+      "fun": "len64",
+      "py2": "0x111a50",
+      "py3": "0x111b50",
+      "assertions": 9
+    },
+    {
+      "id": "M07",
+      "fun": "read_data",
+      "py2": "0x110760",
+      "py3": "0x110860",
+      "assertions": 2
+    },
+    {
+      "id": "M08",
+      "fun": "read_data_mask",
+      "py2": "0x1105a0",
+      "py3": "0x1106a0",
+      "assertions": 2
+    },
+    {
+      "id": "M09",
+      "fun": "payload_mask",
+      "py2": "0x110d50",
+      "py3": "0x110e50",
+      "assertions": 11
+    },
+    {
+      "id": "M10",
+      "fun": "payload_plain",
+      "py2": "0x111100",
+      "py3": "0x111200",
+      "assertions": 4
+    },
+    {
+      "id": "M11",
+      "fun": "finalize",
+      "py2": "0x10ee80",
+      "py3": "0x10ef80",
+      "assertions": 4
+    },
+    {
+      "id": "M12",
+      "fun": "recv",
+      "py2": "0x110c60",
+      "py3": "0x110d60",
+      "assertions": 6
+    },
+    {
+      "id": "M13",
+      "fun": "send",
+      "py2": "0x114d00",
+      "py3": "0x114e00",
+      "assertions": 10
+    },
+    {
+      "id": "M14",
+      "fun": "accept+key_parse",
+      "py2": "0x10f940/0x112b60",
+      "py3": "0x10fa40/0x112c60",
+      "assertions": 12
+    },
+    {
+      "id": "M15",
+      "fun": "on_data",
+      "py2": "0x111f80",
+      "py3": "0x112080",
+      "assertions": 2
+    }
+  ],
+  "tables": {
+    "T1_header_bits": {
+      "member": "M04",
+      "rule": "fin=b0>>7; rsv1=(b0&0x40)!=0; opcode=b0&0x0f; masked=b1>>7; len7=b1&0x7f",
+      "note": "RSV2 (b0 bit 5) and RSV3 (b0 bit 4) are never inspected",
+      "rows": [
+        {
+          "id": "H01",
+          "b0": "0x81",
+          "b1": "0x05",
+          "fin": 1,
+          "rsv1": 0,
+          "opcode": 1,
+          "masked": 0,
+          "len7": 5
+        },
+        {
+          "id": "H02",
+          "b0": "0x01",
+          "b1": "0x03",
+          "fin": 0,
+          "rsv1": 0,
+          "opcode": 1,
+          "masked": 0,
+          "len7": 3
+        },
+        {
+          "id": "H03",
+          "b0": "0x88",
+          "b1": "0x00",
+          "fin": 1,
+          "rsv1": 0,
+          "opcode": 8,
+          "masked": 0,
+          "len7": 0
+        },
+        {
+          "id": "H04",
+          "b0": "0x89",
+          "b1": "0x80",
+          "fin": 1,
+          "rsv1": 0,
+          "opcode": 9,
+          "masked": 1,
+          "len7": 0
+        },
+        {
+          "id": "H05",
+          "b0": "0xc1",
+          "b1": "0x7e",
+          "fin": 1,
+          "rsv1": 1,
+          "opcode": 1,
+          "masked": 0,
+          "len7": 126
+        },
+        {
+          "id": "H06",
+          "b0": "0xf2",
+          "b1": "0xff",
+          "fin": 1,
+          "rsv1": 1,
+          "opcode": 2,
+          "masked": 1,
+          "len7": 127
+        },
+        {
+          "id": "H07",
+          "b0": "0x8f",
+          "b1": "0x00",
+          "fin": 1,
+          "rsv1": 0,
+          "opcode": 15,
+          "masked": 0,
+          "len7": 0
+        },
+        {
+          "id": "H08",
+          "b0": "0xb1",
+          "b1": "0x05",
+          "fin": 1,
+          "rsv1": 0,
+          "opcode": 1,
+          "masked": 0,
+          "len7": 5
+        },
+        {
+          "id": "H09",
+          "b0": "0x71",
+          "b1": "0x05",
+          "fin": 0,
+          "rsv1": 1,
+          "opcode": 1,
+          "masked": 0,
+          "len7": 5
+        }
+      ]
+    },
+    "T2_len16": {
+      "member": "M05",
+      "rule": "len = (b2 << 8) | b3   (big endian, no minimal-encoding check)",
+      "rows": [
+        {
+          "id": "L01",
+          "b2": "0x00",
+          "b3": "0x7e",
+          "len": 126
+        },
+        {
+          "id": "L02",
+          "b2": "0x00",
+          "b3": "0x05",
+          "len": 5
+        },
+        {
+          "id": "L03",
+          "b2": "0xff",
+          "b3": "0xff",
+          "len": 65535
+        },
+        {
+          "id": "L04",
+          "b2": "0x01",
+          "b3": "0x00",
+          "len": 256
+        },
+        {
+          "id": "L05",
+          "b2": "0x7e",
+          "b3": "0x7e",
+          "len": 32382
+        }
+      ]
+    },
+    "T3_len64": {
+      "member": "M06",
+      "rule": "if (b2|b3|b4|b5) != 0 -> WSConn::exit(); len = (int64)(int32)(b6<<24|b7<<16|b8<<8|b9)",
+      "rows": [
+        {
+          "id": "E01",
+          "payload_len_bytes": "00 00 00 00 00 00 00 05",
+          "exit": 0,
+          "len": 5
+        },
+        {
+          "id": "E02",
+          "payload_len_bytes": "00 00 00 01 00 00 00 05",
+          "exit": 1,
+          "len": 0
+        },
+        {
+          "id": "E03",
+          "payload_len_bytes": "01 00 00 00 00 00 00 05",
+          "exit": 1,
+          "len": 0
+        },
+        {
+          "id": "E04",
+          "payload_len_bytes": "00 00 00 00 80 00 00 00",
+          "exit": 0,
+          "len": -2147483648
+        },
+        {
+          "id": "E05",
+          "payload_len_bytes": "00 00 00 00 00 01 00 00",
+          "exit": 0,
+          "len": 65536
+        },
+        {
+          "id": "E06",
+          "payload_len_bytes": "00 00 00 00 ff ff ff ff",
+          "exit": 0,
+          "len": -1
+        }
+      ]
+    },
+    "T4_pattern": {
+      "member": "M01",
+      "rule": "memmem(hay, len, needle, nlen); hit -> cb(ptr - hay)",
+      "rows": [
+        {
+          "id": "R01",
+          "hay": "abc\\r\\n\\r\\ndef",
+          "needle": "\\r\\n\\r\\n",
+          "index": 3
+        },
+        {
+          "id": "R02",
+          "hay": "\\r\\n\\r\\nxyz",
+          "needle": "\\r\\n\\r\\n",
+          "index": 0
+        },
+        {
+          "id": "R03",
+          "hay": "abcdef",
+          "needle": "\\r\\n\\r\\n",
+          "index": -1
+        },
+        {
+          "id": "R04",
+          "hay": "aaab",
+          "needle": "aab",
+          "index": 1
+        },
+        {
+          "id": "R05",
+          "hay": "abc",
+          "needle": "",
+          "index": 0
+        }
+      ]
+    },
+    "T5_recv_more": {
+      "member": "M02",
+      "rule": "ready iff (uint64)need <= (uint64)buffered   -- unsigned comparison",
+      "rows": [
+        {
+          "id": "G01",
+          "need": 10,
+          "have": 10,
+          "ready": 1
+        },
+        {
+          "id": "G02",
+          "need": 11,
+          "have": 10,
+          "ready": 0
+        },
+        {
+          "id": "G03",
+          "need": 0,
+          "have": 0,
+          "ready": 1
+        },
+        {
+          "id": "G04",
+          "need": 4,
+          "have": 3,
+          "ready": 0
+        },
+        {
+          "id": "G05",
+          "need": "0xFFFFFFFF80000000",
+          "have": 100,
+          "ready": 0
+        },
+        {
+          "id": "G06",
+          "need": 3,
+          "have": 3,
+          "ready": 1
+        }
+      ]
+    },
+    "T6_unmask": {
+      "member": "M09",
+      "rule": "dst[old+i] = masked[i] ^ mask[i & 3]; i restarts at 0 for every frame",
+      "rows": [
+        {
+          "id": "U01",
+          "plain": "Hello",
+          "mask": "37 fa 21 3d",
+          "cipher": "7f 9f 4d 51 58",
+          "source": "RFC 6455 5.7"
+        },
+        {
+          "id": "U02",
+          "plain": "Hello",
+          "mask": "00 00 00 00",
+          "cipher": "48 65 6c 6c 6f",
+          "source": "identity mask"
+        },
+        {
+          "id": "U03",
+          "plain": "Hello",
+          "mask": "ff ff ff ff",
+          "cipher": "b7 9a 93 93 90",
+          "source": "complement mask"
+        },
+        {
+          "id": "U04",
+          "plain": "abcd",
+          "mask": "01 02 03 04",
+          "cipher": "60 60 60 60",
+          "source": "all four lanes exercised"
+        },
+        {
+          "id": "U05",
+          "plain": "ab",
+          "mask": "aa bb cc dd",
+          "cipher": "cb d9",
+          "source": "short payload uses mask[0..1] only"
+        }
+      ]
+    },
+    "T7_send": {
+      "member": "M13",
+      "rule": "b0=0x81 (plain) / 0xC1 (deflate); MASK bit never set; n<=125 -> 1B, 126..65534 -> 0x7e+BE16, >=65535 -> 0x7f+4x00+BE32",
+      "rows": [
+        {
+          "id": "S01",
+          "n": 0,
+          "header": "81 00"
+        },
+        {
+          "id": "S02",
+          "n": 1,
+          "header": "81 01"
+        },
+        {
+          "id": "S03",
+          "n": 125,
+          "header": "81 7d"
+        },
+        {
+          "id": "S04",
+          "n": 126,
+          "header": "81 7e 00 7e"
+        },
+        {
+          "id": "S05",
+          "n": 65534,
+          "header": "81 7e ff fe"
+        },
+        {
+          "id": "S06",
+          "n": 65535,
+          "header": "81 7f 00 00 00 00 00 00 ff ff"
+        },
+        {
+          "id": "S07",
+          "n": 65536,
+          "header": "81 7f 00 00 00 00 00 01 00 00"
+        },
+        {
+          "id": "S08",
+          "n": "all",
+          "header": "MASK bit clear in every row"
+        },
+        {
+          "id": "S09",
+          "n": "deflate",
+          "header": "b0 = 0xC1"
+        },
+        {
+          "id": "S10",
+          "n": "deflate",
+          "header": "MASK bit still clear"
+        }
+      ]
+    },
+    "T8_handshake": {
+      "member": "M14",
+      "rule": "Sec-WebSocket-Key: -> key up to CR/LF, <=127 bytes; accept = base64(sha1(key+GUID)); no key -> GET /x ? 200 OK : discard",
+      "response_template": "HTTP/1.1 101 Switching Protocols\\r\\nUpgrade: websocket\\r\\nConnection: Upgrade\\r\\n%sSec-WebSocket-Accept: %s\\r\\n\\r\\n",
+      "rows": [
+        {
+          "id": "A01",
+          "kind": "101",
+          "bytes": 129,
+          "key": "dGhlIHNhbXBsZSBub25jZQ==",
+          "path": "",
+          "neg": 0
+        },
+        {
+          "id": "A02",
+          "kind": "101",
+          "bytes": 175,
+          "key": "dGhlIHNhbXBsZSBub25jZQ==",
+          "path": "",
+          "neg": 1
+        },
+        {
+          "id": "A03",
+          "kind": "200",
+          "bytes": 19,
+          "key": "",
+          "path": "index.html",
+          "neg": 0
+        },
+        {
+          "id": "A04",
+          "kind": "discard",
+          "bytes": 0,
+          "key": "",
+          "path": "",
+          "neg": 0
+        },
+        {
+          "id": "A05",
+          "kind": "discard",
+          "bytes": 0,
+          "key": "",
+          "path": "",
+          "neg": 0
+        },
+        {
+          "id": "A06",
+          "kind": "200",
+          "bytes": 19,
+          "key": "",
+          "path": "",
+          "neg": 0
+        },
+        {
+          "id": "A07",
+          "kind": "need-more",
+          "bytes": 0,
+          "key": "",
+          "path": "",
+          "neg": 0
+        },
+        {
+          "id": "A08",
+          "kind": "101",
+          "bytes": 129,
+          "key": "abc",
+          "path": "",
+          "neg": 0
+        },
+        {
+          "id": "A10",
+          "kind": "accept-vector",
+          "value": "s3pPLMBiTxaQ9kYGzzhZRbK+xOo="
+        },
+        {
+          "id": "A11",
+          "kind": "base64(sha1(\"\"))",
+          "value": "2jmj7l5rSw0yVb/vlWAYkK/YBwk="
+        },
+        {
+          "id": "A12",
+          "kind": "101-body-contains-accept"
+        },
+        {
+          "id": "A13",
+          "kind": "key-capped-at-127"
+        }
+      ],
+      "notes": {
+        "A04": "GET //evil  -> req[5] == '/' -> discard (zero bytes)",
+        "A05": "POST /x     -> 5-byte 'GET /' compare fails -> discard",
+        "A06": "GET /a..b   -> adjacent '..' wipes the extracted path, still answers 200"
+      }
+    },
+    "T9_driver": {
+      "rule": "feed() appends and pumps; at most one message is delivered per cycle; parsing stops after any FIN=1 frame",
+      "rows": [
+        {
+          "id": "D01",
+          "member": "M03",
+          "name": "text-unmasked",
+          "frame": "81 05 48 65 6c 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D02",
+          "member": "M08",
+          "name": "text-masked",
+          "frame": "81 85 37 fa 21 3d 7f 9f 4d 51 58",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D03",
+          "member": "M07",
+          "name": "len16-body",
+          "frame": "81 7e 00 7e + 126 x 'A'",
+          "deliver": [
+            "126 x 'A'"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D04",
+          "member": "M05",
+          "name": "len16-nonminimal",
+          "frame": "81 7e 00 05 48 65 6c 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D05",
+          "member": "M06",
+          "name": "len64-ok",
+          "frame": "81 7f 00 00 00 00 00 00 00 05 48 65 6c 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D06",
+          "member": "M06",
+          "name": "len64-high-nonzero-exit",
+          "frame": "81 7f 00 00 00 01 00 00 00 05",
+          "deliver": [],
+          "null": 0,
+          "exited": 1,
+          "pending": 1
+        },
+        {
+          "id": "D07",
+          "member": "M06",
+          "name": "len64-0x80000000-stalls",
+          "frame": "81 7f 00 00 00 00 80 00 00 00",
+          "deliver": [],
+          "null": 0,
+          "exited": 0,
+          "pending": 1
+        },
+        {
+          "id": "D08",
+          "member": "M10",
+          "name": "frag-standard-not-delivered",
+          "frame": "01 03 48 65 6c | 80 02 6c 6f",
+          "deliver": [],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D09",
+          "member": "M10",
+          "name": "frag-nonstandard-delivered",
+          "frame": "01 03 48 65 6c | 81 02 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D10",
+          "member": "M10",
+          "name": "frag-three-parts",
+          "frame": "01 03 48 65 6c | 00 02 6c 6f | 81 01 21",
+          "deliver": [
+            "Hello!"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D11",
+          "member": "M09",
+          "name": "close-masked-delivers-null",
+          "frame": "88 82 aa bb cc dd a9 53",
+          "deliver": [],
+          "null": 1,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D12",
+          "member": "M10",
+          "name": "ping-stops-parsing",
+          "frame": "89 00 | 81 05 48 65 6c 6c 6f",
+          "deliver": [],
+          "null": 0,
+          "exited": 0,
+          "pending": 1
+        },
+        {
+          "id": "D13",
+          "member": "M04",
+          "name": "rsv2-rsv3-ignored",
+          "frame": "b1 05 48 65 6c 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D14",
+          "member": "M15",
+          "name": "byte-at-a-time",
+          "frame": "81 85 37 fa 21 3d 7f 9f 4d 51 58 (1 byte per feed)",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D15",
+          "member": "M03",
+          "name": "half-header-then-body",
+          "frame": "81 05 48 65 6c | 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D16",
+          "member": "M07",
+          "name": "zero-length-text",
+          "frame": "81 00",
+          "deliver": [
+            ""
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D17",
+          "member": "M12",
+          "name": "recv-resets-message",
+          "frame": "81 05 Hello | recv() | 81 05 World",
+          "deliver": [
+            "Hello",
+            "World"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D18",
+          "member": "M11",
+          "name": "rsv1-without-negotiation",
+          "frame": "c1 03 11 22 33",
+          "deliver": [
+            "11 22 33"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0,
+          "comp": 0
+        },
+        {
+          "id": "D19",
+          "member": "M11",
+          "name": "deflate-stored-block",
+          "frame": "c1 08 00 02 00 fd ff 48 69 00",
+          "deliver": [
+            "Hi"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0,
+          "comp": 1
+        },
+        {
+          "id": "D20",
+          "member": "M11",
+          "name": "deflate-data-error-drops",
+          "frame": "c1 03 ff ff ff",
+          "deliver": [],
+          "null": 0,
+          "exited": 0,
+          "pending": 0,
+          "comp": 1
+        },
+        {
+          "id": "D21",
+          "member": "M11",
+          "name": "rsv1-sticky-across-fragments",
+          "frame": "41 04 00 02 00 fd | 81 04 ff 48 69 00",
+          "deliver": [
+            "Hi"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0,
+          "comp": 1
+        },
+        {
+          "id": "D22",
+          "member": "M08",
+          "name": "mask-index-resets-each-frame",
+          "frame": "01 83 11 22 33 44 59 47 5f | 81 82 11 22 33 44 7d 4d",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D23",
+          "member": "M12",
+          "name": "pipelined-frames-one-per-recv",
+          "frame": "81 03 One 81 03 Two | recv()",
+          "deliver": [
+            "One",
+            "Two"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        },
+        {
+          "id": "D24",
+          "member": "M15",
+          "name": "null-buffer-calls-exit",
+          "frame": "on_data(nullptr)",
+          "deliver": [],
+          "null": 0,
+          "exited": 1,
+          "pending": 0
+        },
+        {
+          "id": "D25",
+          "member": "M03",
+          "name": "one-byte-header-then-rest",
+          "frame": "81 | 05 48 65 6c 6c 6f",
+          "deliver": [
+            "Hello"
+          ],
+          "null": 0,
+          "exited": 0,
+          "pending": 0
+        }
+      ]
+    },
+    "T10_recv_flags": {
+      "member": "M12",
+      "rows": [
+        {
+          "id": "V01",
+          "check": "rsv1 clear on a fresh Conn"
+        },
+        {
+          "id": "V02",
+          "check": "header with bit 6 sets rsv1"
+        },
+        {
+          "id": "V03",
+          "check": "recv() clears rsv1"
+        },
+        {
+          "id": "V04",
+          "check": "recv() leaves neg_deflate untouched"
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "M01": 5,
+    "M02": 6,
+    "M03": 3,
+    "M04": 10,
+    "M05": 6,
+    "M06": 9,
+    "M07": 2,
+    "M08": 2,
+    "M09": 11,
+    "M10": 4,
+    "M11": 4,
+    "M12": 6,
+    "M13": 10,
+    "M14": 12,
+    "M15": 2,
+    "COV": 1,
+    "total": 93
+  }
+}

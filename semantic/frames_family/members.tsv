@@ -1,0 +1,17 @@
+id	fun	func	py2_idx	py2_addr	py3_idx	py3_addr	addr_delta	py2_lines	py3_lines	norm_identical	raw_diff_lines	role
+M01	recv_pat	WSConn::recv_pat	215	0x10f180	216	0x10f280	0x100	348	348	yes	36	pattern scan (memmem); invokes cb with the match INDEX
+M02	recv_more	WSConn::recv_more	219	0x10fe70	219	0x10ff70	0x100	311	311	yes	36	unsigned need<=have gate; otherwise parks a continuation
+M03	read_head	WSConn::read_head	223	0x110ad0	223	0x110bd0	0x100	56	56	yes	4	waits 2 header bytes, chains the header callback
+M04	hdr_parse	FUN_001115a0	227	0x1114a0	227	0x1115a0	0x100	143	143	yes	10	FIN/RSV1/opcode/mask/len7; len7 dispatch 2/4/10
+M05	len16	FUN_00110a20	222	0x110920	222	0x110a20	0x100	61	61	yes	2	BE16 extended length, consumes the 4-byte header
+M06	len64	FUN_00111b50	228	0x111a50	228	0x111b50	0x100	71	71	yes	2	high-32 guard -> exit(); (long)(int32) length
+M07	read_data	WSConn::read_data	221	0x110760	221	0x110860	0x100	68	68	yes	4	unmasked body: need == payload_len
+M08	read_data_mask	WSConn::read_data_mask	220	0x1105a0	220	0x1106a0	0x100	67	67	yes	4	masked body: need == payload_len + 4
+M09	payload_mask	FUN_00110e50	225	0x110d50	225	0x110e50	0x100	175	175	yes	12	unmask i&3, append, FIN dispatch, close->null
+M10	payload_plain	FUN_00111200	226	0x111100	226	0x111200	0x100	153	153	yes	8	verbatim append, FIN dispatch, close->null
+M11	finalize	FUN_0010ef80	214	0x10ee80	215	0x10ef80	0x100	137	137	yes	28	append 00 00 FF FF, inflate, delivery gate
+M12	recv	WSConn::recv	224	0x110c60	224	0x110d60	0x100	40	40	yes	0	new message buffer + clear sticky RSV1
+M13	send	WSConn::send	233	0x114d00	233	0x114e00	0x100	477	477	yes	44	frame builder: 0x81/0xC1, 1/3/10-byte length
+M14	accept	WSConn::accept	216	0x10f940	217	0x10fa40	0x100	107	107	yes	4	handshake entry: recv_pat(\r\n\r\n) then the parse callback
+M14	key_parse	FUN_00112c60	232	0x112b60	232	0x112c60	0x100	1423	1423	yes	148	key extract, SHA1+base64 accept, 101/200/discard branches
+M15	on_data	FUN_00111f80	230	0x111f80	230	0x112080	0x100	122	122	yes	4	append arriving bytes, re-run pattern; null Buffer -> exit()

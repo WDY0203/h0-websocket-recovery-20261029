@@ -1,0 +1,347 @@
+{
+  "target": "bbwebsocket 1.2.7 (H0WS) -- WebSocket frame layer + HTTP handshake",
+  "family": "frames",
+  "sources": {
+    "py2": "D:\\tmp\\H0WS2_all_decompiled.txt  (400 functions)",
+    "py3": "D:\\tmp\\H0WS3_all_decompiled.txt  (400 functions)",
+    "block_extraction": "split on '^===== IDX <n> <addr> <name> ====='; py3 body line ranges are recorded in ranges_py3.csv"
+  },
+  "line_convention": "L<n> is the 1-based line number in the py3 dump. The py2 dump holds the same statements at 'py2_lines' (same relative offset, addresses shifted by -0x100).",
+  "totals": {
+    "claims": 45,
+    "confirmed": 41,
+    "inferred": 4,
+    "inferred_ratio": "8.9%"
+  },
+  "claims": [
+    {
+      "id": "F01", "member": "M04", "area": "frame-header", "status": "confirmed",
+      "statement": "FIN is b0 >> 7.",
+      "evidence": [{"addr": "0x1115a0", "py3": "L14055-L14057", "detail": "bVar1=*__dest; ... bVar8 = bVar1 >> 7"}],
+      "test": ["H01", "H02"]
+    },
+    {
+      "id": "F02", "member": "M04", "area": "frame-header", "status": "confirmed",
+      "statement": "opcode is b0 & 0x0f. RSV2 (bit 5) and RSV3 (bit 4) are never tested, so they are ignored and never cause a close.",
+      "evidence": [
+        {"addr": "0x1115a0", "py3": "L14059", "detail": "uVar7 = bVar1 & 0xf"},
+        {"addr": "0x1115a0", "py3": "L14061", "detail": "only test al,0x40 (bit 6) is emitted; no 0x20/0x10 test anywhere in the function"}
+      ],
+      "test": ["H07", "H08", "H09", "D13"]
+    },
+    {
+      "id": "F03", "member": "M04", "area": "frame-header", "status": "confirmed",
+      "statement": "RSV1 (b0 bit 6) is copied into the sticky byte this+0x59, and the copy happens during header parsing, before the length dispatch.",
+      "evidence": [{"addr": "0x1115a0", "py3": "L14061-L14065", "detail": "if ((bVar1 & 0x40) != 0) *(this+0x59) = 1; then len7 is examined"}],
+      "test": ["H05", "V02", "D21"]
+    },
+    {
+      "id": "F04", "member": "M04", "area": "frame-header", "status": "confirmed",
+      "statement": "MASK is b1 >> 7 and payload length selector is b1 & 0x7f.",
+      "evidence": [{"addr": "0x1115a0", "py3": "L14058, L14065", "detail": "local_70 = bVar2 >> 7 ; bVar6 = bVar2 & 0x7f"}],
+      "test": ["H04", "H06"]
+    },
+    {
+      "id": "F05", "member": "M05", "area": "frame-length", "status": "confirmed",
+      "statement": "len7 == 0x7e decodes the payload length as a 16-bit big-endian value from b2,b3 and consumes a 4-byte header.",
+      "evidence": [{"addr": "0x110a20", "py3": "L13555, L13554-L13558", "detail": "uVar3 = CONCAT11(dest[2], dest[3]); memmove(dest, dest+4, n)"}],
+      "test": ["L01", "L04", "L05"]
+    },
+    {
+      "id": "F06", "member": "M05", "area": "frame-length", "status": "confirmed",
+      "statement": "There is no minimal-length-encoding check: len7=0x7e with value 5 is accepted as a 5-byte frame.",
+      "evidence": [{"addr": "0x110a20", "py3": "L13555", "detail": "the decoded value is used directly, with no comparison against 126"}],
+      "test": ["L02", "D04"]
+    },
+    {
+      "id": "F07", "member": "M06", "area": "frame-length", "status": "confirmed",
+      "statement": "len7 == 0x7f requires the high 32 bits of the 64-bit length (b2..b5) to be zero; otherwise WSConn::exit() is called and nothing is delivered.",
+      "evidence": [
+        {"addr": "0x111b50", "py3": "L14189-L14190", "detail": "four comparisons of __dest[2..5] against 0"},
+        {"addr": "0x111b50", "py3": "L14233", "detail": "else branch: WSConn::exit((WSConn *)*puVar2)"}
+      ],
+      "test": ["E02", "E03", "D06"]
+    },
+    {
+      "id": "F08", "member": "M06", "area": "frame-length", "status": "confirmed",
+      "statement": "The 64-bit length is assembled big-endian from b6..b9 and then narrowed with (long)(int), i.e. sign-extended from 32 bits.",
+      "evidence": [{"addr": "0x111b50", "py3": "L14193-L14195", "detail": "lVar6 = (long)(int)((b6<<24)|(b7<<16)|(b9)|(b8<<8))"}],
+      "test": ["E01", "E05", "E06"]
+    },
+    {
+      "id": "F09", "member": "M06", "area": "frame-length", "status": "confirmed",
+      "statement": "Because of the (long)(int) narrowing a length of 0x80000000 becomes negative, is passed to recv_more as a huge unsigned value, and the frame therefore never completes (no crash, no error).",
+      "evidence": [
+        {"addr": "0x111b50", "py3": "L14193", "detail": "sign extension"},
+        {"addr": "0x10ff70", "py3": "L13131", "detail": "recv_more compares (ulong)param_1 <= (end-begin)"}
+      ],
+      "test": ["E04", "D07", "G05"]
+    },
+    {
+      "id": "F10", "member": "M03", "area": "frame-parse", "status": "confirmed",
+      "statement": "read_head first waits for 2 bytes (recv_more(this,2,...)) and only then parses the fixed header; partial headers leave the receive buffer untouched.",
+      "evidence": [
+        {"addr": "0x110bd0", "py3": "L13641", "detail": "recv_more(this, 2, local_68)"},
+        {"addr": "0x110bd0", "py3": "L13636", "detail": "the continuation arm points at FUN_001115a0"}
+      ],
+      "test": ["D25", "D15", "D01"]
+    },
+    {
+      "id": "F11", "member": "M07", "area": "frame-body", "status": "confirmed",
+      "statement": "The unmasked body path waits for exactly payload_len bytes.",
+      "evidence": [{"addr": "0x110860", "py3": "L13521", "detail": "WSConn::recv_more(this, param_3, ...)"}],
+      "test": ["D03", "D16"]
+    },
+    {
+      "id": "F12", "member": "M08", "area": "frame-body", "status": "confirmed",
+      "statement": "The masked body path waits for payload_len + 4 bytes (the four mask-key bytes are counted in-band).",
+      "evidence": [{"addr": "0x1106a0", "py3": "L13453", "detail": "WSConn::recv_more(this, param_3 + 4, local_88)"}],
+      "test": ["D02", "D22"]
+    },
+    {
+      "id": "F13", "member": "M09", "area": "masking", "status": "confirmed",
+      "statement": "Unmasking is byte-wise XOR: msg[old + i] = recvbuf[4 + i] ^ mask[i & 3], where old is the message length before this frame and i restarts at 0 for every frame.",
+      "evidence": [{"addr": "0x110e50", "py3": "L13791-L13793", "detail": "*(byte*)(uVar10 + *msg + uVar3) = *(byte*)(__dest + uVar3 + 4) ^ *(byte*)(mask + (uVar3 & 3))"}],
+      "test": ["U01", "U02", "U03", "U04", "U05", "D22"]
+    },
+    {
+      "id": "F14", "member": "M09", "area": "masking", "status": "confirmed",
+      "statement": "Fragment payloads are appended at offset == current message length, so continuation fragments accumulate in arrival order.",
+      "evidence": [{"addr": "0x110e50", "py3": "L13781-L13789, L13791", "detail": "uVar10 = msg.end - msg.begin; write base is uVar10"}],
+      "test": ["D09", "D10", "D22"]
+    },
+    {
+      "id": "F15", "member": "M09", "area": "dispatch", "status": "inferred",
+      "statement": "For FIN=1 the opcode decides delivery: 1 -> callback with the message, 8 -> callback with a NULL message (the library's only 'closed' signal), anything else -> silently dropped.",
+      "evidence": [
+        {"addr": "0x110e50", "py3": "L13835-L13843", "detail": "if (*(int*)(param_1+0x14) == 1) { take buffer; invoke }"},
+        {"addr": "0x110e50", "py3": "L13846-L13860", "detail": "else if (.. == 8) { local_58[0] = 0; invoke }"},
+        {"addr": "0x110e50", "py3": "L13846-L13847", "detail": "any other opcode returns without invoking"}
+      ],
+      "inference_basis": "the code passes a null pointer; that null is *interpreted* as 'connection closed' because it is the only signal emitted for opcode 8",
+      "test": ["D01", "D11", "D12"]
+    },
+    {
+      "id": "F16", "member": "M09", "area": "close", "status": "confirmed",
+      "statement": "A close frame's payload (status code and reason) is never parsed: it is unmasked into the message buffer, but the callback receives a null pointer and the bytes are discarded.",
+      "evidence": [
+        {"addr": "0x110e50", "py3": "L13791-L13793", "detail": "close payload goes through the same accumulate/unmask loop"},
+        {"addr": "0x110e50", "py3": "L13846-L13860", "detail": "only a null unique_ptr is handed to the callback"}
+      ],
+      "test": ["D11"]
+    },
+    {
+      "id": "F17", "member": "M10", "area": "control-frames", "status": "confirmed",
+      "statement": "Ping and pong are consumed and dropped: no pong is ever emitted and no callback fires, and parsing stops until the next feed.",
+      "evidence": [
+        {"addr": "0x111200", "py3": "L13968-L14018", "detail": "dispatch tests only opcode 1 and 8"},
+        {"addr": "0x111200", "py3": "L14001", "detail": "trailing 'return' for every other opcode"}
+      ],
+      "test": ["D12"]
+    },
+    {
+      "id": "F18", "member": "M10", "area": "fragmentation", "status": "confirmed",
+      "statement": "Dispatch uses the opcode of the FINAL frame, so a standards-compliant text message (0x01 then 0x80) is never delivered.",
+      "evidence": [{"addr": "0x111200", "py3": "L13987-L13989", "detail": "the lambda carries the last frame's opcode at param_1+0x14"}],
+      "test": ["D08"]
+    },
+    {
+      "id": "F19", "member": "M10", "area": "fragmentation", "status": "confirmed",
+      "statement": "A non-standard sequence whose final frame repeats opcode 1 IS delivered as one concatenated message.",
+      "evidence": [{"addr": "0x111200", "py3": "L13871-L13966", "detail": "payload insert then FIN check then dispatch on opcode 1"}],
+      "test": ["D09", "D10"]
+    },
+    {
+      "id": "F20", "member": "M11", "area": "compression", "status": "confirmed",
+      "statement": "Before inflating, the message has 0x00 0x00 0xFF 0xFF appended (permessage-deflate tail).",
+      "evidence": [{"addr": "0x10ef80", "py3": "L12451-L12462", "detail": "four emplace_back of 0x00, 0x00, 0xff, 0xff"}],
+      "test": ["D19", "D21"]
+    },
+    {
+      "id": "F21", "member": "M11", "area": "compression", "status": "inferred",
+      "statement": "Compression is applied only when the handshake negotiated permessage-deflate (this+0x58) AND the frame carried RSV1 (this+0x59).",
+      "evidence": [
+        {"addr": "0x110e50", "py3": "L13827-L13833", "detail": "uVar7 = 0; if (this+0x58) uVar7 = this+0x59; then FUN_0010ef80(msg, uVar7, strm)"},
+        {"addr": "0x112c60", "py3": "L16009-L16011", "detail": "memmem('permessage-deflate') -> *(this+0x58) = 1"}
+      ],
+      "inference_basis": "byte 0x58 is never assigned anywhere else and is read only at these two sites, so its meaning ('extension negotiated') is inferred from the memmem that sets it",
+      "test": ["D18", "D19", "D21"]
+    },
+    {
+      "id": "F22", "member": "M11", "area": "compression", "status": "confirmed",
+      "statement": "The inflate error gate is exactly (r+4U < 7) && ((1 << ((r+4U)&0x3f)) & 0x47), i.e. it treats only {Z_MEM_ERROR, Z_DATA_ERROR, Z_STREAM_ERROR, Z_NEED_DICT} = {-4,-3,-2,2} as fatal; on a fatal status nothing is delivered.",
+      "evidence": [{"addr": "0x10ef80", "py3": "L12472", "detail": "if ((iVar3 + 4U < 7) && ((1L << ((byte)(iVar3+4U) & 0x3f) & 0x47U) != 0)) { ... return 0; }"}],
+      "test": ["D20"]
+    },
+    {
+      "id": "F23", "member": "M11", "area": "compression", "status": "confirmed",
+      "statement": "The RSV1 byte is connection-scoped and sticky: a fragment that sets it causes the whole reassembled message to be decompressed even if later fragments clear it.",
+      "evidence": [
+        {"addr": "0x110d60", "py3": "L13678", "detail": "recv() is the only writer of 0"},
+        {"addr": "0x1115a0", "py3": "L14062", "detail": "any header with bit 6 sets it to 1"}
+      ],
+      "test": ["D21", "V02", "V03"]
+    },
+    {
+      "id": "F24", "member": "M12", "area": "buffer", "status": "confirmed",
+      "statement": "recv() allocates a brand-new message buffer, so a second recv() never concatenates onto the previous message.",
+      "evidence": [{"addr": "0x110d60", "py3": "L13666-L13675", "detail": "operator_new(0x18); *puVar2=0; puVar2[1]=0; puVar2[2]=0; store to this+0x48"}],
+      "test": ["D17"]
+    },
+    {
+      "id": "F25", "member": "M12", "area": "buffer", "status": "confirmed",
+      "statement": "recv() clears the sticky RSV1 byte (this[0x59]=0) but does not touch the negotiated-compression byte (this+0x58).",
+      "evidence": [{"addr": "0x110d60", "py3": "L13678", "detail": "this[0x59] = 0; no write to 0x58 in this function"}],
+      "test": ["V03", "V04"]
+    },
+    {
+      "id": "F26", "member": "M12", "area": "buffer", "status": "confirmed",
+      "statement": "At most one message is delivered per recv()/feed cycle: after a FIN=1 frame the handler returns without re-entering read_head, so pipelined frames wait for the next recv().",
+      "evidence": [
+        {"addr": "0x110e50", "py3": "L13833-L13862", "detail": "after the dispatch the function returns; read_head is only re-entered on the FIN=0 path (L13814-L13822)"},
+        {"addr": "0x111200", "py3": "L13968-L14018", "detail": "same structure on the unmasked path"}
+      ],
+      "test": ["D23"]
+    },
+    {
+      "id": "F27", "member": "M13", "area": "send", "status": "confirmed",
+      "statement": "The first byte is 0x81 on the plain path (FIN=1, opcode=1) and 0xC1 on the deflate path (FIN=1, RSV1=1, opcode=1).",
+      "evidence": [
+        {"addr": "0x114e00", "py3": "L16379-L16380", "detail": "local_58 = CONCAT71(.., 0x81)"},
+        {"addr": "0x114e00", "py3": "L16507-L16508", "detail": "local_58 = CONCAT71(.., 0xc1)"}
+      ],
+      "test": ["S01", "S09"]
+    },
+    {
+      "id": "F28", "member": "M13", "area": "send", "status": "confirmed",
+      "statement": "Length encoding: <=125 one byte; 126..65534 -> 0x7e + big-endian 16-bit; >=65535 -> 0x7f + four zero bytes + big-endian 32-bit (so 65535 itself takes the 10-byte header).",
+      "evidence": [
+        {"addr": "0x114e00", "py3": "L16520", "detail": "if (0x7d < uVar12)"},
+        {"addr": "0x114e00", "py3": "L16522", "detail": "if (uVar12 < 0xffff) -> 0x7e, else 0x7f"},
+        {"addr": "0x114e00", "py3": "L16526-L16547", "detail": "0x7f followed by four 0x00 then b3,b2,b1,b0"}
+      ],
+      "test": ["S01", "S02", "S03", "S04", "S05", "S06", "S07"]
+    },
+    {
+      "id": "F29", "member": "M13", "area": "send", "status": "inferred",
+      "statement": "Outgoing frames never set the MASK bit, so this client violates RFC 6455 5.3 (clients MUST mask).",
+      "evidence": [{"addr": "0x114e00", "py3": "L16520-L16564", "detail": "every pushed length byte is 0x7e/0x7f/(byte)len; no OR with 0x80 anywhere"}],
+      "inference_basis": "the absence of the bit is observed directly; the RFC-violation judgement is normative",
+      "test": ["S08", "S10"]
+    },
+    {
+      "id": "F30", "member": "M13", "area": "send", "status": "confirmed",
+      "statement": "On the deflate path the produced deflate stream is truncated by 4 bytes (the permessage-deflate tail) before framing.",
+      "evidence": [{"addr": "0x114e00", "py3": "L16445", "detail": "uVar12 = -(ulong)avail_out - 4; the buffer is shortened to uVar13 + uVar12"}],
+      "test": ["S09"]
+    },
+    {
+      "id": "F31", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "Sec-WebSocket-Accept is base64(SHA1(key_bytes || \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\")).",
+      "evidence": [
+        {"addr": "0x112c60", "py3": "L15166-L15172", "detail": "base64 alphabet 'A-Za-z0-9+/=' used to encode the 20-byte digest"},
+        {"addr": "0x10d620", "py3": "idx 197", "detail": "SHA-1 with IV 0x67452301.. and the four round constants"}
+      ],
+      "test": ["A10", "A11", "A12"]
+    },
+    {
+      "id": "F32", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "The key is every byte after \"Sec-WebSocket-Key: \" up to CR or LF, capped at 127 bytes, and is used verbatim (never base64-decoded or length-checked).",
+      "evidence": [
+        {"addr": "0x112c60", "py3": "L14986", "detail": "memmem(buf, len, 'Sec-WebSocket-Key: ', 0x13)"},
+        {"addr": "0x112c60", "py3": "L14988-L14995", "detail": "copy loop stops on '\\r'/'\\n', on i >= len-19, or at i == 0x7f"},
+        {"addr": "0x112c60", "py3": "L14999", "detail": "if (buf[0] != 0) -> use the key"}
+      ],
+      "test": ["A08", "A13"]
+    },
+    {
+      "id": "F33", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "The server validates nothing but the presence of a non-empty Sec-WebSocket-Key: Upgrade, Connection, Sec-WebSocket-Version and even the request method are never checked before answering 101.",
+      "evidence": [{"addr": "0x112c60", "py3": "L14986-L16087", "detail": "the only memmem calls are for 'Sec-WebSocket-Key: ' and 'permessage-deflate'"}],
+      "test": ["A01"]
+    },
+    {
+      "id": "F34", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "The 101 response is exactly 'HTTP/1.1 101 Switching Protocols\\r\\nUpgrade: websocket\\r\\nConnection: Upgrade\\r\\n' + optional 'Sec-WebSocket-Extensions: permessage-deflate\\r\\n' + 'Sec-WebSocket-Accept: <28 chars>\\r\\n\\r\\n', i.e. 129 bytes without the extension line and 175 with it.",
+      "evidence": [
+        {"addr": "0x112c60", "py3": "L16085-L16087", "detail": "Buffer::appendf(101 template, ext_line_or_empty, accept)"},
+        {"addr": "0x112c60", "py3": "L16082-L16084", "detail": "pcVar28 = 'Sec-WebSocket-Extensions: permessage-deflate\\r\\n' unless this+0x58 == 0"}
+      ],
+      "test": ["A01", "A02", "A12"]
+    },
+    {
+      "id": "F35", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "With no key, a request whose first five bytes are 'GET /' and whose sixth byte is not '/' gets a 19-byte 'HTTP/1.0 200 OK\\r\\n\\r\\n' and the path (bytes from index 5 up to space/CR/LF) is passed to the second callback instead of being echoed.",
+      "evidence": [
+        {"addr": "0x112c60", "py3": "L15187-L15198", "detail": "len>5 && 5-byte 'GET /' compare && pcVar17[5] != '/'"},
+        {"addr": "0x112c60", "py3": "L15250", "detail": "Buffer::appendf('HTTP/1.0 200 OK\\r\\n\\r\\n')"}
+      ],
+      "test": ["A03"]
+    },
+    {
+      "id": "F36", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "'GET //...' (double slash after 'GET ') is rejected by discarding: zero bytes are produced and the receive handler is replaced with TcpConn::discard.",
+      "evidence": [{"addr": "0x112c60", "py3": "L15198", "detail": "pcVar17[5] != '/' is required for the 200 branch; otherwise control falls to the discard path"}],
+      "test": ["A04"]
+    },
+    {
+      "id": "F37", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "A request whose method is not GET (e.g. POST) is rejected with zero bytes.",
+      "evidence": [{"addr": "0x112c60", "py3": "L15188-L15198", "detail": "5-byte comparison loop against 'GET /'"}],
+      "test": ["A05"]
+    },
+    {
+      "id": "F38", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "If two adjacent '.' bytes occur while extracting the 200-OK path, the whole path is cleared (assigned the empty string) while the 200 response is still sent.",
+      "evidence": [{"addr": "0x112c60", "py3": "L15218-L15222", "detail": "if (cVar6 == '.') && (cVar33 == '.') -> std::string::assign(path, \"\")"}],
+      "test": ["A06"]
+    },
+    {
+      "id": "F39", "member": "M14", "area": "handshake", "status": "confirmed",
+      "statement": "Without a '\\r\\n\\r\\n' in the buffer the handshake does nothing and waits for more data.",
+      "evidence": [{"addr": "0x10fa40", "py3": "L12979-L12988", "detail": "accept() registers recv_pat(\"\\r\\n\\r\\n\")"}],
+      "test": ["A07"]
+    },
+    {
+      "id": "F40", "member": "M01", "area": "pattern", "status": "confirmed",
+      "statement": "recv_pat invokes the callback with the INDEX of the pattern inside the receive buffer (ptr - buf), not with a length or an end offset.",
+      "evidence": [{"addr": "0x10f280", "py3": "L12614-L12618", "detail": "pvVar12 = memmem(hay, end-hay, needle, nlen); invoke(param_3, (long)pvVar12 - (long)__haystack)"}],
+      "test": ["R01", "R02"]
+    },
+    {
+      "id": "F41", "member": "M01", "area": "pattern", "status": "confirmed",
+      "statement": "A match at offset 0 is reported as 0 (the pointer, not the value, is tested for null), so index 0 is indistinguishable from 'found at start'.",
+      "evidence": [{"addr": "0x10f280", "py3": "L12615-L12617", "detail": "the branch tests pvVar12 != 0, i.e. the pointer"}],
+      "test": ["R02"]
+    },
+    {
+      "id": "F42", "member": "M02", "area": "buffer", "status": "confirmed",
+      "statement": "recv_more is a pure unsigned comparison: ready iff need <= buffered bytes; equality is ready.",
+      "evidence": [{"addr": "0x10ff70", "py3": "L13131-L13133", "detail": "if (param_1 <= (ulong)(buf_end - buf_begin)) invoke(cb)"}],
+      "test": ["G01", "G02", "G03", "G04", "G05", "G06"]
+    },
+    {
+      "id": "F43", "member": "M15", "area": "io", "status": "confirmed",
+      "statement": "Arriving bytes are appended to the receive buffer and the pattern wait is re-run, so a frame may be split across arbitrarily many chunks.",
+      "evidence": [{"addr": "0x112080", "py3": "L14397-L14455", "detail": "insert new block at recvbuf.end()"}, {"addr": "0x112080", "py3": "L14457", "detail": "WSConn::recv_pat(...) is re-invoked"}],
+      "test": ["D14", "D15"]
+    },
+    {
+      "id": "F44", "member": "M15", "area": "io", "status": "confirmed",
+      "statement": "A null incoming Buffer calls WSConn::exit(); an empty (but non-null) buffer simply appends nothing.",
+      "evidence": [{"addr": "0x112080", "py3": "L14390-L14392", "detail": "if (puVar2 == 0) { WSConn::exit(*param_1); return; }"}],
+      "test": ["D24"]
+    },
+    {
+      "id": "F45", "member": "M03", "area": "state", "status": "inferred",
+      "statement": "There is no explicit protocol state machine: every arrival re-derives progress from 'are there enough bytes at the head of the buffer', and consumed bytes are removed with memmove, which is what makes pipelining work.",
+      "evidence": [
+        {"addr": "0x110bd0", "py3": "L13641", "detail": "read_head always restarts at the buffer head"},
+        {"addr": "0x1115a0", "py3": "L14132-L14136", "detail": "header bytes are memmove'd out, remainder kept"},
+        {"addr": "0x110e50", "py3": "L13804-L13812", "detail": "payload+mask bytes are memmove'd out, remainder kept"}
+      ],
+      "inference_basis": "the absence of a state enum/field is observed; calling this 'no state machine' is an architectural interpretation",
+      "test": ["D23", "D17"]
+    }
+  ]
+}

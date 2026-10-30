@@ -1,0 +1,179 @@
+
+/* Buffer::appendf(char const*, ...) */
+
+void Buffer::appendf(char *param_1,...)
+
+{
+  int iVar1;
+  char in_AL;
+  int iVar2;
+  void *pvVar3;
+  undefined8 in_RCX;
+  undefined8 in_RDX;
+  ulong uVar4;
+  ulong extraout_RDX;
+  size_t __n;
+  ulong uVar5;
+  char *in_RSI;
+  void *pvVar6;
+  undefined8 in_R8;
+  undefined8 in_R9;
+  uint uVar7;
+  ulong uVar8;
+  ulong uVar9;
+  undefined8 in_XMM0_Qa;
+  undefined8 in_XMM1_Qa;
+  undefined8 in_XMM2_Qa;
+  undefined8 in_XMM3_Qa;
+  undefined8 in_XMM4_Qa;
+  undefined8 in_XMM5_Qa;
+  undefined8 in_XMM6_Qa;
+  undefined8 in_XMM7_Qa;
+  void *local_128;
+  ulong local_120;
+  undefined4 local_100;
+  undefined4 local_fc;
+  undefined1 *local_f8;
+  undefined1 *local_f0;
+  undefined1 local_e8 [16];
+  undefined8 local_d8;
+  undefined8 local_d0;
+  undefined8 local_c8;
+  undefined8 local_c0;
+  undefined8 local_b8;
+  undefined8 local_a8;
+  undefined8 local_98;
+  undefined8 local_88;
+  undefined8 local_78;
+  undefined8 local_68;
+  undefined8 local_58;
+  undefined8 local_48;
+  
+  if (in_AL != '\0') {
+    local_b8 = in_XMM0_Qa;
+    local_a8 = in_XMM1_Qa;
+    local_98 = in_XMM2_Qa;
+    local_88 = in_XMM3_Qa;
+    local_78 = in_XMM4_Qa;
+    local_68 = in_XMM5_Qa;
+    local_58 = in_XMM6_Qa;
+    local_48 = in_XMM7_Qa;
+  }
+  local_f8 = &stack0x00000008;
+  local_f0 = local_e8;
+  local_100 = 0x10;
+  local_fc = 0x30;
+  local_d8 = in_RDX;
+  local_d0 = in_RCX;
+  local_c8 = in_R8;
+  local_c0 = in_R9;
+  iVar2 = vsnprintf((char *)0x0,0,in_RSI,&local_100);
+  pvVar3 = *(void **)(param_1 + 8);
+  pvVar6 = *(void **)param_1;
+  __n = (long)pvVar3 - (long)pvVar6;
+  iVar1 = (int)__n;
+  uVar7 = iVar2 + iVar1;
+  uVar8 = (ulong)uVar7;
+  uVar9 = (ulong)(int)(uVar7 + 1);
+  if (__n < uVar9) {
+    uVar9 = uVar9 - __n;
+    if (uVar9 == 0) goto LAB_00115a94;
+    if (uVar9 <= (ulong)(*(long *)(param_1 + 0x10) - (long)pvVar3)) {
+      memset(pvVar3,0,uVar9);
+      *(ulong *)(param_1 + 8) = *(long *)(param_1 + 8) + uVar9;
+      goto LAB_00115a94;
+    }
+    if (uVar9 <= ~__n) {
+      local_120 = 0xffffffffffffffff;
+      uVar8 = __n;
+      if (__n <= uVar9) {
+        uVar8 = uVar9;
+      }
+      if ((CARRY8(uVar8,__n)) || (local_120 = uVar8 + __n, uVar8 + __n != 0)) {
+        local_128 = operator_new(local_120);
+        pvVar6 = *(void **)param_1;
+        __n = *(long *)(param_1 + 8) - (long)pvVar6;
+      }
+      else {
+        local_120 = 0;
+        local_128 = (void *)0x0;
+      }
+      if (__n != 0) {
+        memmove(local_128,pvVar6,__n);
+      }
+      pvVar3 = (void *)((long)local_128 + __n);
+      memset(pvVar3,0,(uVar9 + (long)pvVar3) - (long)pvVar3);
+      if (*(void **)param_1 != (void *)0x0) {
+        operator_delete(*(void **)param_1);
+      }
+      *(ulong *)(param_1 + 8) = uVar9 + (long)pvVar3;
+      *(void **)param_1 = local_128;
+      *(ulong *)(param_1 + 0x10) = (long)local_128 + local_120;
+      goto LAB_00115a94;
+    }
+LAB_00115d22:
+    std::__throw_length_error("vector::_M_default_append");
+    uVar5 = extraout_RDX;
+  }
+  else {
+    if (uVar9 < __n) {
+      *(ulong *)(param_1 + 8) = uVar9 + (long)pvVar6;
+    }
+LAB_00115a94:
+    local_f8 = &stack0x00000008;
+    local_100 = 0x10;
+    local_f0 = local_e8;
+    local_fc = 0x30;
+    uVar8 = (ulong)(int)uVar7;
+    vsnprintf((char *)((long)iVar1 + *(long *)param_1),(long)(iVar2 + 1),in_RSI,&local_100);
+    pvVar3 = *(void **)(param_1 + 8);
+    pvVar6 = *(void **)param_1;
+    uVar9 = (long)pvVar3 - (long)pvVar6;
+    if (uVar8 <= uVar9) {
+      if (uVar9 <= uVar8) {
+        return;
+      }
+      *(ulong *)(param_1 + 8) = uVar8 + (long)pvVar6;
+      return;
+    }
+    uVar8 = uVar8 - uVar9;
+    if (uVar8 == 0) {
+      return;
+    }
+    if (uVar8 <= (ulong)(*(long *)(param_1 + 0x10) - (long)pvVar3)) {
+      memset(pvVar3,0,uVar8);
+      *(ulong *)(param_1 + 8) = *(long *)(param_1 + 8) + uVar8;
+      return;
+    }
+    if (~uVar9 < uVar8) goto LAB_00115d22;
+    uVar4 = uVar9;
+    if (uVar9 <= uVar8) {
+      uVar4 = uVar8;
+    }
+    uVar5 = 0xffffffffffffffff;
+    if ((!CARRY8(uVar4,uVar9)) && (uVar5 = uVar4 + uVar9, uVar4 + uVar9 == 0)) {
+      uVar5 = 0;
+      pvVar3 = (void *)0x0;
+      goto LAB_00115b5e;
+    }
+  }
+  pvVar3 = operator_new(uVar5);
+  pvVar6 = *(void **)param_1;
+  uVar9 = *(long *)(param_1 + 8) - (long)pvVar6;
+LAB_00115b5e:
+  if (uVar9 != 0) {
+    memmove(pvVar3,pvVar6,uVar9);
+  }
+  pvVar6 = (void *)((long)pvVar3 + uVar9);
+  memset(pvVar6,0,(uVar8 + (long)pvVar6) - (long)pvVar6);
+  if (*(void **)param_1 != (void *)0x0) {
+    operator_delete(*(void **)param_1);
+  }
+  *(void **)param_1 = pvVar3;
+  *(ulong *)(param_1 + 8) = uVar8 + (long)pvVar6;
+  *(ulong *)(param_1 + 0x10) = uVar5 + (long)pvVar3;
+  return;
+}
+
+
+
