@@ -4,3 +4,5 @@
 __pycache__/
 *.pyc
 build/
+
+# derived caches (regenerable, too large for GitHub)\n_bodies.json\n_blocks*.json\n_scrape*.json\n*.o\n*.exe\nt\n
