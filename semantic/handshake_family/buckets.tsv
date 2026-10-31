@@ -1,0 +1,401 @@
+idx	addr	name	lines	bucket	reason
+0	00106ed8	_init	15	fragment	CRT startup stub
+1	00106f00	FUN_00106f00	10	fragment	PLT/import thunk
+2	00106f10	recv_pat	348	cold	duplicate listing pass of frames M01 recv_pat
+3	00106f20	append	12	fragment	PLT/import thunk
+4	00106f30	__throw_length_error	12	fragment	PLT/import thunk
+5	00106f40	memset	14	fragment	PLT/import thunk
+6	00106f50	shutdown	14	fragment	PLT/import thunk
+7	00106f60	backtrace	10	fragment	PLT/import thunk
+8	00106f70	_M_unhook	12	fragment	PLT/import thunk
+9	00106f80	close	14	fragment	PLT/import thunk
+10	00106f90	inflateEnd	10	fragment	PLT/import thunk
+11	00106fa0	abort	12	fragment	PLT/import thunk
+12	00106fb0	PyLong_FromVoidPtr	10	fragment	PLT/import thunk
+13	00106fc0	PyLong_AsVoidPtr	10	fragment	PLT/import thunk
+14	00106fd0	string	10	fragment	PLT/import thunk
+15	00106fe0	erase	97	cold	duplicate listing pass of erase (0x0010b810)
+16	00106ff0	~EventLoop2	63	cold	duplicate listing pass of ~EventLoop2 (0x001169c0)
+17	00107000	operator.delete	12	fragment	PLT/import thunk
+18	00107010	reserve	12	fragment	PLT/import thunk
+19	00107020	_M_dispose	12	fragment	PLT/import thunk
+20	00107030	PyBytes_Size	10	fragment	PLT/import thunk
+21	00107040	read_data_mask	66	cold	duplicate listing pass of frames M08 read_data_mask
+22	00107050	gettimeofday	14	fragment	PLT/import thunk
+23	00107060	__cxa_rethrow	10	fragment	PLT/import thunk
+24	00107070	exit	570	alias	duplicate listing pass of M14 WSConn::exit (0x0010c210)
+25	00107080	deflate	10	fragment	PLT/import thunk
+26	00107090	read	14	fragment	PLT/import thunk
+27	001070a0	~TcpClient	10	fragment	PLT/import thunk
+28	001070b0	exit	13	cold	event-loop / OS utility (not handshake)
+29	001070c0	_Rb_tree_decrement	12	fragment	PLT/import thunk
+30	001070d0	_S_create	12	fragment	PLT/import thunk
+31	001070e0	~UnixClient	10	fragment	PLT/import thunk
+32	001070f0	_M_range_insert<__gnu_cxx::__normal_iterator<unsigned_char*,std::vector<unsigned_char,std::allocator<unsigned_char>>>>	113	cold	duplicate listing pass of _M_range_insert<__gnu_cxx::__normal_iter (0x00116380)
+33	00107100	print_stack	40	cold	duplicate listing pass of print_stack (0x00116660)
+34	00107110	string	10	fragment	PLT/import thunk
+35	00107120	setsockopt	14	fragment	PLT/import thunk
+36	00107130	~vector	14	fragment	PLT/import thunk
+37	00107140	idle_proc	10	fragment	PLT/import thunk
+38	00107150	PyLong_AsLong	10	fragment	PLT/import thunk
+39	00107160	send_proc	10	fragment	PLT/import thunk
+40	00107170	inflateInit2_	10	fragment	PLT/import thunk
+41	00107180	bzero	12	fragment	PLT/import thunk
+42	00107190	strnlen	14	fragment	PLT/import thunk
+43	001071a0	PyArg_ParseTuple	10	fragment	PLT/import thunk
+44	001071b0	inflate	10	fragment	PLT/import thunk
+45	001071c0	backtrace_symbols	10	fragment	PLT/import thunk
+46	001071d0	free	12	fragment	PLT/import thunk
+47	001071e0	strlen	14	fragment	PLT/import thunk
+48	001071f0	_M_destroy	12	fragment	PLT/import thunk
+49	00107200	__xstat	14	fragment	PLT/import thunk
+50	00107210	deflateEnd	10	fragment	PLT/import thunk
+51	00107220	_M_emplace_hint_unique<std::piecewise_construct_t_const&,std::tuple<int_const&>,std::tuple<>>	15	cold	C++ container / libstdc++ instantiation
+52	00107230	listen	14	fragment	PLT/import thunk
+53	00107240	PyBytes_AsString	10	fragment	PLT/import thunk
+54	00107250	TcpConn	11	fragment	PLT/import thunk
+55	00107260	read_data	67	cold	duplicate listing pass of frames M07 read_data
+56	00107270	strrchr	14	fragment	PLT/import thunk
+57	00107280	insert	12	fragment	PLT/import thunk
+58	00107290	_Rb_tree_increment	12	fragment	PLT/import thunk
+59	001072a0	epoll_create1	14	fragment	PLT/import thunk
+60	001072b0	_M_range_insert<__gnu_cxx::__normal_iterator<char*,std::string>>	256	cold	duplicate listing pass of _M_range_insert<__gnu_cxx::__normal_iter (0x0010cfd0)
+61	001072c0	_M_emplace_unique<WSConn*&,std::unique_ptr<Root,std::default_delete<Root>>>	86	cold	duplicate listing pass of _M_emplace_unique<WSConn*&,std::unique_p (0x0010be40)
+62	001072d0	string	10	fragment	PLT/import thunk
+63	001072e0	epoll_ctl	14	fragment	PLT/import thunk
+64	001072f0	sigaction	14	fragment	PLT/import thunk
+65	00107300	getifaddrs	10	fragment	PLT/import thunk
+66	00107310	terminate	12	fragment	PLT/import thunk
+67	00107320	_M_emplace_back_aux<std::pair<EventHandler*,std::function<void()>>>	15	fragment	PLT/import thunk
+68	00107330	getsockopt	14	fragment	PLT/import thunk
+69	00107340	~UnixServer	10	fragment	PLT/import thunk
+70	00107350	connect	14	fragment	PLT/import thunk
+71	00107360	emplace_back<unsigned_char>	320	cold	duplicate listing pass of emplace_back<unsigned_char> (0x00115d40)
+72	00107370	~TcpConn	10	fragment	PLT/import thunk
+73	00107380	_M_hook	12	fragment	PLT/import thunk
+74	00107390	appendf	179	alias	duplicate listing pass of M05 Buffer::appendf (0x001159c0)
+75	001073a0	setcloexec	19	cold	event-loop / OS utility (not handshake)
+76	001073b0	run	323	alias	duplicate listing pass of M16 EventLoop2::run (0x00116de0)
+77	001073c0	memmove	14	fragment	PLT/import thunk
+78	001073d0	setnonblock	19	cold	event-loop / OS utility (not handshake)
+79	001073e0	recv_proc	10	fragment	PLT/import thunk
+80	001073f0	~WSConn	49	alias	duplicate listing pass of M15 ~WSConn (0x0010ee70)
+81	00107400	PyFloat_AsDouble	10	fragment	PLT/import thunk
+82	00107410	socket	14	fragment	PLT/import thunk
+83	00107420	inet_ntoa	14	fragment	PLT/import thunk
+84	00107430	print_stack_abort	14	cold	event-loop / OS utility (not handshake)
+85	00107440	Py_BuildValue	10	fragment	PLT/import thunk
+86	00107450	__errno_location	14	fragment	PLT/import thunk
+87	00107460	send	477	cold	duplicate listing pass of frames M13 send
+88	00107470	_Rb_tree_insert_and_rebalance	14	fragment	PLT/import thunk
+89	00107480	recv_more	311	cold	duplicate listing pass of frames M02 recv_more
+90	00107490	~vector	14	fragment	PLT/import thunk
+91	001074a0	_M_get_insert_hint_unique_pos	165	cold	duplicate listing pass of _M_get_insert_hint_unique_pos (0x0010bf90)
+92	001074b0	__throw_bad_function_call	12	fragment	PLT/import thunk
+93	001074c0	recv	40	cold	duplicate listing pass of frames M12 recv
+94	001074d0	UnixClient	10	fragment	PLT/import thunk
+95	001074e0	_Rb_tree_rebalance_for_erase	12	fragment	PLT/import thunk
+96	001074f0	strcmp	14	fragment	PLT/import thunk
+97	00107500	TcpClient	10	fragment	PLT/import thunk
+98	00107510	_M_erase	80	cold	duplicate listing pass of _M_erase (0x0010b640)
+99	00107520	deflateBound	10	fragment	PLT/import thunk
+100	00107530	_M_erase	116	cold	duplicate listing pass of _M_erase (0x0010b980)
+101	00107540	PyBytes_FromStringAndSize	10	fragment	PLT/import thunk
+102	00107550	assign	12	fragment	PLT/import thunk
+103	00107560	~TcpServer	10	fragment	PLT/import thunk
+104	00107570	epoll_wait	14	fragment	PLT/import thunk
+105	00107580	freeifaddrs	10	fragment	PLT/import thunk
+106	00107590	assign	12	fragment	PLT/import thunk
+107	001075a0	connect	413	alias	duplicate listing pass of M01 WSConn::connect (0x001123b0)
+108	001075b0	_M_emplace_back_aux<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>>	17	cold	C++ container / libstdc++ instantiation
+109	001075c0	deflateInit2_	10	fragment	PLT/import thunk
+110	001075d0	memmem	14	fragment	PLT/import thunk
+111	001075e0	EventLoop2	35	cold	duplicate listing pass of EventLoop2 (0x00116b30)
+112	001075f0	remove	14	fragment	PLT/import thunk
+113	00107600	PyModule_Create2	10	fragment	PLT/import thunk
+114	00107610	strncpy	14	fragment	PLT/import thunk
+115	00107620	PyTuple_New	10	fragment	PLT/import thunk
+116	00107630	_Rb_tree_increment	12	fragment	PLT/import thunk
+117	00107640	__cxa_end_catch	10	fragment	PLT/import thunk
+118	00107650	sigemptyset	14	fragment	PLT/import thunk
+119	00107660	~EventHandler	10	fragment	PLT/import thunk
+120	00107670	__cxa_begin_catch	10	fragment	PLT/import thunk
+121	00107680	read_head	56	cold	duplicate listing pass of frames M03 read_head
+122	00107690	bind	14	fragment	PLT/import thunk
+123	001076a0	fwrite	14	fragment	PLT/import thunk
+124	001076b0	_M_range_insert<std::move_iterator<__gnu_cxx::__normal_iterator<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>*,std::vector<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>,std::allocator<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>>>>>>	16	cold	C++ container / libstdc++ instantiation
+125	001076c0	perror	12	fragment	PLT/import thunk
+126	001076d0	fprintf	14	fragment	PLT/import thunk
+127	001076e0	write	14	fragment	PLT/import thunk
+128	001076f0	operator.new	14	fragment	PLT/import thunk
+129	00107700	_Unwind_Resume	10	fragment	PLT/import thunk
+130	00107710	accept	14	fragment	PLT/import thunk
+131	00107720	add	33	cold	duplicate listing pass of add (0x00116c00)
+132	00107730	_M_erase	14	fragment	PLT/import thunk
+133	00107740	_M_leak_hard	12	fragment	PLT/import thunk
+134	00107750	PyUnicode_AsUTF8	10	fragment	PLT/import thunk
+135	00107760	memcpy	14	fragment	PLT/import thunk
+136	00107770	fcntl	14	fragment	PLT/import thunk
+137	00107780	append	12	fragment	PLT/import thunk
+138	00107790	mkdir	14	fragment	PLT/import thunk
+139	001077a0	inet_addr	14	fragment	PLT/import thunk
+140	001077b0	__to_xstring<std::string,char>	12	fragment	PLT/import thunk
+141	001077c0	current_time	15	cold	event-loop / OS utility (not handshake)
+142	001077d0	__gmon_start__	10	fragment	PLT/import thunk
+143	001077d8	__cxa_finalize	10	fragment	PLT/import thunk
+144	001077e0	vsnprintf	14	fragment	PLT/import thunk
+145	001077e8	_M_manager	35	cold	duplicate listing pass of _M_manager (0x0010b040)
+146	001077f0	entry	18	fragment	unwind / CRT trampoline
+147	00107812	FUN_00107812	16	fragment	unwind / CRT trampoline
+148	00107834	FUN_00107834	16	fragment	unwind / CRT trampoline
+149	00107860	FUN_00107860	12	fragment	unwind / CRT trampoline
+150	00107890	FUN_00107890	12	fragment	unwind / CRT trampoline
+151	001078d0	_FINI_0	16	fragment	CRT startup stub
+152	00107910	_INIT_0	15	fragment	CRT startup stub
+153	00107950	FUN_00107950	9	alias	exit() lambda #1 invoker
+154	00107960	FUN_00107960	14	alias	lambda invoker (destroy)
+155	00107980	FUN_00107980	14	alias	lambda invoker (clone)
+156	001079a0	FUN_001079a0	37	cold	duplicate listing pass of FUN_00107c30 (0x00107c30)
+157	00107a30	FUN_00107a30	37	cold	duplicate listing pass of FUN_00107c30 (0x00107c30)
+158	00107ac0	FUN_00107ac0	31	cold	duplicate listing pass of FUN_00117ea0 (0x00117ea0)
+159	00107b30	FUN_00107b30	33	cold	duplicate listing pass of FUN_00107bb0 (0x00107bb0)
+160	00107bb0	FUN_00107bb0	33	alias	std::function manager for M01 closure
+161	00107c30	FUN_00107c30	37	alias	std::function manager for M17 closure
+162	00107cc0	FUN_00107cc0	33	alias	std::function manager for M01 closure
+163	00107d40	FUN_00107d40	33	alias	std::function manager for M17 closure
+164	00107dc0	FUN_00107dc0	40	alias	M18/M17 recv-completion closure (pops the message channel)
+165	00107e70	FUN_00107e70	104	alias	M18 recv-timeout/abort closure
+166	00108100	FUN_00108100	105	alias	M17 on-error closure
+167	001083a0	FUN_001083a0	107	alias	M17/M18 loop-exit closure
+168	00108660	FUN_00108660	123	alias	recv_with_timeout (called by the py recv/recv_timeout thunks)
+169	00108a30	FUN_00108a30	71	alias	py recv() thunk (FUN_00108a30)
+170	00108bd0	FUN_00108bd0	50	alias	py recv_timeout() thunk (FUN_00108bd0)
+171	00108d10	FUN_00108d10	175	alias	M18 close path installed by disconnect
+172	001091c0	PyInit_bbwebsocket3	10	alias	PyInit_bbwebsocket3
+173	001091e0	FUN_001091e0	88	alias	M17 on-tcp-connected -> WSConn ctor + WSConn::connect
+174	00109450	FUN_00109450	268	alias	std::function handler that drives WSConn callbacks (FUN_00109450)
+175	00109bb0	FUN_00109bb0	130	alias	py send() thunk (FUN_00109bb0)
+176	00109f70	FUN_00109f70	361	in_table	handshake_family M18 api disconnect
+177	0010a780	FUN_0010a780	216	in_table	handshake_family M17 api connect
+178	0010aff0	~Root	12	alias	Root::~Root
+179	0010b000	_M_invoke	12	alias	lambda invoker for M14 exit#2
+180	0010b010	_M_invoke	12	alias	lambda invoker for M14 exit#3
+181	0010b020	~Root	13	alias	Root::~Root (2nd)
+182	0010b040	_M_manager	36	alias	std::function manager for M14 exit#2
+183	0010b0b0	_M_manager	36	alias	std::function manager for M14 exit#3
+184	0010b120	_M_manager	40	alias	std::function manager for recv cb
+185	0010b1a0	_M_manager	45	alias	std::function manager for recv cb
+186	0010b290	_M_invoke	67	alias	std::function handler (recv)
+187	0010b420	_M_invoke	90	alias	std::function handler (recv)
+188	0010b640	_M_erase	82	cold	C++ container / libstdc++ instantiation
+189	0010b810	erase	98	cold	C++ container / libstdc++ instantiation
+190	0010b980	_M_erase	120	cold	C++ container / libstdc++ instantiation
+191	0010bc30	~Channel	65	cold	message channel (send/recv plumbing)
+192	0010bd30	~Channel	66	cold	message channel (send/recv plumbing)
+193	0010be40	_M_emplace_unique<WSConn*&,std::unique_ptr<Root,std::default_delete<Root>>>	92	cold	C++ container / libstdc++ instantiation
+194	0010bf90	_M_get_insert_hint_unique_pos	168	cold	C++ container / libstdc++ instantiation
+195	0010c210	exit	569	in_table	handshake_family M14 WSConn::exit
+196	0010cfd0	_M_range_insert<__gnu_cxx::__normal_iterator<char*,std::string>>	260	cold	C++ container / libstdc++ instantiation
+197	0010d720	FUN_0010d720	1429	in_table	handshake_family M04 SHA-1 block transform
+198	0010dbe0	FUN_0010dbe0	33	alias	manager for M02 closure
+199	0010dc50	FUN_0010dc50	33	alias	manager for M03 closure
+200	0010dcc0	FUN_0010dcc0	76	in_table	handshake_family M03 client response
+201	0010dea0	FUN_0010dea0	58	alias	manager for client resp cb
+202	0010dfb0	FUN_0010dfb0	65	alias	manager for wait-head cb
+203	0010e140	FUN_0010e140	64	alias	manager for wait-head cb
+204	0010e2d0	FUN_0010e2d0	44	alias	manager/cloner for M01 send-closure
+205	0010e400	FUN_0010e400	44	alias	manager for M02 closure
+206	0010e530	FUN_0010e530	45	alias	manager for client resp cb
+207	0010e660	FUN_0010e660	55	alias	manager for wait-head cb
+208	0010e800	FUN_0010e800	44	alias	manager for wait-head cb
+209	0010e930	FUN_0010e930	47	alias	manager for M01 send-closure
+210	0010ea80	FUN_0010ea80	47	alias	manager for M01 send-closure
+211	0010ebd0	FUN_0010ebd0	47	alias	manager for M14 exit cb
+212	0010ed20	FUN_0010ed20	47	alias	manager for M14 exit cb
+213	0010ee70	~WSConn	49	in_table	handshake_family M15 ~WSConn
+214	0010ef60	~WSConn	13	alias	~WSConn deleting-destructor variant
+215	0010ef80	FUN_0010ef80	137	cold	frames M11 finalize (other family)
+216	0010f280	recv_pat	348	cold	frames M01 recv_pat (other family)
+217	0010fa40	accept	107	cold	frames M14 accept (other family)
+218	0010fd40	FUN_0010fd40	65	in_table	handshake_family M02 client wait-head closure
+219	0010ff70	recv_more	311	cold	frames M02 recv_more (other family)
+220	001106a0	read_data_mask	67	cold	frames M08 read_data_mask (other family)
+221	00110860	read_data	68	cold	frames M07 read_data (other family)
+222	00110a20	FUN_00110a20	61	cold	frames M05 len16 (other family)
+223	00110bd0	read_head	56	cold	frames M03 read_head (other family)
+224	00110d60	recv	40	cold	frames M12 recv (other family)
+225	00110e50	FUN_00110e50	175	cold	frames M09 payload_mask (other family)
+226	00111200	FUN_00111200	153	cold	frames M10 payload_plain (other family)
+227	001115a0	FUN_001115a0	143	cold	frames M04 hdr_parse (other family)
+228	00111b50	FUN_00111b50	71	cold	frames M06 len64 (other family)
+229	00111d50	FUN_00111d50	122	alias	WSConn read-delivery glue: null Buffer -> WSConn::exit(), else append + recv_more
+230	00112080	FUN_00112080	122	cold	frames M15 on_data (other family)
+231	001123b0	connect	412	in_table	handshake_family M01 WSConn::connect
+232	00112c60	FUN_00112c60	1423	cold	frames M14 key_parse (other family)
+233	00114e00	send	477	cold	frames M13 send (other family)
+234	00115840	_M_invoke	12	cold	C++ container / libstdc++ instantiation
+235	00115850	_M_invoke	12	cold	C++ container / libstdc++ instantiation
+236	00115860	_M_manager	38	cold	C++ container / libstdc++ instantiation
+237	001158e0	_M_manager	36	cold	C++ container / libstdc++ instantiation
+238	00115950	_M_manager	36	cold	C++ container / libstdc++ instantiation
+239	001159c0	appendf	179	in_table	handshake_family M05 Buffer::appendf
+240	00115d40	emplace_back<unsigned_char>	321	cold	C++ container / libstdc++ instantiation
+241	00115e50	_M_invoke	259	cold	C++ container / libstdc++ instantiation
+242	00116380	_M_range_insert<__gnu_cxx::__normal_iterator<unsigned_char*,std::vector<unsigned_char,std::allocator<unsigned_char>>>>	119	cold	C++ container / libstdc++ instantiation
+243	00116600	setnonblock	19	cold	event-loop / OS utility (not handshake)
+244	00116630	setcloexec	19	cold	event-loop / OS utility (not handshake)
+245	00116660	print_stack	40	cold	event-loop / OS utility (not handshake)
+246	00116770	print_stack_abort	14	cold	event-loop / OS utility (not handshake)
+247	00116780	is_myaddr	37	cold	event-loop / OS utility (not handshake)
+248	00116800	mkdir_p	49	cold	event-loop / OS utility (not handshake)
+249	00116910	dirname	29	cold	event-loop / OS utility (not handshake)
+250	00116990	current_time	15	cold	event-loop / OS utility (not handshake)
+251	001169c0	~EventLoop2	63	cold	event-loop / OS utility (not handshake)
+252	00116af0	~EventLoop2	13	cold	event-loop / OS utility (not handshake)
+253	00116b10	exit	13	cold	event-loop / OS utility (not handshake)
+254	00116b20	set_timeout	12	alias	EventLoop2::set_timeout (feeds the M16 wait timeout / recv deadline)
+255	00116b30	EventLoop2	35	cold	event-loop / OS utility (not handshake)
+256	00116c00	add	33	alias	EventLoop2::add (registers a handler for M16)
+257	00116c80	del	62	alias	EventLoop2::del (unregisters a handler for M16)
+258	00116de0	run	323	in_table	handshake_family M16 EventLoop2::run
+259	001175a0	~vector	36	cold	C++ container / libstdc++ instantiation
+260	00117600	~vector	34	cold	C++ container / libstdc++ instantiation
+261	00117670	_M_emplace_back_aux<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>>	88	cold	C++ container / libstdc++ instantiation
+262	001177d0	_M_emplace_back_aux<std::pair<EventHandler*,std::function<void()>>>	115	cold	C++ container / libstdc++ instantiation
+263	00117ac0	_M_range_insert<std::move_iterator<__gnu_cxx::__normal_iterator<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>*,std::vector<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>,std::allocator<std::unique_ptr<EventHandler,std::default_delete<EventHandler>>>>>>>	233	cold	C++ container / libstdc++ instantiation
+264	00117e90	FUN_00117e90	9	alias	lambda invoker for TcpConn idle cb
+265	00117ea0	FUN_00117ea0	31	alias	std::function manager for TcpConn idle cb
+266	00117f10	idle_proc	18	alias	TcpConn::idle_proc (invokes the per-conn idle callback)
+267	00117f40	idle	25	alias	TcpClient::idle (M12 reap vote)
+268	00117f90	idle	40	alias	TcpServer::idle (M13 reap sweep)
+269	00118040	iter	24	cold	event-loop / OS utility (not handshake)
+270	00118090	~TcpClient	50	alias	~TcpClient (owns and destroys the conn)
+271	00118170	~TcpClient	13	alias	~TcpClient deleting-destructor variant
+272	00118190	TcpConn	38	in_table	handshake_family M08 TcpConn ctor
+273	00118320	TcpClient	71	in_table	handshake_family M07 TcpClient(fd)
+274	00118550	~TcpConn	90	in_table	handshake_family M09 ~TcpConn
+275	001186c0	~TcpConn	13	alias	~TcpConn deleting-destructor variant
+276	001186e0	~TcpServer	51	cold	sibling transport method (listen side / other poll)
+277	001187b0	~TcpServer	13	cold	sibling transport method (listen side / other poll)
+278	001187d0	TcpServer	240	cold	sibling transport method (listen side / other poll)
+279	00118d40	TcpServer	270	cold	sibling transport method (listen side / other poll)
+280	00119380	recv_proc	758	in_table	handshake_family M10 recv_proc
+281	0011a390	TcpClient	381	in_table	handshake_family M06 TcpClient(host,port)
+282	0011ad10	send_proc	680	in_table	handshake_family M11 send_proc
+283	0011baf0	poll	210	in_table	handshake_family M13 TcpServer::poll
+284	0011c000	poll	436	in_table	handshake_family M12 TcpClient::poll
+285	0011c920	idle	11	cold	event-loop / OS utility (not handshake)
+286	0011c930	__to_xstring<std::string,char>	93	cold	C++ container / libstdc++ instantiation
+287	0011ca60	~EventHandler	37	cold	EventHandler base
+288	0011cae0	~EventHandler	38	cold	EventHandler base
+289	0011cb70	_M_emplace_hint_unique<std::piecewise_construct_t_const&,std::tuple<int_const&>,std::tuple<>>	172	cold	C++ container / libstdc++ instantiation
+290	0011ce80	_M_erase	120	cold	C++ container / libstdc++ instantiation
+291	0011d130	idle	25	cold	event-loop / OS utility (not handshake)
+292	0011d180	idle	40	cold	event-loop / OS utility (not handshake)
+293	0011d230	iter	24	cold	event-loop / OS utility (not handshake)
+294	0011d280	UnixClient	89	cold	Unix-domain sibling transport
+295	0011d5a0	UnixClient	71	cold	Unix-domain sibling transport
+296	0011d7d0	~UnixClient	50	cold	Unix-domain sibling transport
+297	0011d8b0	~UnixClient	13	cold	Unix-domain sibling transport
+298	0011d8d0	poll	185	cold	sibling transport method (listen side / other poll)
+299	0011dd00	~UnixServer	72	cold	Unix-domain sibling transport
+300	0011de40	~UnixServer	13	cold	Unix-domain sibling transport
+301	0011de60	UnixServer	262	cold	Unix-domain sibling transport
+302	0011e4a0	UnixServer	242	cold	Unix-domain sibling transport
+303	0011ea40	poll	436	cold	sibling transport method (listen side / other poll)
+304	0011f358	_fini	9	fragment	PLT/import thunk
+305	00326000	append	13	fragment	PLT/import thunk
+306	00326008	__throw_length_error	13	fragment	PLT/import thunk
+307	00326010	memset	13	fragment	PLT/import thunk
+308	00326018	shutdown	13	fragment	PLT/import thunk
+309	00326020	backtrace	12	fragment	PLT/import thunk
+310	00326028	_M_unhook	13	fragment	PLT/import thunk
+311	00326030	close	13	fragment	PLT/import thunk
+312	00326038	inflateEnd	12	fragment	PLT/import thunk
+313	00326040	abort	13	fragment	PLT/import thunk
+314	00326048	PyLong_FromVoidPtr	12	fragment	PLT/import thunk
+315	00326050	PyLong_AsVoidPtr	12	fragment	PLT/import thunk
+316	00326058	string	12	fragment	PLT/import thunk
+317	00326060	__gmon_start__	12	fragment	PLT/import thunk
+318	00326068	_Jv_RegisterClasses	12	fragment	PLT/import thunk
+319	00326070	operator.delete	13	fragment	PLT/import thunk
+320	00326078	reserve	13	fragment	PLT/import thunk
+321	00326080	_M_dispose	13	fragment	PLT/import thunk
+322	00326088	PyBytes_Size	12	fragment	PLT/import thunk
+323	00326090	gettimeofday	13	fragment	PLT/import thunk
+324	00326098	__cxa_rethrow	12	fragment	PLT/import thunk
+325	003260a0	deflate	12	fragment	PLT/import thunk
+326	003260a8	read	13	fragment	PLT/import thunk
+327	003260b0	_Rb_tree_decrement	13	fragment	PLT/import thunk
+328	003260b8	_S_create	13	fragment	PLT/import thunk
+329	003260c0	string	12	fragment	PLT/import thunk
+330	003260c8	setsockopt	13	fragment	PLT/import thunk
+331	003260d0	PyLong_AsLong	12	fragment	PLT/import thunk
+332	003260d8	inflateInit2_	12	fragment	PLT/import thunk
+333	003260e0	_ITM_deregisterTMCloneTable	12	fragment	PLT/import thunk
+334	003260e8	bzero	13	fragment	PLT/import thunk
+335	003260f0	strnlen	13	fragment	PLT/import thunk
+336	003260f8	PyArg_ParseTuple	12	fragment	PLT/import thunk
+337	00326100	inflate	12	fragment	PLT/import thunk
+338	00326108	backtrace_symbols	12	fragment	PLT/import thunk
+339	00326110	free	13	fragment	PLT/import thunk
+340	00326118	strlen	13	fragment	PLT/import thunk
+341	00326120	_ITM_registerTMCloneTable	12	fragment	PLT/import thunk
+342	00326128	_M_destroy	13	fragment	PLT/import thunk
+343	00326130	__xstat	13	fragment	PLT/import thunk
+344	00326138	deflateEnd	12	fragment	PLT/import thunk
+345	00326140	listen	13	fragment	PLT/import thunk
+346	00326148	__cxa_finalize	12	fragment	PLT/import thunk
+347	00326150	PyBytes_AsString	12	fragment	PLT/import thunk
+348	00326160	strrchr	13	fragment	PLT/import thunk
+349	00326168	insert	13	fragment	PLT/import thunk
+350	00326170	_Rb_tree_increment	13	fragment	PLT/import thunk
+351	00326178	epoll_create1	13	fragment	PLT/import thunk
+352	00326180	string	12	fragment	PLT/import thunk
+353	00326188	epoll_ctl	13	fragment	PLT/import thunk
+354	00326190	sigaction	13	fragment	PLT/import thunk
+355	00326198	getifaddrs	12	fragment	PLT/import thunk
+356	003261a0	terminate	13	fragment	PLT/import thunk
+357	003261a8	getsockopt	13	fragment	PLT/import thunk
+358	003261b0	connect	13	fragment	PLT/import thunk
+359	003261b8	_M_hook	13	fragment	PLT/import thunk
+360	003261c0	__cxa_pure_virtual	12	fragment	PLT/import thunk
+361	003261c8	memmove	13	fragment	PLT/import thunk
+362	003261d0	PyFloat_AsDouble	12	fragment	PLT/import thunk
+363	003261d8	socket	13	fragment	PLT/import thunk
+364	003261e0	vsnprintf	13	fragment	PLT/import thunk
+365	003261e8	inet_ntoa	13	fragment	PLT/import thunk
+366	003261f0	Py_BuildValue	12	fragment	PLT/import thunk
+367	003261f8	__errno_location	13	fragment	PLT/import thunk
+368	00326200	_Rb_tree_insert_and_rebalance	15	fragment	PLT/import thunk
+369	00326210	__throw_bad_function_call	13	fragment	PLT/import thunk
+370	00326218	_Rb_tree_rebalance_for_erase	13	fragment	PLT/import thunk
+371	00326220	strcmp	13	fragment	PLT/import thunk
+372	00326228	deflateBound	12	fragment	PLT/import thunk
+373	00326230	PyBytes_FromStringAndSize	12	fragment	PLT/import thunk
+374	00326238	assign	13	fragment	PLT/import thunk
+375	00326248	epoll_wait	13	fragment	PLT/import thunk
+376	00326250	freeifaddrs	12	fragment	PLT/import thunk
+377	00326258	assign	13	fragment	PLT/import thunk
+378	00326260	deflateInit2_	12	fragment	PLT/import thunk
+379	00326268	memmem	13	fragment	PLT/import thunk
+380	00326278	remove	13	fragment	PLT/import thunk
+381	00326280	PyModule_Create2	12	fragment	PLT/import thunk
+382	00326288	strncpy	13	fragment	PLT/import thunk
+383	00326290	PyTuple_New	12	fragment	PLT/import thunk
+384	00326298	_Rb_tree_increment	13	fragment	PLT/import thunk
+385	003262a0	__cxa_end_catch	12	fragment	PLT/import thunk
+386	003262b8	sigemptyset	13	fragment	PLT/import thunk
+387	003262c0	__cxa_begin_catch	12	fragment	PLT/import thunk
+388	003262c8	bind	13	fragment	PLT/import thunk
+389	003262d0	fwrite	13	fragment	PLT/import thunk
+390	003262d8	perror	13	fragment	PLT/import thunk
+391	003262e0	__gxx_personality_v0	12	fragment	PLT/import thunk
+392	003262e8	fprintf	13	fragment	PLT/import thunk
+393	003262f0	write	13	fragment	PLT/import thunk
+394	003262f8	operator.new	13	fragment	PLT/import thunk
+395	00326300	_Unwind_Resume	12	fragment	PLT/import thunk
+396	00326308	accept	13	fragment	PLT/import thunk
+397	00326310	_M_leak_hard	13	fragment	PLT/import thunk
+398	00326318	PyUnicode_AsUTF8	12	fragment	PLT/import thunk
+399	00326320	memcpy	14	fragment	PLT/import thunk

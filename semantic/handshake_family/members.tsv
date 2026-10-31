@@ -1,0 +1,21 @@
+id	fun	func	py2_idx	py2_addr	py3_idx	py3_addr	addr_delta	py2_lines	py3_lines	norm_identical	raw_diff_lines	role
+M01	WSConn::connect	WSConn::connect	231	0x1122b0	231	0x1123b0	0x100	412	412	yes	40	client handshake: zero nonce -> base64 key -> GET upgrade, installs callbacks
+M02	FUN_0010fd40	FUN_0010fd40	218	0x10fc40	218	0x10fd40	0x100	65	65	yes	6	after send: wait for CRLFCRLF via recv_pat, then hand over to M03
+M03	FUN_0010dcc0	FUN_0010dcc0	199	0x10dbc0	200	0x10dcc0	0x100	76	76	yes	12	client response: memmem permessage-deflate, zlib init, consume head, fire on-connect
+M04	FUN_0010d720	FUN_0010d720	196	0x10d620	197	0x10d720	0x100	1429	1429	yes	2	SHA-1 block transform (K constants 5a827999/6ed9eba1/8f1bbcdc/ca62c1d6)
+M05	Buffer::appendf	Buffer::appendf	239	0x1158c0	239	0x1159c0	0x100	179	179	yes	16	vsnprintf twice, grow len+1, trim NUL (builds the GET request)
+M06	TcpClient::TcpClient(host,port)	TcpClient::TcpClient(host,port)	281	0x11a290	281	0x11a390	0x100	381	381	yes	42	AF_INET inet_addr + TCP_NODELAY + nonblock + connect, EINPROGRESS=115 is the async path
+M07	TcpClient::TcpClient(fd)	TcpClient::TcpClient(fd)	273	0x118220	273	0x118320	0x100	71	71	yes	0	adopt an existing fd: state=1 immediately, TcpConn with empty host/name
+M08	TcpConn::TcpConn	TcpConn::TcpConn	272	0x118090	272	0x118190	0x100	38	38	yes	4	connection flag init 0x58=1 0x59=1 0x5a=0 0x88=0
+M09	~TcpConn	~TcpConn	274	0x118450	274	0x118550	0x100	90	90	yes	0	erase 3 fd trees, close(fd), free pending buffer
+M10	TcpConn::recv_proc	TcpConn::recv_proc	280	0x119280	280	0x119380	0x100	758	758	yes	78	read 0x8000; EAGAIN/Eof/Fatal/Bogus; no callback on EOF
+M11	TcpConn::send_proc	TcpConn::send_proc	282	0x11ac10	282	0x11ad10	0x100	680	680	yes	60	write pending buffer; partial keeps tail; drain -> shutdown(SHUT_WR)
+M12	TcpClient::poll	TcpClient::poll	284	0x11bf00	284	0x11c000	0x100	436	436	yes	20	state 0/1/2; SO_ERROR probe; reap when both directions closed
+M13	TcpServer::poll	TcpServer::poll	283	0x11b9f0	283	0x11baf0	0x100	210	210	yes	22	accept on listen fd, else send_proc then recv_proc then reap
+M14	WSConn::exit	WSConn::exit	194	0x10c110	195	0x10c210	0x100	569	569	yes	60	3 waves: recv_flag(+0x88), send_flag(+0x5a)+drop pending, idle cb; 3 callbacks replaced
+M15	~WSConn	~WSConn	212	0x10ed70	213	0x10ee70	0x100	49	49	yes	0	inflateEnd/deflateEnd only if 0x58 negotiated; free 3 buffers
+M16	EventLoop2::run	EventLoop2::run	258	0x116ce0	258	0x116de0	0x100	323	323	yes	30	epoll_ctl interest 0x11/0x15/0x4, epoll_wait maxevents=1, timeout us/1000
+M17	FUN_0010a780	FUN_0010a780	176	0x10a6b0	177	0x10a780	0xd0	210	216	NO	52	connect(addr,port): EventLoop2 + TcpClient|UnixClient, runs loop inline, returns handle
+M18	FUN_00109f70	FUN_00109f70	175	0x109ea0	176	0x109f70	0xd0	361	361	yes	40	disconnect(handle): close WSConn, run loop, destroy loop, return 0
+A01	accept	WSConn::accept	216	0x10f940	217	0x10fa40	0x100	107	107	yes	4	ALIAS -> frames_family M14 (server-side handshake entry)
+A02	key_parse	FUN_00112c60	232	0x112b60	232	0x112c60	0x100	1423	1423	yes	148	ALIAS -> frames_family M14 (Sec-WebSocket-Key extraction + SHA1/base64 Accept + 101)

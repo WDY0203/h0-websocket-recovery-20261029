@@ -1,0 +1,8 @@
+{
+ "total_functions": 400,
+ "fragment": 216,
+ "in_table": 18,
+ "alias": 61,
+ "cold": 105,
+ "effective_coverage": 1.0
+}
